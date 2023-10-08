@@ -24,7 +24,7 @@ vim.opt.shiftround = true
 -- Interface
 vim.opt.laststatus = 3
 vim.opt.list = true
-vim.opt.matchpairs = {unpack(vim.opt.matchpairs), '<:>'}
+vim.opt.matchpairs = '(:),{:},[:],<:>'
 vim.opt.matchtime = 2
 vim.opt.number = true
 vim.opt.numberwidth = 4
@@ -38,6 +38,10 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.title = true
 vim.opt.vb = false
+
+-- Disable netrw in favor of NvimTree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- vim.opt.colorcolumn = '80' -- use smartcolumn.nvim instead
 vim.cmd('highlight SignColumn guibg=bg')
