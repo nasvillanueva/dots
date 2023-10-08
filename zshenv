@@ -1,0 +1,6 @@
+export NXS_DEV="$HOME/dev"
+export GOPATH="$NXS_DEV/go"
+export REMETIS_PATH="$NXS_DEV/projects/remetis"
+export NXS_BIN="$HOME/.bin"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH:$GOPATH/bin:$REMETIS_PATH/command/bin:$NXS_BIN"
+export EDITOR="nvim"

@@ -1,0 +1,9 @@
+[submodule "nxs-omz/plugins/zsh-completions"]
+	path = nxs-omz/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "nxs-omz/plugins/zsh-autosuggestions"]
+	path = nxs-omz/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "nxs-omz/plugins/fast-syntax-highlighting"]
+	path = nxs-omz/plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
