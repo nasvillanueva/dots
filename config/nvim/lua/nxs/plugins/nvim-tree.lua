@@ -11,7 +11,10 @@ return {
       { '<leader>e', ':NvimTreeToggle<cr>', desc = 'Toggle File Explorer' }
     },
     config = function() 
-      require('nvim-tree').setup({})
-    end
+       require('nvim-tree').setup({})
+    end,
+    init = function()
+      vim.g.nvim_tree_group_empty = 1 -- somehow not working
+    end,
   },
 }
