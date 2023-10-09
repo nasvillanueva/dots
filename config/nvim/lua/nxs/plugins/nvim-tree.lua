@@ -8,7 +8,7 @@ return {
       'nvim-tree/nvim-web-devicons'
     },
     keys = {
-      { '<leader>e', ':NvimTreeToggle<cr>', desc = 'Toggle File Explorer' }
+      { '<leader>1', ':NvimTreeToggle<cr>', desc = 'Toggle File Explorer' }
     },
     config = function() 
        require('nvim-tree').setup({})

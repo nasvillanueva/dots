@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-files=(zshrc nxs-omz tmux.conf zshenv config/nvim gitconfig_global)
+files=(zshrc nxs-omz tmux.conf zshenv config/nvim gitconfig_global ideavimrc)
 
 
 for f in $files; do
