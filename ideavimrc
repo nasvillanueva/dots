@@ -84,6 +84,9 @@ map <C-z> <Action>(ToggleDistractionFreeMode)
 
 " Split
 map <C-\> <Action>(SplitVertically)
-map <C--> <Action>(SplitHorizontally)
+map <C-=> <Action>(SplitHorizontally)
 
 imap <A-\> <Action>(copilot.requestCompletions)
+
+" Focus active file in the file explorer
+nmap <leader>` <Action>(SelectInProjectView)
