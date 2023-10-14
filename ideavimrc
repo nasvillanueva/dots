@@ -90,3 +90,6 @@ imap <A-\> <Action>(copilot.requestCompletions)
 
 " Focus active file in the file explorer
 nmap <leader>` <Action>(SelectInProjectView)
+
+" Restart TS Service
+nmap <leader>rts <Action>(TypeScript.Restart.Service)
