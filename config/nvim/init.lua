@@ -39,10 +39,6 @@ vim.opt.cursorline = true
 vim.opt.title = true
 vim.opt.vb = false
 
--- Disable netrw in favor of NvimTree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- vim.opt.colorcolumn = '80' -- use smartcolumn.nvim instead
 vim.cmd('highlight SignColumn guibg=bg')
 vim.cmd('highlight ColorColumn guibg=darkcyan')
@@ -106,6 +102,10 @@ vim.keymap.set('n', 'gn', ':bnext<cr>', { noremap = true })
 vim.keymap.set('n', 'gp', ':bprevious<cr>', { noremap = true })
 vim.keymap.set('n', 'gd', ':bdelete<cr>', { noremap = true })
 vim.keymap.set('n', 'gf', '<C-^>', { noremap = true })
+
+-- Shift-Tab to inverse indent
+vim.keymap.set("i", "<S-Tab>", "<C-d>")
+
 
 -- Plugins
 
