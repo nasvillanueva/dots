@@ -72,37 +72,27 @@ vim.opt.commentstring = '// %s'
 
 -- Keybindings
 
--- Edit config file
-vim.keymap.set('', '<leader>ve', ':edit $MYVIMRC<cr>', { noremap = true })
-
--- Reload config file
-vim.keymap.set('', '<leader>vs', ':source $MYVIMRC<cr>', { noremap = true })
-
--- Yank to system clipboard
-vim.keymap.set('n', 'Y', 'y$', { noremap = true })
-
--- Highlight last inserted text
-vim.keymap.set('n', 'gV', "'[V']", { noremap = true })
-
--- Quick save
-vim.keymap.set('n', '<leader>w', ':w!<cr>')
+vim.keymap.set('', '<leader>ve', ':edit $MYVIMRC<cr>', { desc = "Edit Neovim Config" })
+vim.keymap.set('', '<leader>vs', ':source $MYVIMRC<cr>', { desc = "Reload Neovim Config" })
+vim.keymap.set('n', '<leader>w', ':w!<cr>', { desc = "Quick Save" })
 
 -- Sudo save
 -- vim.keymap.set('c', 'w!!', 'w !sudo tee > /dev/null %') -- fix sudo issue
 
--- Smart way to move between windows
-vim.keymap.set('', '<C-j>', '<C-W>j')
-vim.keymap.set('', '<C-k>', '<C-W>k')
-vim.keymap.set('', '<C-h>', '<C-W>h')
-vim.keymap.set('', '<C-l>', '<C-W>l')
+vim.keymap.set('', '<C-j>', '<C-W>j', { desc = "Switch to Bottom Window" })
+vim.keymap.set('', '<C-k>', '<C-W>k', { desc = "Switch to Top Window" })
+vim.keymap.set('', '<C-h>', '<C-W>h', { desc = "Switch to Left Window" })
+vim.keymap.set('', '<C-l>', '<C-W>l', { desc = "Switch to Right Window" })
 
--- Buffers, preferred over tabs now with bufferline.
-vim.keymap.set('n', '<leader><Tab>', ':bnext<cr>')
-vim.keymap.set('n', '<leader><S-Tab>', ':bprevious<cr>')
-vim.keymap.set("n", "<leader>q", ":bdelete<CR>", { desc = "Cloes Current Buffer" })
+vim.keymap.set('n', '<leader><Tab>', ':bnext<cr>', { desc = "Switch to Next Buffer" })
+vim.keymap.set('n', '<leader><S-Tab>', ':bprevious<cr>', { desc = "Switch to Previous Buffer" })
+vim.keymap.set("n", "<leader>q", ":bdelete<CR>", { desc = "Close Current Buffer" })
 
--- Shift-Tab to inverse indent
-vim.keymap.set("i", "<S-Tab>", "<C-d>")
+vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "Inverse Indention" })
+
+vim.keymap.set("n", "<leader>/", ":nohl<CR>", { desc = "Dehighlight Results" })
+
+vim.keymap.set("", "U", "<C-r>", { desc = "Redo" })
 
 -- Plugins
 
@@ -126,7 +116,7 @@ if not package.loaded.lazy then
     },
     install = {
       missing = true,
-      colorscheme = {}, -- prevent lazy.nvim from overriding term colors
+      colorscheme = { "synthwave84" },
     },
   })
 end

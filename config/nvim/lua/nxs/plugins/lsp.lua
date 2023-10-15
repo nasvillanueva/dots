@@ -46,7 +46,8 @@ local NXS_LSP_CONFIG = {
         },
         workspace = {
           -- Help lua_ls be aware of neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true)
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
         },
         telemetry = {
           enable = false,
@@ -68,16 +69,27 @@ return {
     end
   },
   {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-nvim-lsp" },
+      { "L3MON4D3/LuaSnip" },
     },
     config = function()
       local cmp = require("cmp")
 
       cmp.setup({
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end
+        },
         mapping = {
           ['<C-space>'] = cmp.mapping.complete(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -116,7 +128,7 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
-      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
 
       for _, server_name in ipairs(get_mason_servers()) do
