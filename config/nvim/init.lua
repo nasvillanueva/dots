@@ -69,7 +69,6 @@ vim.opt.updatecount = 50
 
 -- Misc
 vim.opt.commentstring = '// %s'
-vim.opt.formatoptions = 'jcroql'
 
 -- Keybindings
 
@@ -98,14 +97,12 @@ vim.keymap.set('', '<C-h>', '<C-W>h')
 vim.keymap.set('', '<C-l>', '<C-W>l')
 
 -- Buffers, preferred over tabs now with bufferline.
-vim.keymap.set('n', 'gn', ':bnext<cr>', { noremap = true })
-vim.keymap.set('n', 'gp', ':bprevious<cr>', { noremap = true })
-vim.keymap.set('n', 'gd', ':bdelete<cr>', { noremap = true })
-vim.keymap.set('n', 'gf', '<C-^>', { noremap = true })
+vim.keymap.set('n', '<leader><Tab>', ':bnext<cr>')
+vim.keymap.set('n', '<leader><S-Tab>', ':bprevious<cr>')
+vim.keymap.set("n", "<leader>q", ":bdelete<CR>", { desc = "Cloes Current Buffer" })
 
 -- Shift-Tab to inverse indent
 vim.keymap.set("i", "<S-Tab>", "<C-d>")
-
 
 -- Plugins
 

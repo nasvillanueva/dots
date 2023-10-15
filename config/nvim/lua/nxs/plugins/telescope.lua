@@ -7,7 +7,7 @@ return {
     },
     keys = {
       {
-        "<leader><Tab>",
+        "<leader>`",
         ":Telescope buffers<CR>",
         mode = "n",
         desc = "Open Telescope: Buffers"

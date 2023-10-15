@@ -1,153 +1,110 @@
-local function init_mason()
-  require("mason").setup()
-  require("mason-lspconfig").setup({
-    handlers = {
-      require("lsp-zero").default_setup,
-    }
-  })
-end
-
-local function init_cmp()
-  local cmp = require("cmp")
-
-  cmp.setup({
-    mapping = {
-      ['<C-space>'] = cmp.mapping.complete(),
-      ['<C-p>'] = cmp.mapping.select_prev_item(),
-      ['<C-n>'] = cmp.mapping.select_next_item(),
-      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-      ['<Tab>'] = cmp.mapping.select_next_item(),
-      ['<Up>'] = cmp.mapping.select_prev_item(),
-      ['<Down>'] = cmp.mapping.select_next_item(),
-      ['<CR>'] = cmp.mapping.confirm(),
-      -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      -- ['<C-u>'] = cmp.mapping.scroll_docs(4),
-      ['<C-c>'] = cmp.mapping.close(),
+local NXS_LSP_CONFIG = {
+  cssls = {},
+  tailwindcss = {},
+  eslint = {},
+  tsserver = {
+    on_attach = function()
+      vim.keymap.set("", "<leader>o", ":OrganizeImports<CR>")
+    end,
+    commands = {
+      OrganizeImports = {
+        function()
+          vim.lsp.buf.execute_command({
+            command = "_typescript.organizeImports",
+            arguments = { vim.api.nvim_buf_get_name(0) },
+            title = "",
+          })
+        end,
+        description = "Organize Imports",
+      },
     },
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'path' },
-      { name = 'buffer' },
-    },
-  })
-end
-
-local function init_lsp()
-  local lspconfig = require("lspconfig")
-  local cmp_nvim_lsp = require("cmp_nvim_lsp")
-  local lsp_zero = require("lsp-zero")
-
-  lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({ buffer = bufnr })
-  end)
-
-  local LSP_SERVERS = {
-    cssls = {},
-    tailwindcss = {},
-    eslint = {},
-    tsserver = {
-      on_attach = function()
-        vim.keymap.set("", "<leader>o", ":OrganizeImports<CR>")
-      end,
-      commands = {
-        OrganizeImports = {
-          function()
-            vim.lsp.buf.execute_command({
-              command = "_typescript.organizeImports",
-              arguments = { vim.api.nvim_buf_get_name(0) },
-              title = "",
-            })
-          end,
-          description = "Organize Imports",
+  },
+  volar = {
+    filetypes = { 'vue', 'typescript' },
+    settings = {
+      scss = {
+        lint = {
+          unknownAtRules = 'ignore',
         },
-      },
+      }
     },
-    volar = {
-      filetypes = { 'vue', 'typescript' },
-      settings = {
-        scss = {
-          lint = {
-            unknownAtRules = 'ignore',
-          },
-        }
-      },
+  },
+  jsonls = { filetypes = { 'json', 'jsonc' } },
+  stylelint_lsp = {
+    settings = {
+      stylelintplus = {
+        autoFixOnFormat = true,
+      }
     },
-    jsonls = { filetypes = { 'json', 'jsonc' } },
-    stylelint_lsp = {
-      settings = {
-        stylelintplus = {
-          autoFixOnFormat = true,
-        }
-      },
+  },
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          -- Prevents getting Undefined global `vim`
+          globals = { "vim" },
+        },
+        workspace = {
+          -- Help lua_ls be aware of neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true)
+        },
+        telemetry = {
+          enable = false,
+        },
+      }
     },
-    lua_ls = {
-      settings = {
-        Lua = {
-          diagnostics = {
-            -- Prevents getting Undefined global `vim`
-            globals = { "vim" },
-          },
-          workspace = {
-            -- Help lua_ls be aware of neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true)
-          },
-          telemetry = {
-            enable = false,
-          },
-        }
-      },
-    },
-  }
-
-  for server, config in pairs(LSP_SERVERS) do
-    lspconfig[server].setup(vim.tbl_deep_extend('force', {
-      capabilities = cmp_nvim_lsp.default_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      ),
-    }, config))
-  end
-
-  -- Volar Takeover mode
-  -- https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode
-  local volar_client = nil
-  local tsserver_client = nil
-
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = "nxs",
-    callback = function(data)
-      local client = vim.lsp.get_client_by_id(data.client_id)
-
-      if client == nil then
-        return
-      end
-
-      if client.name == "tsserver" then
-        if volar_client then
-          client:stop()
-        else
-          tsserver_client = client
-        end
-      elseif client.name == "volar" then
-        volar_client = client
-
-        if tsserver_client then
-          tsserver_client:stop()
-        end
-      end
-    end
-  })
-end
+  },
+}
 
 return {
-  { "VonHeikemen/lsp-zero.nvim",        branch = "v3.x" },
-  { "williamboman/mason.nvim" },           -- package manager for lsp servers
-  { "williamboman/mason-lspconfig.nvim" }, -- lspconfig integration for mason
-  { "hrsh7th/nvim-cmp" },                  -- completion
-  { "hrsh7th/cmp-buffer" },                -- words in current buffer
-  { "hrsh7th/cmp-path" },                  -- file paths
-  { "hrsh7th/cmp-nvim-lsp" },              -- lsp
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      { "williamboman/mason-lspconfig.nvim" },
+    },
+    config = function()
+      require("mason").setup()
+      require("mason-lspconfig").setup()
+    end
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-nvim-lsp" },
+    },
+    config = function()
+      local cmp = require("cmp")
+
+      cmp.setup({
+        mapping = {
+          ['<C-space>'] = cmp.mapping.complete(),
+          ['<C-p>'] = cmp.mapping.select_prev_item(),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<Up>'] = cmp.mapping.select_prev_item(),
+          ['<Down>'] = cmp.mapping.select_next_item(),
+          ['<CR>'] = cmp.mapping.confirm(),
+          -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          -- ['<C-u>'] = cmp.mapping.scroll_docs(4),
+          ['<C-c>'] = cmp.mapping.close(),
+        },
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'path' },
+          { name = 'buffer' },
+        },
+      })
+    end
+  },
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "williamboman/mason-lspconfig.nvim" },
+    },
     event = {
       "BufReadPost",
       "BufNewFile",
@@ -158,9 +115,59 @@ return {
       "LspUninstall",
     },
     config = function()
-      init_mason()
-      init_cmp()
-      init_lsp()
+      local lspconfig = require("lspconfig")
+      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local get_mason_servers = require("mason-lspconfig").get_installed_servers
+
+      for _, server_name in ipairs(get_mason_servers()) do
+        local nxs_lsp_config = NXS_LSP_CONFIG[server_name]
+        if nxs_lsp_config == nil then
+          nxs_lsp_config = {}
+        end
+
+        lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
+          capabilities = lsp_capabilities,
+        }, nxs_lsp_config))
+      end
+
+      -- Volar Takeover mode
+      -- https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode
+      local volar_client = nil
+      local tsserver_client = nil
+      local function volar_takeover(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+        if client.name == "tsserver" then
+          if volar_client then
+            client:stop()
+          else
+            tsserver_client = client
+          end
+        elseif client.name == "volar" then
+          volar_client = client
+
+          if tsserver_client then
+            tsserver_client:stop()
+          end
+        end
+      end
+
+      local function setup_keybindings(args)
+        vim.keymap.set("n", "<leader>lsp", ":silent :LspRestart<CR>", { desc = "LSP: Restart" })
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = args.buf, desc = "LSP: Hover" })
+        vim.keymap.set("n", "!", vim.diagnostic.open_float, { desc = "LSP: View Error" })
+        vim.keymap.set("n", "<A-CR>", vim.lsp.buf.code_action, { desc = "LSP: Code Actions" })
+        vim.keymap.set("n", "<leader>b", vim.lsp.buf.definition, { desc = "LSP: Go to Definition" })
+        vim.keymap.set("n", "<leader>&", vim.lsp.buf.references, { desc = "LSP: Find Usages" })
+      end
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = "nxs",
+        callback = function(args)
+          volar_takeover(args)
+          setup_keybindings(args)
+        end
+      })
     end,
   },
   {
