@@ -55,7 +55,7 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- Files
 vim.opt.hidden = true
-vim.opt.autochdir = true
+vim.opt.autochdir = false
 vim.opt.confirm = true
 vim.opt.autowrite = false
 vim.opt.backup = false
