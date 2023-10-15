@@ -1,6 +1,10 @@
 local function init_mason()
   require("mason").setup()
-  require("mason-lspconfig").setup()
+  require("mason-lspconfig").setup({
+    handlers = {
+      require("lsp-zero").default_setup,
+    }
+  })
 end
 
 local function init_cmp()
@@ -31,6 +35,11 @@ end
 local function init_lsp()
   local lspconfig = require("lspconfig")
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
+  local lsp_zero = require("lsp-zero")
+
+  lsp_zero.on_attach(function(client, bufnr)
+    lsp_zero.default_keymaps({ buffer = bufnr })
+  end)
 
   local LSP_SERVERS = {
     cssls = {},
@@ -53,7 +62,8 @@ local function init_lsp()
         },
       },
     },
-    volar = { filetypes = { 'vue', 'typescript' },
+    volar = {
+      filetypes = { 'vue', 'typescript' },
       settings = {
         scss = {
           lint = {
@@ -82,59 +92,45 @@ local function init_lsp()
 
   -- Volar Takeover mode
   -- https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode
-  -- local volar_client = nil
-  -- local tsserver_client = nil
+  local volar_client = nil
+  local tsserver_client = nil
 
-  -- vim.api.nvim_create_autocmd("LspAttach", {
-  --   group = "nxs",
-  --   callback = function(data)
-  --     local client = vim.lsp.get_client_by_id(data.client_id)
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = "nxs",
+    callback = function(data)
+      local client = vim.lsp.get_client_by_id(data.client_id)
 
-  --     if client.name == "tsserver" then
-  --       if volar_client then
-  --         client:stop()
-  --       else
-  --         tsserver_client = client
-  --       end
-  --     elseif client.name == "volar" then
-  --       volar_client = client
+      if client == nil then
+        return
+      end
 
-  --       if tsserver_client then
-  --         tsserver_client:stop()
-  --       end
-  --     end
+      if client.name == "tsserver" then
+        if volar_client then
+          client:stop()
+        else
+          tsserver_client = client
+        end
+      elseif client.name == "volar" then
+        volar_client = client
 
-  --   end
-  -- })
-end
-
-local function init_fmt()
-  require("formatter").setup({
-    filetype = {
-      vue = {
-        require("formatter.filetypes.vue").prettier,
-      },
-      ["*"] = {
-        require("formatter.filetypes.any").remove_trailing_whitespace,
-      }
-    }
+        if tsserver_client then
+          tsserver_client:stop()
+        end
+      end
+    end
   })
-
-  vim.keymap.set("n", "<leader>=", ":FormatWrite<CR>")
 end
 
 return {
+  { "VonHeikemen/lsp-zero.nvim",        branch = "v3.x" },
+  { "williamboman/mason.nvim" },           -- package manager for lsp servers
+  { "williamboman/mason-lspconfig.nvim" }, -- lspconfig integration for mason
+  { "hrsh7th/nvim-cmp" },                  -- completion
+  { "hrsh7th/cmp-buffer" },                -- words in current buffer
+  { "hrsh7th/cmp-path" },                  -- file paths
+  { "hrsh7th/cmp-nvim-lsp" },              -- lsp
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim", -- package manager for lsp servers
-      "williamboman/mason-lspconfig.nvim", -- lspconfig integration for mason
-      "hrsh7th/nvim-cmp", -- completion
-      "hrsh7th/cmp-buffer", -- words in current buffer
-      "hrsh7th/cmp-path", -- file paths
-      "hrsh7th/cmp-nvim-lsp", -- lsp
-      "mhartington/formatter.nvim", -- formatter
-    },
     event = {
       "BufReadPost",
       "BufNewFile",
@@ -148,7 +144,32 @@ return {
       init_mason()
       init_cmp()
       init_lsp()
-      init_fmt()
     end,
+  },
+  {
+    "stevearc/conform.nvim", -- formatter
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+
+        "<leader>=",
+        function()
+          require("conform").format({ async = true, lsp_fallback = true })
+        end,
+        mode = "",
+        desc = "Format Buffer",
+      },
+    },
+    opts = {
+      lua = { "stylelua" },
+      javascript = { { "prettierd", "prettier" } },
+      typescript = { { "prettierd", "prettier" } },
+      vue = { { "prettierd", "prettier" } },
+      ["*"] = { "codespell", "trim_whitespace" },
+    },
+    init = function()
+      vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end
   },
 }
