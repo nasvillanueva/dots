@@ -74,12 +74,29 @@ return {
     build = "make install_jsregexp",
   },
   {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    dependencies = {
+      { "zbirenbaum/copilot-cmp" },
+    },
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+
+      require("copilot_cmp").setup()
+    end
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "L3MON4D3/LuaSnip" },
+      { "zbirenbaum/copilot.lua" },
     },
     config = function()
       local cmp = require("cmp")
@@ -107,6 +124,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'buffer' },
+          { name = "copilot" },
         },
       })
     end
