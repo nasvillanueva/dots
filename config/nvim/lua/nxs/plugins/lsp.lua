@@ -80,6 +80,23 @@ local function init_lsp()
         }
       },
     },
+    lua_ls = {
+      settings = {
+        Lua = {
+          diagnostics = {
+            -- Prevents getting Undefined global `vim`
+            globals = { "vim" },
+          },
+          workspace = {
+            -- Help lua_ls be aware of neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true)
+          },
+          telemetry = {
+            enable = false,
+          },
+        }
+      },
+    },
   }
 
   for server, config in pairs(LSP_SERVERS) do
