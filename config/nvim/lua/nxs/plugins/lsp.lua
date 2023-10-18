@@ -1,7 +1,11 @@
 local NXS_LSP_CONFIG = {
   cssls = {},
   tailwindcss = {},
-  eslint = {},
+  eslint = {
+    on_attach = function()
+      vim.keymap.set("", "<leader><leader>=", ":EslintFix<CR>")
+    end,
+  },
   tsserver = {
     on_attach = function()
       vim.keymap.set("", "<leader>o", ":OrganizeImports<CR>")
@@ -206,7 +210,6 @@ return {
     cmd = { "ConformInfo" },
     keys = {
       {
-
         "<leader>=",
         function()
           require("conform").format({ async = true, lsp_fallback = true })
