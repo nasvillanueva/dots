@@ -190,7 +190,7 @@ return {
         vim.keymap.set("n", "<leader>lsp", ":silent :LspRestart<CR>", { desc = "LSP: Restart" })
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = args.buf, desc = "LSP: Hover" })
         vim.keymap.set("n", "!", vim.diagnostic.open_float, { desc = "LSP: View Error" })
-        vim.keymap.set("n", "<A-CR>", vim.lsp.buf.code_action, { desc = "LSP: Code Actions" })
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Actions" })
         vim.keymap.set("n", "<leader>b", vim.lsp.buf.definition, { desc = "LSP: Go to Definition" })
         vim.keymap.set("n", "<leader>&", vim.lsp.buf.references, { desc = "LSP: Find Usages" })
       end

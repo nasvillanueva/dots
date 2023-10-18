@@ -4,6 +4,7 @@ return {
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     keys = {
       {
@@ -27,8 +28,20 @@ return {
         desc = "Open Telescope: Find String"
       },
     },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown(),
+            codeactions = false,
+          }
+        }
+      })
+    end,
     init = function()
-      require("telescope").load_extension("fzf")
+      local telescope = require("telescope")
+      telescope.load_extension("fzf")
+      telescope.load_extension("ui-select")
     end
   },
 }
