@@ -73,6 +73,7 @@ nnoremap Y y$
 " Refactoring
 map <leader>r <Action>(Refactorings.QuickListPopupAction)
 map <leader>= <Action>(ReformatCode)
+map <leader><leader>= <Action>(Javascript.Linters.EsLint.Fix)
 map <leader>o <Action>(OptimizeImports)
 
 " Config
@@ -92,4 +93,4 @@ imap <A-\> <Action>(copilot.requestCompletions)
 nmap <leader>` <Action>(SelectInProjectView)
 
 " Restart TS Service
-nmap <leader>rts <Action>(TypeScript.Restart.Service)
+nmap <leader>tsr <Action>(TypeScript.Restart.Service)
