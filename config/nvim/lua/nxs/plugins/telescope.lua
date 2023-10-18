@@ -11,21 +11,36 @@ return {
         "<leader>`",
         ":Telescope buffers<CR>",
         mode = "n",
-        desc = "Open Telescope: Buffers"
+        desc = "Telescope: Buffers",
+        silent = true,
       },
-      -- Do I need this?
-      -- { "`g", ":Telescope git_files<CR>", mode = "n", desc = "Open Telescope: Git Files" },
       {
-        "<leader>p",
+        "<leader>o",
+        ":Telescope git_files<CR>",
+        mode = "n",
+        desc = "Telescope: Git Files",
+        silent = true,
+      },
+      {
+        "<leader>O",
         ":Telescope find_files<CR>",
         mode = "n",
-        desc = "Open Telescope: Find Files"
+        desc = "Telescope: Find Files",
+        silent = true,
       },
       {
         "<leader>F",
         ":Telescope grep_string only_sort_text=true search=<CR>",
         mode = "n",
-        desc = "Open Telescope: Find String"
+        desc = "Telescope: Find String",
+        silent = true,
+      },
+      {
+        "<leader><C-o>",
+        ":Telescope lsp_document_symbols<CR>",
+        mode = "n",
+        desc = "Telescop: Find Symbols",
+        silent = true,
       },
     },
     config = function()
