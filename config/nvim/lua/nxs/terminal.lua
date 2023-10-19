@@ -17,6 +17,10 @@ vim.api.nvim_create_autocmd("TermClose", {
   group = "nxs",
   pattern = TERM_PATTERNS,
   callback = function()
+    if vim.g.lazygit_opened == 1 then
+      return
+    end
+
     -- Returns the address of the last buffer
     local last = vim.fn.bufnr("$")
     -- Returns empty string if buffer doesn't exists
