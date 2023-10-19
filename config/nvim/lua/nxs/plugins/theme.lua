@@ -1,12 +1,15 @@
 return {
   {
-    "lunarvim/synthwave84.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false, -- used by themeable plugins, needs to be loaded right away
-    priority = 100,
+    priority = 1000,
+    opts = {
+      flavour = "mocha",
+      transparent_background = true,
+    },
     init = function()
-      vim.cmd("colorscheme synthwave84")
-      -- Prefer terminal bg color
-      vim.cmd("hi Normal ctermbg=none guibg=none")
+      vim.cmd.colorscheme "catppuccin"
     end
   }
 }
