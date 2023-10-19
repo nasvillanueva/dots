@@ -8,7 +8,7 @@ local NXS_LSP_CONFIG = {
   },
   tsserver = {
     on_attach = function()
-      vim.keymap.set("", "<leader>o", ":OrganizeImports<CR>")
+      vim.keymap.set("", "<leader>co", ":OrganizeImports<CR>")
     end,
     commands = {
       OrganizeImports = {
