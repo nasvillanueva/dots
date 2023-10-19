@@ -7,3 +7,6 @@
 [submodule "nxs-omz/plugins/fast-syntax-highlighting"]
 	path = nxs-omz/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+[submodule "config/alacritty/themes/catppuccin"]
+	path = config/alacritty/themes/catppuccin
+	url = https://github.com/catppuccin/alacritty.git
