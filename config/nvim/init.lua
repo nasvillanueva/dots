@@ -117,3 +117,4 @@ if not package.loaded.lazy then
     },
   })
 end
+require("nxs.terminal")
