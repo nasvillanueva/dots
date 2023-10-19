@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-files=(bin zshrc nxs-omz tmux.conf zshenv config/nvim config/ranger gitconfig_global ideavimrc skhdrc)
+files=(bin zshrc nxs-omz tmux.conf zshenv config/nvim config/ranger config/alacritty gitconfig_global ideavimrc skhdrc)
 
 for f in $files; do
   dest="$HOME/.$f"

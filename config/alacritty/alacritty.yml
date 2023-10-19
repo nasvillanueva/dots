@@ -1,0 +1,57 @@
+env:
+  TERM: xterm-256color
+
+window:
+  opacity: 0.85
+  decorations: buttonless
+  dimensions:
+    columns: 200
+    lines: 60
+  padding:
+    x: 10
+    y: 10
+
+scrolling:
+  history: 10000
+
+font:
+  normal:
+    family: JetBrainsMono Nerd Font Mono
+    style: Regular
+  bold:
+    family: JetBrainsMono Nerd Font Mono
+    style: Bold
+  italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: Italic
+  size: 10
+
+draw_bold_text_with_bright_colors: true
+
+# Synthwave84 theme based on vscode
+colors:
+  primary:
+    background: "#262335"
+    foreground: "#ffffff"
+  cursor:
+    text: "#241b2f"
+    cursor: "#f97e72"
+  normal:
+    black: "0x26233a"
+    red: "#fe4450"
+    green: "#72f1b8"
+    yellow: "#f3e70f"
+    blue: "0x9ccfd8"
+    magenta: "#ff7edb"
+    cyan: "#03edf9"
+    white: "0xe0def4"
+  bright:
+    black: "0x6e6a86"
+    red: "#fe4450"
+    green: "#72f1b8"
+    yellow: "#fede5d"
+    blue: "#03edf9"
+    magenta: "#ff7edb"
+    cyan: "#03edf9"
+    white: "0xe0def4"
+
