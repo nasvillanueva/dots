@@ -38,10 +38,7 @@ vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.title = true
 vim.opt.vb = false
-
--- vim.opt.colorcolumn = '80' -- use smartcolumn.nvim instead
-vim.cmd('highlight SignColumn guibg=bg')
-vim.cmd('highlight ColorColumn guibg=darkcyan')
+vim.opt.colorcolumn = '80'
 
 -- Performance
 vim.g.matchparen_timeout = 10
