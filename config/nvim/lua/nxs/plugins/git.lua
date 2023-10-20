@@ -6,7 +6,7 @@ return {
     },
     keys = {
       {
-        "<leader>9",
+        "<leader>(",
         ":LazyGit<CR>",
         mode = "n",
         desc = "Open LazyGit"
