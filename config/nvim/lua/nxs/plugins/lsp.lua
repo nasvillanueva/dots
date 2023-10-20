@@ -4,6 +4,13 @@ local NXS_LSP_CONFIG = {
   eslint = {
     on_attach = function()
       vim.keymap.set("", "<leader><leader>=", ":EslintFix<CR>")
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = "nxs",
+        callback = function()
+          vim.cmd("EslintFix")
+        end,
+      })
     end,
   },
   tsserver = {
