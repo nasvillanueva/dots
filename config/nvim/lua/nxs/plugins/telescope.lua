@@ -1,3 +1,5 @@
+local utils = require("nxs.utils")
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -12,20 +14,6 @@ return {
         ":Telescope buffers<CR>",
         mode = "n",
         desc = "Telescope: Buffers",
-        silent = true,
-      },
-      {
-        "<leader>o",
-        ":Telescope git_files<CR>",
-        mode = "n",
-        desc = "Telescope: Git Files",
-        silent = true,
-      },
-      {
-        "<leader>O",
-        ":Telescope find_files<CR>",
-        mode = "n",
-        desc = "Telescope: Find Files",
         silent = true,
       },
       {
@@ -57,6 +45,15 @@ return {
       local telescope = require("telescope")
       telescope.load_extension("fzf")
       telescope.load_extension("ui-select")
+
+      if utils.is_git_project() then
+        vim.keymap.set("n", "<leader>o", ":Telescope git_files show_untracked=true<CR>",
+          { silent = true, desc = "Telescope: Find Git Files" })
+        vim.keymap.set("n", "<leader>9", ":Telescope git_status<CR>",
+          { silent = true, desc = "Telescope: Find Modified Files" })
+      else
+        vim.keymap.set("n", "<leader>o", ":Telescope find_files<CR>", { silent = true, desc = "Telescope: Find Files" })
+      end
     end
   },
 }
