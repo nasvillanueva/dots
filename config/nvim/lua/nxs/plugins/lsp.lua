@@ -198,6 +198,7 @@ return {
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = args.buf, desc = "LSP: Hover" })
         vim.keymap.set("n", "!", vim.diagnostic.open_float, { desc = "LSP: View Error" })
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Actions" })
+        vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP: Rename" })
         vim.keymap.set("n", "<leader>b", vim.lsp.buf.definition, { desc = "LSP: Go to Definition" })
         vim.keymap.set("n", "<leader>&", vim.lsp.buf.references, { desc = "LSP: Find Usages" })
       end
