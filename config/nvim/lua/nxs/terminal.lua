@@ -1,7 +1,7 @@
 local TERM_PATTERNS = { "term://*" }
 
 vim.keymap.set("n", "<C-Space>", ":term<CR>", { desc = "Open terminal" })
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal" })
+vim.keymap.set("t", "<C-\\><C-\\>", "<C-\\><C-n>:bdelete!<CR>", { desc = "Exit terminal" })
 
 vim.api.nvim_create_autocmd("TermOpen", {
   group = "nxs",
