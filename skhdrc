@@ -1,4 +1,4 @@
-cmd - e : open -a /Applications/Alacritty.app
+alt - space : open -a /Applications/Alacritty.app
 
 .blacklist [
   "DaVinci Resolve"
