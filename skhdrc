@@ -1,4 +1,6 @@
-alt - space : open -a /Applications/Alacritty.app
+cmd + ctrl - t : open -a /Applications/Alacritty.app
+cmd + ctrl - d : open -a /Applications/Discord.app
+cmd + ctrl - r : open -a /Applications/Google\ Chrome.app
 
 .blacklist [
   "DaVinci Resolve"
