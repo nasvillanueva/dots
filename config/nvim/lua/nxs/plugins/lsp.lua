@@ -3,8 +3,6 @@ local NXS_LSP_CONFIG = {
   tailwindcss = {},
   eslint = {
     on_attach = function()
-      vim.keymap.set("", "<leader><leader>=", ":EslintFix<CR>")
-
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = "nxs",
         callback = function()
@@ -120,15 +118,13 @@ return {
         },
         mapping = {
           ['<C-space>'] = cmp.mapping.complete(),
-          ['<C-p>'] = cmp.mapping.select_prev_item(),
-          ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
           ['<Tab>'] = cmp.mapping.select_next_item(),
           ['<Up>'] = cmp.mapping.select_prev_item(),
           ['<Down>'] = cmp.mapping.select_next_item(),
           ['<CR>'] = cmp.mapping.confirm(),
-          -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          -- ['<C-u>'] = cmp.mapping.scroll_docs(4),
+          ['<C-j>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-k>'] = cmp.mapping.scroll_docs(4),
           ['<C-c>'] = cmp.mapping.close(),
         },
         sources = {
@@ -195,12 +191,14 @@ return {
 
       local function setup_keybindings(args)
         vim.keymap.set("n", "<leader>lsp", ":silent :LspRestart<CR>", { desc = "LSP: Restart" })
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = args.buf, desc = "LSP: Hover" })
-        vim.keymap.set("n", "!", vim.diagnostic.open_float, { desc = "LSP: View Error" })
+        vim.keymap.set("n", "<leader>ck", vim.lsp.buf.hover, { buffer = args.buf, desc = "LSP: Hover" })
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Actions" })
         vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP: Rename" })
-        vim.keymap.set("n", "<leader>b", vim.lsp.buf.definition, { desc = "LSP: Go to Definition" })
-        vim.keymap.set("n", "<leader>&", vim.lsp.buf.references, { desc = "LSP: Find Usages" })
+        vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "LSP: Go to Definition" })
+        vim.keymap.set("n", "<leader>cu", vim.lsp.buf.references, { desc = "LSP: Find Usages" })
+        vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "LSP: View Error" })
+        vim.keymap.set("n", "<leader>c[", vim.diagnostic.goto_prev, { desc = "LSP: Goto Previous Diagnostic Error" })
+        vim.keymap.set("n", "<leader>c]", vim.diagnostic.goto_next, { desc = "LSP: Goto Next Diagnostic Error" })
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -228,9 +226,6 @@ return {
     },
     opts = {
       lua = { "stylelua" },
-      javascript = { { "prettierd", "prettier" } },
-      typescript = { { "prettierd", "prettier" } },
-      vue = { { "prettierd", "prettier" } },
       ["*"] = { "codespell", "trim_whitespace" },
     },
     init = function()
