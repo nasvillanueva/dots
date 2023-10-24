@@ -1,5 +1,11 @@
 return {
   {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signcolumn = true,
+    },
+  },
+  {
     "kdheepak/lazygit.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
