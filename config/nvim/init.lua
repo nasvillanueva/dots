@@ -90,7 +90,7 @@ vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "Inverse Indention" })
 
 vim.keymap.set("n", "<leader>/", ":nohl<CR>", { desc = "Dehighlight Results" })
 
-vim.keymap.set("", "U", "<C-r>", { desc = "Redo" })
+vim.keymap.set("c", "W", "w", { desc = "Alternative `save` because I always fat finger :W" })
 
 -- Plugins
 
