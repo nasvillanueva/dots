@@ -1,15 +1,10 @@
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "LunarVim/horizon.nvim",
     lazy = false, -- used by themeable plugins, needs to be loaded right away
     priority = 1000,
-    opts = {
-      flavour = "mocha",
-      transparent_background = true,
-    },
     init = function()
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "horizon"
     end
   }
 }
