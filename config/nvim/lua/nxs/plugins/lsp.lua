@@ -1,6 +1,9 @@
 local NXS_LSP_CONFIG = {
   cssls = {},
   tailwindcss = {},
+  elixirls = {
+    cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" }
+  },
   eslint = {
     on_attach = function()
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -74,7 +77,10 @@ return {
     },
     config = function()
       require("mason").setup()
-      require("mason-lspconfig").setup()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "elixirls", "volar", "tsserver" },
+        automatic_installation = true,
+      })
     end
   },
   {
