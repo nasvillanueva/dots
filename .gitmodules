@@ -10,3 +10,6 @@
 [submodule "config/alacritty/themes/catppuccin"]
 	path = config/alacritty/themes/catppuccin
 	url = https://github.com/catppuccin/alacritty.git
+[submodule "config/alacritty/alacritty-theme"]
+	path = config/alacritty/alacritty-theme
+	url = https://github.com/alacritty/alacritty-theme
