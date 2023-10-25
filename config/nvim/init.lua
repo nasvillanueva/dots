@@ -92,6 +92,9 @@ vim.keymap.set("n", "<leader>/", ":nohl<CR>", { desc = "Dehighlight Results" })
 
 vim.keymap.set("c", "W", "w", { desc = "Alternative `save` because I always fat finger :W" })
 
+vim.keymap.set("n", "[[", "<C-o>", { desc = "Goto Previous Cursor Position" })
+vim.keymap.set("n", "]]", "<C-i>", { desc = "Goto Next Cursor Position" })
+
 -- Plugins
 
 if not package.loaded.lazy then
