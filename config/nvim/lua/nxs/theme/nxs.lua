@@ -388,3 +388,10 @@ hl(0, "CmpItemKindTypeParameter", { fg = palette.red, bg = 'NONE' })
 -- Crates
 hl(0, "CratesNvimLoading", { fg = palette.hint, bg = 'NONE' })
 hl(0, "CratesNvimVersion", { fg = palette.hint, bg = 'NONE' })
+
+-- Oil
+hl(0, "OilDir", { fg = palette.folder_blue, bg = 'NONE' })
+hl(0, "OilDirIcon", { fg = palette.folder_blue, bg = 'NONE' })
+hl(0, "OilSocket", { fg = palette.cyan, bg = 'NONE' })
+hl(0, "OilFile", { fg = palette.light_gray, bg = 'NONE' })
+hl(0, "OilLink", { fg = palette.cyan, bg = 'NONE' })
