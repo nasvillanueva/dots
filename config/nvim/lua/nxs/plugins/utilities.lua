@@ -31,7 +31,9 @@ return {
     end
   },
   {
-    "terryma/vim-multiple-cursors",
-    event = "VeryLazy",
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end
   }
 }

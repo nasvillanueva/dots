@@ -34,7 +34,6 @@ vim.opt.signcolumn = 'yes'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.startofline = false
-vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.title = true
 vim.opt.vb = false
@@ -95,6 +94,7 @@ vim.keymap.set("c", "W", "w", { desc = "Alternative `save` because I always fat 
 vim.keymap.set("n", "[[", "<C-o>", { desc = "Goto Previous Cursor Position" })
 vim.keymap.set("n", "]]", "<C-i>", { desc = "Goto Next Cursor Position" })
 
+require("nxs.theme.nxs")
 -- Plugins
 
 if not package.loaded.lazy then
