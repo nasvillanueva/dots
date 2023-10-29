@@ -21,16 +21,8 @@ vim.api.nvim_create_autocmd("TermClose", {
       return
     end
 
-    -- Returns the address of the last buffer
-    local last = vim.fn.bufnr("$")
-    -- Returns empty string if buffer doesn't exists
-    local last_name = vim.fn.bufname(last)
-    if last_name ~= "" then
-      vim.cmd("buffer $")
-    else
-      vim.defer_fn(function()
-        vim.cmd("Oil")
-      end, 0)
-    end
+    vim.defer_fn(function()
+      vim.cmd("Oil")
+    end, 0)
   end
 })
