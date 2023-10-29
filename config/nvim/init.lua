@@ -59,8 +59,7 @@ vim.opt.undodir = os.getenv('HOME') .. '/.local/share/nvim/undo/'
 vim.opt.undofile = true
 vim.opt.undolevels = 500
 vim.opt.undoreload = 10000
-vim.opt.directory = os.getenv('HOME') .. '/.local/share/nvim/swap/'
-vim.opt.swapfile = true
+vim.opt.swapfile = false
 vim.opt.updatecount = 50
 
 -- Misc
