@@ -2,17 +2,18 @@
 
 files=(
   bin
-  zshrc
-  nxs-omz
-  tmux.conf
-  zshenv
+  config/alacritty
   config/nvim
   config/ranger
-  config/alacritty
+  config/skhd
   gitconfig_global
   ideavimrc
+  nxs-omz
   skhdrc
+  tmux.conf
   tool-versions
+  zshenv
+  zshrc
 )
 
 for f in $files; do
