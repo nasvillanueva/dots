@@ -82,7 +82,7 @@ vim.keymap.set('', '<C-l>', '<C-W>l', { desc = "Switch to Right Window" })
 
 vim.keymap.set('n', '<leader><Tab>', ':bnext<cr>', { desc = "Switch to Next Buffer" })
 vim.keymap.set('n', '<leader><S-Tab>', ':bprevious<cr>', { desc = "Switch to Previous Buffer" })
-vim.keymap.set("n", "<leader>q", ":bdelete<CR>", { desc = "Close Current Buffer" })
+vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "Close Current Buffer" })
 vim.keymap.set("n", "<leader><leader>q", ":bdelete!<CR>", { desc = "Force Close Current Buffer" })
 
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "Inverse Indention" })
