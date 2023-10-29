@@ -93,6 +93,20 @@ vim.keymap.set("c", "W", "w", { desc = "Alternative `save` because I always fat 
 vim.keymap.set("n", "[[", "<C-o>", { desc = "Goto Previous Cursor Position" })
 vim.keymap.set("n", "]]", "<C-i>", { desc = "Goto Next Cursor Position" })
 
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
+
+vim.keymap.set("n", "<C-w>v", function()
+  vim.cmd("vsp")
+  vim.cmd("Oil")
+end, { desc = "Vertical Split then open Oil" })
+
+vim.keymap.set("n", "<C-w>s", function()
+  vim.cmd("sp")
+  vim.cmd("Oil")
+end, { desc = "Split then open Oil" })
+
+
 require("nxs.theme")
 
 -- Plugins
