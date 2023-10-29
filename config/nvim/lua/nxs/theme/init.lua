@@ -6,7 +6,7 @@ vim.cmd("hi clear")
 
 vim.o.background = "dark"
 if vim.fn.exists("syntax_on") then
-	vim.cmd("syntax reset")
+  vim.cmd("syntax reset")
 end
 
 vim.o.termguicolors = true
@@ -20,10 +20,26 @@ hl(0, "SignColumn", { fg = "NONE", bg = palette.bg })
 hl(0, "MsgArea", { fg = palette.fg, bg = palette.bg })
 hl(0, "ModeMsg", { fg = palette.fg, bg = palette.alt_bg })
 hl(0, "MsgSeparator", { fg = palette.fg, bg = palette.bg })
-hl(0, "SpellBad", { fg = "NONE", bg = "NONE", sp = palette.red, undercurl = true })
-hl(0, "SpellCap", { fg = "NONE", bg = "NONE", sp = palette.yellow, undercurl = true })
-hl(0, "SpellLocal", { fg = "NONE", bg = "NONE", sp = palette.yelloworange, underline = true })
-hl(0, "SpellRare", { fg = "NONE", bg = "NONE", sp = palette.purple, underline = true })
+hl(
+  0,
+  "SpellBad",
+  { fg = "NONE", bg = "NONE", sp = palette.red, undercurl = true }
+)
+hl(
+  0,
+  "SpellCap",
+  { fg = "NONE", bg = "NONE", sp = palette.yellow, undercurl = true }
+)
+hl(
+  0,
+  "SpellLocal",
+  { fg = "NONE", bg = "NONE", sp = palette.yelloworange, underline = true }
+)
+hl(
+  0,
+  "SpellRare",
+  { fg = "NONE", bg = "NONE", sp = palette.purple, underline = true }
+)
 hl(0, "NormalNC", { fg = palette.fg, bg = palette.bg })
 hl(0, "Pmenu", { fg = palette.light_gray, bg = palette.alt_bg })
 hl(0, "PmenuSel", { fg = "NONE", bg = palette.ui2_blue })
@@ -44,7 +60,11 @@ hl(0, "VisualNOS", { fg = "NONE", bg = palette.alt_bg })
 hl(0, "WarningMsg", { fg = palette.error, bg = palette.bg })
 hl(0, "DiffText", { fg = palette.alt_bg, bg = palette.sign_delete })
 hl(0, "DiffAdd", { fg = palette.alt_bg, bg = palette.sign_add })
-hl(0, "DiffChange", { fg = palette.alt_bg, bg = palette.sign_change, underline = true })
+hl(
+  0,
+  "DiffChange",
+  { fg = palette.alt_bg, bg = palette.sign_change, underline = true }
+)
 hl(0, "DiffDelete", { fg = palette.alt_bg, bg = palette.sign_delete })
 hl(0, "QuickFixLine", { fg = "NONE", bg = palette.ui2_blue })
 hl(0, "PmenuSbar", { fg = "NONE", bg = palette.alt_bg })
@@ -284,15 +304,35 @@ hl(0, "DiagnosticFloatingHint", { link = "DiagnosticHint" })
 hl(0, "DiagnosticFloatingInfo", { link = "DiagnosticInfo" })
 hl(0, "DiagnosticFloatingWarn", { link = "DiagnosticWarn" })
 hl(0, "DiagnosticFloatingError", { link = "DiagnosticError" })
-hl(0, "DiagnosticUnderlineHint", { fg = "NONE", bg = "NONE", sp = palette.hint, undercurl = true })
-hl(0, "DiagnosticUnderlineInfo", { fg = "NONE", bg = "NONE", sp = palette.info, undercurl = true })
-hl(0, "DiagnosticUnderlineWarn", { fg = "NONE", bg = "NONE", sp = palette.warn, undercurl = true })
-hl(0, "DiagnosticUnderlineError", { fg = "NONE", bg = "NONE", sp = palette.error, undercurl = true })
+hl(
+  0,
+  "DiagnosticUnderlineHint",
+  { fg = "NONE", bg = "NONE", sp = palette.hint, undercurl = true }
+)
+hl(
+  0,
+  "DiagnosticUnderlineInfo",
+  { fg = "NONE", bg = "NONE", sp = palette.info, undercurl = true }
+)
+hl(
+  0,
+  "DiagnosticUnderlineWarn",
+  { fg = "NONE", bg = "NONE", sp = palette.warn, undercurl = true }
+)
+hl(
+  0,
+  "DiagnosticUnderlineError",
+  { fg = "NONE", bg = "NONE", sp = palette.error, undercurl = true }
+)
 hl(0, "DiagnosticSignInformation", { link = "DiagnosticInfo" })
 hl(0, "DiagnosticVirtualTextHint", { fg = palette.hint, bg = palette.hint_bg })
 hl(0, "DiagnosticVirtualTextInfo", { fg = palette.info, bg = palette.info_bg })
 hl(0, "DiagnosticVirtualTextWarn", { fg = palette.warn, bg = palette.warn_bg })
-hl(0, "DiagnosticVirtualTextError", { fg = palette.error, bg = palette.error_bg })
+hl(
+  0,
+  "DiagnosticVirtualTextError",
+  { fg = palette.error, bg = palette.error_bg }
+)
 hl(0, "LspDiagnosticsError", { fg = palette.error, bg = "NONE" })
 hl(0, "LspDiagnosticsWarning", { fg = palette.warn, bg = "NONE" })
 hl(0, "LspDiagnosticsInfo", { fg = palette.info, bg = "NONE" })
@@ -304,8 +344,16 @@ hl(0, "LspDiagnosticsDefaultInformation", { link = "LspDiagnosticsInfo" })
 hl(0, "LspDiagnosticsDefaultInfo", { link = "LspDiagnosticsInfo" })
 hl(0, "LspDiagnosticsDefaultHint", { link = "LspDiagnosticsHint" })
 hl(0, "LspDiagnosticsVirtualTextError", { link = "DiagnosticVirtualTextError" })
-hl(0, "LspDiagnosticsVirtualTextWarning", { link = "DiagnosticVirtualTextWarn" })
-hl(0, "LspDiagnosticsVirtualTextInformation", { link = "DiagnosticVirtualTextInfo" })
+hl(
+  0,
+  "LspDiagnosticsVirtualTextWarning",
+  { link = "DiagnosticVirtualTextWarn" }
+)
+hl(
+  0,
+  "LspDiagnosticsVirtualTextInformation",
+  { link = "DiagnosticVirtualTextInfo" }
+)
 hl(0, "LspDiagnosticsVirtualTextInfo", { link = "DiagnosticVirtualTextInfo" })
 hl(0, "LspDiagnosticsVirtualTextHint", { link = "DiagnosticVirtualTextHint" })
 hl(0, "LspDiagnosticsFloatingError", { link = "LspDiagnosticsError" })
@@ -325,19 +373,31 @@ hl(0, "NvimTreeLspDiagnosticsInfo", { link = "LspDiagnosticsInfo" })
 hl(0, "NvimTreeLspDiagnosticsHint", { link = "LspDiagnosticsHint" })
 hl(0, "LspDiagnosticsUnderlineError", { link = "DiagnosticUnderlineError" })
 hl(0, "LspDiagnosticsUnderlineWarning", { link = "DiagnosticUnderlineWarn" })
-hl(0, "LspDiagnosticsUnderlineInformation", { link = "DiagnosticUnderlineInfo" })
+hl(
+  0,
+  "LspDiagnosticsUnderlineInformation",
+  { link = "DiagnosticUnderlineInfo" }
+)
 hl(0, "LspDiagnosticsUnderlineInfo", { link = "DiagnosticUnderlineInfo" })
 hl(0, "LspDiagnosticsUnderlineHint", { link = "DiagnosticUnderlineHint" })
 hl(0, "LspReferenceRead", { fg = "NONE", bg = palette.reference })
 hl(0, "LspReferenceText", { fg = "NONE", bg = palette.reference })
 hl(0, "LspReferenceWrite", { fg = "NONE", bg = palette.reference })
 hl(0, "LspCodeLens", { fg = palette.context, bg = "NONE", italic = true })
-hl(0, "LspCodeLensSeparator", { fg = palette.context, bg = "NONE", italic = true })
+hl(
+  0,
+  "LspCodeLensSeparator",
+  { fg = palette.context, bg = "NONE", italic = true }
+)
 
 -- Telescope
 hl(0, "TelescopeSelection", { fg = "NONE", bg = palette.ui2_blue })
 hl(0, "TelescopeSelectionCaret", { fg = palette.red, bg = palette.ui2_blue })
-hl(0, "TelescopeMatching", { fg = palette.yellow, bg = "NONE", bold = true, italic = true })
+hl(
+  0,
+  "TelescopeMatching",
+  { fg = palette.yellow, bg = "NONE", bold = true, italic = true }
+)
 hl(0, "TelescopeBorder", { fg = palette.alt_fg, bg = "NONE" })
 hl(0, "TelescopeNormal", { fg = palette.light_gray, bg = palette.alt_bg })
 hl(0, "TelescopePromptTitle", { fg = palette.orange, bg = "NONE" })
@@ -355,7 +415,11 @@ hl(0, "StatusLineTerm", { fg = palette.line, bg = "NONE" })
 hl(0, "StatusLineTermNC", { fg = palette.line, bg = "NONE" })
 
 -- Cmp
-hl(0, "CmpItemAbbrDeprecated", { fg = palette.gray, bg = "NONE", strikethrough = true })
+hl(
+  0,
+  "CmpItemAbbrDeprecated",
+  { fg = palette.gray, bg = "NONE", strikethrough = true }
+)
 hl(0, "CmpItemAbbrMatch", { fg = palette.ui3_blue, bg = "NONE" })
 hl(0, "CmpItemAbbrMatchFuzzy", { fg = palette.ui3_blue, bg = "NONE" })
 hl(0, "CmpItemKindFunction", { fg = palette.cyan, bg = "NONE" })

@@ -69,8 +69,18 @@ vim.opt.commentstring = "// %s"
 
 -- Keybindings
 
-vim.keymap.set("", "<leader>ve", ":edit $MYVIMRC<cr>", { desc = "Edit Neovim Config" })
-vim.keymap.set("", "<leader>vs", ":source $MYVIMRC<cr>", { desc = "Reload Neovim Config" })
+vim.keymap.set(
+  "",
+  "<leader>ve",
+  ":edit $MYVIMRC<cr>",
+  { desc = "Edit Neovim Config" }
+)
+vim.keymap.set(
+  "",
+  "<leader>vs",
+  ":source $MYVIMRC<cr>",
+  { desc = "Reload Neovim Config" }
+)
 vim.keymap.set("n", "<leader>w", ":w!<cr>", { desc = "Quick Save" })
 
 -- Sudo save
@@ -81,38 +91,83 @@ vim.keymap.set("", "<C-k>", "<C-W>k", { desc = "Switch to Top Window" })
 vim.keymap.set("", "<C-h>", "<C-W>h", { desc = "Switch to Left Window" })
 vim.keymap.set("", "<C-l>", "<C-W>l", { desc = "Switch to Right Window" })
 
-vim.keymap.set("n", "<leader><Tab>", ":bnext<cr>", { desc = "Switch to Next Buffer" })
-vim.keymap.set("n", "<leader><S-Tab>", ":bprevious<cr>", { desc = "Switch to Previous Buffer" })
-vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "Close Current Buffer" })
-vim.keymap.set("n", "<leader><leader>q", ":bdelete!<CR>", { desc = "Force Close Current Buffer" })
+vim.keymap.set(
+  "n",
+  "<leader><Tab>",
+  ":bnext<cr>",
+  { desc = "Switch to Next Buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader><S-Tab>",
+  ":bprevious<cr>",
+  { desc = "Switch to Previous Buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>q",
+  ":close<CR>",
+  { desc = "Close Current Buffer" }
+)
+vim.keymap.set(
+  "n",
+  "<leader><leader>q",
+  ":bdelete!<CR>",
+  { desc = "Force Close Current Buffer" }
+)
 
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "Inverse Indention" })
 
 vim.keymap.set("n", "<leader>/", ":nohl<CR>", { desc = "Dehighlight Results" })
 
-vim.keymap.set("c", "W", "w", { desc = "Alternative `save` because I always fat finger :W" })
+vim.keymap.set(
+  "c",
+  "W",
+  "w",
+  { desc = "Alternative `save` because I always fat finger :W" }
+)
 
 vim.keymap.set("n", "[[", "<C-o>", { desc = "Goto Previous Cursor Position" })
 vim.keymap.set("n", "]]", "<C-i>", { desc = "Goto Next Cursor Position" })
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
+vim.keymap.set(
+  "n",
+  "<C-d>",
+  "<C-d>zz",
+  { desc = "Scroll down and center cursor" }
+)
+vim.keymap.set(
+  "n",
+  "<C-u>",
+  "<C-u>zz",
+  { desc = "Scroll up and center cursor" }
+)
 
-vim.keymap.set("n", "n", "nzzzv", { desc = "Move to next search result and center cursor" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to next search result and center cursor" })
+vim.keymap.set(
+  "n",
+  "n",
+  "nzzzv",
+  { desc = "Move to next search result and center cursor" }
+)
+vim.keymap.set(
+  "n",
+  "N",
+  "Nzzzv",
+  { desc = "Move to next search result and center cursor" }
+)
 
 vim.keymap.set("n", "<C-w>v", function()
-	vim.cmd("vsp")
-	vim.defer_fn(function()
-		vim.cmd("Oil")
-	end, 0)
+  vim.cmd("vsp")
+  vim.defer_fn(function()
+    vim.cmd("Oil")
+  end, 0)
 end, { desc = "Vertical Split then open Oil" })
 
 vim.keymap.set("n", "<C-w>s", function()
-	vim.cmd("sp")
-	vim.defer_fn(function()
-		vim.cmd("Oil")
-	end, 0)
+  vim.cmd("sp")
+  vim.defer_fn(function()
+    vim.cmd("Oil")
+  end, 0)
 end, { desc = "Split then open Oil" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines up" })
@@ -125,28 +180,28 @@ require("nxs.theme")
 -- Plugins
 
 if not package.loaded.lazy then
-	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-	if not vim.loop.fs_stat(lazypath) then
-		vim.fn.system({
-			"git",
-			"clone",
-			"--filter=blob:none",
-			"https://github.com/folke/lazy.nvim.git",
-			"--branch=stable", -- latest stable release
-			lazypath,
-		})
-	end
-	vim.opt.rtp:prepend(lazypath)
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/folke/lazy.nvim.git",
+      "--branch=stable", -- latest stable release
+      lazypath,
+    })
+  end
+  vim.opt.rtp:prepend(lazypath)
 
-	require("lazy").setup({
-		spec = {
-			{ import = "nxs.plugins" },
-		},
-		install = {
-			missing = true,
-			colorscheme = { "synthwave84" },
-		},
-	})
+  require("lazy").setup({
+    spec = {
+      { import = "nxs.plugins" },
+    },
+    install = {
+      missing = true,
+      colorscheme = { "synthwave84" },
+    },
+  })
 end
 
 require("nxs.terminal")
