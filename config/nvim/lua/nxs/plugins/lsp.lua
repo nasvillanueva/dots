@@ -202,6 +202,7 @@ return {
         vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP: Rename" })
         vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, { desc = "LSP: Go to Definition" })
         vim.keymap.set("n", "<leader>cu", vim.lsp.buf.references, { desc = "LSP: Find Usages" })
+        vim.keymap.set("n", "<leader>ch", vim.lsp.buf.signature_help, { desc = "LSP: Show Signature Help" })
         vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "LSP: View Error" })
         vim.keymap.set("n", "<leader>c[", vim.diagnostic.goto_prev, { desc = "LSP: Goto Previous Diagnostic Error" })
         vim.keymap.set("n", "<leader>c]", vim.diagnostic.goto_next, { desc = "LSP: Goto Next Diagnostic Error" })
