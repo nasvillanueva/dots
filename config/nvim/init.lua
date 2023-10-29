@@ -11,6 +11,8 @@ vim.opt.gdefault = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.magic = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
 -- Spaces/Wrapping
 vim.opt.expandtab = true
@@ -43,7 +45,7 @@ vim.opt.colorcolumn = '80'
 vim.g.matchparen_timeout = 10
 vim.opt.scrollback = 100000
 vim.opt.synmaxcol = 300
-vim.opt.updatetime = 300
+vim.opt.updatetime = 50
 vim.opt.lazyredraw = true
 
 -- History
@@ -96,6 +98,9 @@ vim.keymap.set("n", "]]", "<C-i>", { desc = "Goto Next Cursor Position" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
 
+vim.keymap.set("n", "n", "nzzzv", { desc = "Move to next search result and center cursor" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to next search result and center cursor" })
+
 vim.keymap.set("n", "<C-w>v", function()
   vim.cmd("vsp")
   vim.cmd("Oil")
@@ -106,6 +111,10 @@ vim.keymap.set("n", "<C-w>s", function()
   vim.cmd("Oil")
 end, { desc = "Split then open Oil" })
 
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines up" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines down" })
+
+vim.keymap.set("n", "Q", "<nop>", { desc = "Disable macro recording" })
 
 require("nxs.theme")
 
