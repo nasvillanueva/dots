@@ -1,6 +1,8 @@
-cmd + ctrl - t : open -a /Applications/Alacritty.app
-cmd + ctrl - d : open -a /Applications/Discord.app
-cmd + ctrl - r : open -a /Applications/Google\ Chrome.app
+alt - t : open -a /Applications/Alacritty.app
+alt - d : open -a /Applications/Discord.app
+alt - r : open -a /Applications/Google\ Chrome.app
+
+alt - z : open -g "rectangle://execute-action?name=maximize"
 
 .blacklist [
   "DaVinci Resolve"
