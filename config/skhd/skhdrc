@@ -2,7 +2,7 @@ cmd + ctrl - a : open -a /Applications/Alacritty.app
 cmd + ctrl - s : open -a /Applications/Discord.app
 cmd + ctrl - d : open -a /Applications/Google\ Chrome.app
 
-cmd + ctrl - f : open -g "rectangle://execute-action?name=left-half"
+cmd + ctrl - f : open -g "rectangle://execute-action?name=maximize"
 
 .blacklist [
   "DaVinci Resolve"
