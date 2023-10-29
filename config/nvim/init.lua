@@ -103,12 +103,16 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Move to next search result and cente
 
 vim.keymap.set("n", "<C-w>v", function()
   vim.cmd("vsp")
-  vim.cmd("Oil")
+  vim.defer_fn(function()
+    vim.cmd("Oil")
+  end, 0)
 end, { desc = "Vertical Split then open Oil" })
 
 vim.keymap.set("n", "<C-w>s", function()
   vim.cmd("sp")
-  vim.cmd("Oil")
+  vim.defer_fn(function()
+    vim.cmd("Oil")
+  end, 0)
 end, { desc = "Split then open Oil" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines up" })
