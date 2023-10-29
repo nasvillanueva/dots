@@ -33,6 +33,13 @@ return {
     },
     config = function()
       require("telescope").setup({
+        defaults = {
+          layout_strategy = "bottom_pane",
+          sorting_strategy = "ascending",
+          layout_config = { height = 0.4 },
+          border = false,
+          preview = false,
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
