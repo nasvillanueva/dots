@@ -94,7 +94,8 @@ vim.keymap.set("c", "W", "w", { desc = "Alternative `save` because I always fat 
 vim.keymap.set("n", "[[", "<C-o>", { desc = "Goto Previous Cursor Position" })
 vim.keymap.set("n", "]]", "<C-i>", { desc = "Goto Next Cursor Position" })
 
-require("nxs.theme.nxs")
+require("nxs.theme")
+
 -- Plugins
 
 if not package.loaded.lazy then
