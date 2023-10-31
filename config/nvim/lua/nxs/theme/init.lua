@@ -458,3 +458,34 @@ hl(0, "OilDirIcon", { fg = palette.folder_blue, bg = "NONE" })
 hl(0, "OilSocket", { fg = palette.cyan, bg = "NONE" })
 hl(0, "OilFile", { fg = palette.light_gray, bg = "NONE" })
 hl(0, "OilLink", { fg = palette.cyan, bg = "NONE" })
+
+-- NvimTree
+hl(0, "NvimTreeFolderIcon", { fg = palette.folder_blue, bg = "NONE" })
+hl(0, "NvimTreeIndentMarker", { fg = palette.light_gray, bg = "NONE" })
+hl(0, "NvimTreeNormal", { fg = palette.light_gray, bg = palette.alt_bg })
+hl(0, "NvimTreeVertSplit", { fg = palette.alt_bg, bg = palette.alt_bg })
+hl(0, "NvimTreeFolderName", { fg = palette.folder_blue, bg = "NONE" })
+hl(
+  0,
+  "NvimTreeOpenedFolderName",
+  { fg = palette.folder_blue, bg = "NONE", bold = true, italic = true }
+)
+hl(
+  0,
+  "NvimTreeEmptyFolderName",
+  { fg = palette.folder_blue, bg = "NONE", italic = true }
+)
+hl(0, "NvimTreeGitIgnored", { fg = palette.gray, bg = "NONE", italic = true })
+hl(0, "NvimTreeImageFile", { fg = palette.light_gray, bg = "NONE" })
+hl(0, "NvimTreeSpecialFile", { fg = palette.orange, bg = "NONE" })
+hl(0, "NvimTreeEndOfBuffer", { fg = palette.alt_bg, bg = "NONE" })
+hl(0, "NvimTreeCursorLine", { fg = "NONE", bg = palette.dark_gray })
+hl(0, "NvimTreeGitStaged", { fg = palette.sign_add_alt, bg = "NONE" })
+hl(0, "NvimTreeGitNew", { fg = palette.sign_add_alt, bg = "NONE" })
+hl(0, "NvimTreeGitRenamed", { fg = palette.sign_add_alt, bg = "NONE" })
+hl(0, "NvimTreeGitDeleted", { fg = palette.sign_delete, bg = "NONE" })
+hl(0, "NvimTreeGitMerge", { fg = palette.sign_change_alt, bg = "NONE" })
+hl(0, "NvimTreeGitDirty", { fg = palette.sign_change_alt, bg = "NONE" })
+hl(0, "NvimTreeSymlink", { fg = palette.cyan, bg = "NONE" })
+hl(0, "NvimTreeRootFolder", { fg = palette.purple, bg = "NONE", bold = true })
+hl(0, "NvimTreeExecFile", { fg = palette.info, bg = "NONE" })
