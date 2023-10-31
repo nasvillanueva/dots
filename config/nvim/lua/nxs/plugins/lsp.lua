@@ -287,8 +287,10 @@ return {
       },
     },
     opts = {
-      lua = { "stylelua" },
-      ["*"] = { "codespell", "trim_whitespace" },
+      formatters_by_ft = {
+        lua = { "stylua" },
+        ["*"] = { "codespell", "trim_whitespace" },
+      },
     },
     init = function()
       vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
