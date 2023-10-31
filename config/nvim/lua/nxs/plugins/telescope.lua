@@ -1,4 +1,12 @@
-local utils = require("nxs.utils")
+local function is_git_project()
+  local _, ret, _ = require("telescope.utils").get_os_command_output({
+    "git",
+    "rev-parse",
+    "--is-inside-work-tree",
+  })
+
+  return ret == 0
+end
 
 return {
   {
@@ -33,9 +41,11 @@ return {
     },
     config = function()
       require("telescope").setup({
+        defaults = require("telescope.themes").get_dropdown({
+          preview = false,
+        }),
         extensions = {
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown(),
             codeactions = false,
           },
         },
@@ -46,7 +56,7 @@ return {
       telescope.load_extension("fzf")
       telescope.load_extension("ui-select")
 
-      if utils.is_git_project() then
+      if is_git_project() then
         vim.keymap.set(
           "n",
           "<leader>o",
