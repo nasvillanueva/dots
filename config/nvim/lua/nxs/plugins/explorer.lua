@@ -25,6 +25,9 @@ return {
       vim.keymap.set("n", "<leader>4", ":NvimTreeFindFile<CR>", { desc = "Explorer: Focus File" })
 
       require("nvim-tree").setup({
+        renderer = {
+          group_empty = true,
+        },
         view = {
           width = 40,
         },
