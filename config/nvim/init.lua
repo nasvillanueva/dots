@@ -113,6 +113,12 @@ vim.keymap.set(
 )
 vim.keymap.set(
   "n",
+  "<leader>Q",
+  ":bdelete<CR>",
+  { desc = "Delete Current Buffer" }
+)
+vim.keymap.set(
+  "n",
   "<leader><leader>q",
   ":bdelete!<CR>",
   { desc = "Force Close Current Buffer" }
