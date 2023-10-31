@@ -1,39 +1,34 @@
 return {
   {
-    "stevearc/oil.nvim",
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
     dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      vim.keymap.set(
-        "n",
-        "<leader>1",
-        ":Oil<CR>",
-        { desc = "Open File Explorer" }
-      )
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
 
-      require("oil").setup({
-        keymaps = {
-          ["g?"] = "actions.show_help",
-          ["<CR>"] = "actions.select",
-          -- ["<C-s>"] = "actions.select_vsplit",
-          -- ["<C-h>"] = "actions.select_split",
-          -- ["<C-t>"] = "actions.select_tab",
-          ["<C-p>"] = "actions.preview",
-          ["<C-c>"] = "actions.close",
-          ["<C-l>"] = "actions.refresh",
-          ["-"] = "actions.parent",
-          ["_"] = "actions.open_cwd",
-          ["`"] = "actions.cd",
-          ["~"] = "actions.tcd",
-          ["gs"] = "actions.change_sort",
-          ["gx"] = "actions.open_external",
-          ["g."] = "actions.toggle_hidden",
-        },
-        view_options = {
-          show_hidden = true,
+      vim.keymap.set("n", "<leader>1", function()
+        local nvim_tree = require("nvim-tree.api")
+        local current_buf = vim.api.nvim_get_current_buf()
+        local current_buf_ft = vim.api.nvim_get_option_value("filetype", { buf = current_buf })
+
+        if current_buf_ft == "NvimTree" then
+          nvim_tree.tree.toggle();
+        else
+          nvim_tree.tree.focus()
+        end
+      end, { desc = "Explorer: Toggle or Focus" })
+
+      vim.keymap.set("n", "<leader>4", ":NvimTreeFindFile<CR>", { desc = "Explorer: Focus File" })
+
+      require("nvim-tree").setup({
+        view = {
+          width = 40,
         },
       })
-    end,
-  },
+    end
+  }
 }
