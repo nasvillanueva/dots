@@ -2,7 +2,7 @@ env:
   TERM: xterm-256color
 
 window:
-  opacity: 0.90
+  opacity: 0.95
   decorations: buttonless
   dimensions:
     columns: 200
