@@ -8,12 +8,11 @@ local NXS_LSP_CONFIG = {
     },
   },
   eslint = {
-    on_attach = function()
+    on_attach = function(_, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = "nxs",
-        callback = function()
-          vim.cmd("EslintFix")
-        end,
+        buffer = bufnr,
+        command = "EslintFixAll",
       })
     end,
   },
