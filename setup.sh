@@ -6,6 +6,7 @@ files=(
   config/nvim
   config/ranger
   config/skhd
+  config/lazygit
   gitconfig_global
   gitconfig
   ideavimrc

@@ -1,3 +1,4 @@
+export XDG_CONFIG_HOME="$HOME/.config"
 export NXS_DEV="$HOME/dev"
 export GOPATH="$NXS_DEV/go"
 export REMETIS_PATH="$NXS_DEV/projects/remetis"
