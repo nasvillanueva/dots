@@ -26,7 +26,7 @@ return {
       },
       {
         "<leader>F",
-        ":Telescope grep_string only_sort_text=true search=<CR>",
+        ":Telescope live_grep<CR>",
         mode = "n",
         desc = "Telescope: Find String",
         silent = true,
