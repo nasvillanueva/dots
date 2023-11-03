@@ -213,7 +213,7 @@ if not package.loaded.lazy then
     },
     install = {
       missing = true,
-      colorscheme = { "synthwave84" },
+      colorscheme = { "horizon" },
     },
   })
 end
