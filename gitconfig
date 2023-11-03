@@ -1,0 +1,6 @@
+[core]
+  excludesfile = ~/.gitignore_global
+[push]
+  autoSetupRemote = true
+[includeIf "gitdir:~/dev/"]
+  path = ~/.gitconfig_work

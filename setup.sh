@@ -7,6 +7,7 @@ files=(
   config/ranger
   config/skhd
   gitconfig_global
+  gitconfig
   ideavimrc
   nxs-omz
   skhdrc
