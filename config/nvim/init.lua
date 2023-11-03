@@ -25,7 +25,13 @@ vim.opt.shiftround = true
 
 -- Interface
 vim.opt.laststatus = 3
+vim.opt.listchars:append({
+  lead = "·",
+  trail = "·",
+  nbsp = "·",
+})
 vim.opt.list = true
+vim.opt.fillchars="eob: "
 vim.opt.matchpairs = "(:),{:},[:],<:>"
 vim.opt.matchtime = 2
 vim.opt.number = true
