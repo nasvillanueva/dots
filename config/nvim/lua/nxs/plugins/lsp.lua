@@ -128,11 +128,11 @@ return {
           ["<C-space>"] = cmp.mapping.complete(),
           ["<S-Tab>"] = cmp.mapping.select_prev_item(),
           ["<Tab>"] = cmp.mapping.select_next_item(),
-          ["<Up>"] = cmp.mapping.select_prev_item(),
-          ["<Down>"] = cmp.mapping.select_next_item(),
+          -- ["<Up>"] = cmp.mapping.select_prev_item(),
+          -- ["<Down>"] = cmp.mapping.select_next_item(),
           ["<CR>"] = cmp.mapping.confirm(),
-          ["<C-j>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-k>"] = cmp.mapping.scroll_docs(4),
+          ["<C-k>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-j>"] = cmp.mapping.scroll_docs(4),
           ["<C-c>"] = cmp.mapping.close(),
         },
         sources = {
@@ -161,16 +161,11 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
-      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
+      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
 
       for _, server_name in ipairs(get_mason_servers()) do
-        local nxs_lsp_config = NXS_LSP_CONFIG[server_name]
-        if nxs_lsp_config == nil then
-          nxs_lsp_config = {}
-        end
+        local nxs_lsp_config = NXS_LSP_CONFIG[server_name] or {}
 
         lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
           capabilities = lsp_capabilities,
@@ -275,16 +270,6 @@ return {
     "stevearc/conform.nvim", -- formatter
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
-    keys = {
-      {
-        "<leader>=",
-        function()
-          require("conform").format({ async = true, lsp_fallback = true })
-        end,
-        mode = "",
-        desc = "Format Buffer",
-      },
-    },
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
@@ -293,6 +278,10 @@ return {
     },
     init = function()
       vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+      vim.keymap.set("", "<leader>=", function()
+        require("conform").format({ async = true, lsp_fallback = true })
+      end, { desc = "Format Buffer" })
     end,
   },
 }

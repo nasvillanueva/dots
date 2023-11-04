@@ -287,6 +287,7 @@ hl(0, "SignDelete", { fg = palette.sign_delete, bg = "NONE" })
 hl(0, "GitSignsAdd", { fg = palette.sign_add, bg = "NONE" })
 hl(0, "GitSignsChange", { fg = palette.sign_change, bg = "NONE" })
 hl(0, "GitSignsDelete", { fg = palette.sign_delete, bg = "NONE" })
+hl(0, "GitSignsCurrentLineBlame", { fg = palette.light_gray, bg = "NONE" })
 
 -- LSP
 hl(0, "DiagnosticHint", { fg = palette.hint, bg = "NONE" })

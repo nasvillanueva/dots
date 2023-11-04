@@ -11,36 +11,17 @@ end
 return {
   {
     "nvim-telescope/telescope.nvim",
+    event = "VeryLazy",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
-    keys = {
-      {
-        "<leader>`",
-        ":Telescope buffers<CR>",
-        mode = "n",
-        desc = "Telescope: Buffers",
-        silent = true,
-      },
-      {
-        "<leader>F",
-        ":Telescope live_grep<CR>",
-        mode = "n",
-        desc = "Telescope: Find String",
-        silent = true,
-      },
-      {
-        "<leader><C-o>",
-        ":Telescope lsp_document_symbols<CR>",
-        mode = "n",
-        desc = "Telescop: Find Symbols",
-        silent = true,
-      },
-    },
     config = function()
-      require("telescope").setup({
+      local telescope = require("telescope")
+      local telescope_actions = require("telescope.actions")
+
+      telescope.setup({
         defaults = require("telescope.themes").get_dropdown({
           preview = false,
         }),
@@ -49,10 +30,17 @@ return {
             codeactions = false,
           },
         },
+        pickers = {
+          buffers = {
+            mappings = {
+              i = {
+                ["<C-q>"] = telescope_actions.delete_buffer,
+              }
+            }
+          }
+        },
       })
-    end,
-    init = function()
-      local telescope = require("telescope")
+
       telescope.load_extension("fzf")
       telescope.load_extension("ui-select")
 
@@ -77,6 +65,25 @@ return {
           { silent = true, desc = "Telescope: Find Files" }
         )
       end
+
+      vim.keymap.set(
+        "n",
+        "<leader>`",
+        ":Telescope buffers<CR>",
+        { silent = true, desc = "Telescope: Buffers" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>F",
+        ":Telescope live_grep<CR>",
+        { silent = true, desc = "Telescope: Find String" }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>cs",
+        ":Telescope lsp_document_symbols<CR>",
+        { silent = true, desc = "Telescope: Find Symbols" }
+      )
     end,
   },
 }

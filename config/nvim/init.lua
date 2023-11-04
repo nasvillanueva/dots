@@ -54,7 +54,7 @@ vim.opt.synmaxcol = 300
 vim.opt.updatetime = 50
 vim.opt.lazyredraw = true
 
--- History
+-- Clipboard
 vim.opt.clipboard = "unnamedplus"
 
 -- Files
@@ -169,20 +169,6 @@ vim.keymap.set(
   "Nzzzv",
   { desc = "Move to next search result and center cursor" }
 )
-
-vim.keymap.set("n", "<C-w>v", function()
-  vim.cmd("vsp")
-  vim.defer_fn(function()
-    vim.cmd("Oil")
-  end, 0)
-end, { desc = "Vertical Split then open Oil" })
-
-vim.keymap.set("n", "<C-w>s", function()
-  vim.cmd("sp")
-  vim.defer_fn(function()
-    vim.cmd("Oil")
-  end, 0)
-end, { desc = "Split then open Oil" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines down" })
