@@ -1,20 +1,8 @@
+[include]
+  path = ~/.gitconfig_work
 [core]
-  pager = delta
   excludesfile = ~/.gitignore_global
-[interactive]
-  diffFilter = delta --color-only
-[delta]
-  navigate = true
-  light = false
-  line-numbers = true
-  side-by-side = true
-[merge]
-  conflictstyle = diff3
-[diff]
-  colorMoved = default
 [push]
   autoSetupRemote = true
-[includeIf "gitdir:~/dev/"]
-  path = ~/.gitconfig_work
 
 # vim: ft=gitconfig
