@@ -31,6 +31,9 @@ return {
           },
         },
         pickers = {
+          live_grep = {
+            preview = true,
+          },
           buffers = {
             mappings = {
               i = {
