@@ -46,6 +46,7 @@ vim.opt.cursorline = true
 vim.opt.title = true
 vim.opt.vb = false
 vim.opt.colorcolumn = "80"
+vim.opt.termguicolors = true
 
 -- Performance
 vim.g.matchparen_timeout = 10
@@ -174,8 +175,6 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines down" })
 
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disable macro recording" })
-
-require("nxs.theme")
 
 -- Plugins
 
