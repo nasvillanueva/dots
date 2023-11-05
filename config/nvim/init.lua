@@ -179,29 +179,16 @@ require("nxs.theme")
 
 -- Plugins
 
-if not package.loaded.lazy then
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
-      lazypath,
-    })
-  end
-  vim.opt.rtp:prepend(lazypath)
-
-  require("lazy").setup({
-    spec = {
-      { import = "nxs.plugins" },
-    },
-    install = {
-      missing = true,
-      colorscheme = { "horizon" },
-    },
-  })
+local function load(name)
+  package.loaded[name] = nil -- force reload
+  require(name)
 end
+
+load("nxs.plugins.interface")
+load("nxs.plugins.syntax")
+load("nxs.plugins.git")
+load("nxs.plugins.navigation")
+load("nxs.plugins.utilities")
+load("nxs.plugins.lsp")
 
 require("nxs.terminal")
