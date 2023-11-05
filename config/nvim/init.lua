@@ -198,7 +198,7 @@ if not package.loaded.lazy then
     },
     install = {
       missing = true,
-      colorscheme = { "horizon" },
+      colorscheme = { "tokyonight" },
     },
   })
 end

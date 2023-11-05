@@ -1,18 +1,13 @@
 return {
   {
-    "akinsho/horizon.nvim",
-    version = "*",
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "night",
+    },
     init = function()
-      local colors = require("horizon.palette-dark")
-
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = function()
-          vim.api.nvim_set_hl(0, "ColorColumn", { bg = colors.theme.color_column_fg })
-        end,
-      })
-
-      vim.o.background = "dark"
-      vim.cmd("colorscheme horizon")
+      vim.cmd("colorscheme tokyonight")
     end,
   },
 }
