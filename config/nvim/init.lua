@@ -53,7 +53,7 @@ vim.g.matchparen_timeout = 10
 vim.opt.scrollback = 100000
 vim.opt.synmaxcol = 300
 vim.opt.updatetime = 50
-vim.opt.lazyredraw = true
+vim.opt.lazyredraw = false
 
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
