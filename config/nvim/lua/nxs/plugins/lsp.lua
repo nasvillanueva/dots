@@ -280,7 +280,12 @@ return {
       vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
 
       vim.keymap.set("", "<leader>=", function()
-        require("conform").format({ async = true, lsp_fallback = true })
+        require("conform").format(
+          { async = true, lsp_fallback = true },
+          function()
+            vim.cmd("w!")
+          end
+        )
       end, { desc = "Format Buffer" })
     end,
   },
