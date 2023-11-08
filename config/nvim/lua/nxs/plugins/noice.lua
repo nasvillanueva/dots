@@ -8,6 +8,5 @@ return {
     opts = {
       cmdline = { enabled = true },
     },
-
-  }
+  },
 }

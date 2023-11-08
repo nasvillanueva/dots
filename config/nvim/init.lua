@@ -31,7 +31,7 @@ vim.opt.listchars:append({
   nbsp = "·",
 })
 vim.opt.list = true
-vim.opt.fillchars="eob: "
+vim.opt.fillchars = "eob: "
 vim.opt.matchpairs = "(:),{:},[:],<:>"
 vim.opt.matchtime = 2
 vim.opt.number = true
