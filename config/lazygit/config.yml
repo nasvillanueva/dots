@@ -7,4 +7,5 @@ gui:
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
 os:
-  edit: nvim --server $NVIM --remote-send "<cmd>lua require('nxs.lazygit_edit')('{{filename}}', {{line}})<CR>"
+  edit: lazygit_edit {{filename}}
+  editAtLine: lazygit_edit {{filename}} "{{line}}"
