@@ -1,6 +1,8 @@
 local NXS_LSP_CONFIG = {
   cssls = {},
-  tailwindcss = {},
+  tailwindcss = {
+    filetypes = { "vue", "html", "css", "scss" }
+  },
   elixirls = {
     cmd = {
       os.getenv("HOME")

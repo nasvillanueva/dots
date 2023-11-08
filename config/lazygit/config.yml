@@ -6,3 +6,5 @@ gui:
   nerdFontsVersion: "3"
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
+os:
+  edit: nvim --server $NVIM --remote-send "<cmd>lua require('nxs.lazygit_edit')('{{filename}}', {{line}})<CR>"
