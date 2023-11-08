@@ -10,6 +10,7 @@ window:
   padding:
     x: 10
     y: 10
+  option_as_alt: OnlyLeft
 
 scrolling:
   history: 10000
