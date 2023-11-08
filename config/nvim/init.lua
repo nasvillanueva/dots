@@ -75,6 +75,7 @@ vim.opt.updatecount = 50
 vim.opt.commentstring = "// %s"
 vim.opt.spelllang = "en_us"
 vim.opt.spell = true
+vim.opt.mouse = ""
 
 -- Keybindings
 
