@@ -199,7 +199,7 @@ if not package.loaded.lazy then
     },
     install = {
       missing = true,
-      colorscheme = { "tokyonight" },
+      colorscheme = { "rose-pine" },
     },
   })
 end

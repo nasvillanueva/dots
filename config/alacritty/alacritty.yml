@@ -30,4 +30,4 @@ font:
 draw_bold_text_with_bright_colors: true
 
 import:
-  - ~/.local/share/nvim/lazy/tokyonight.nvim/extras/alacritty/tokyonight_night.yml
+  - ~/.config/alacritty/themes/rose-pine/rose-pine-dawn.yml
