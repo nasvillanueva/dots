@@ -18,5 +18,6 @@ alias rmn='rms npm'
 alias vim=$(which nvim)
 
 alias lg="lazygit"
+alias ls="exa --icons --group-directories-first"
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
