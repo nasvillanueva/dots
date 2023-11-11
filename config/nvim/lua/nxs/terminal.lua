@@ -4,8 +4,8 @@ vim.keymap.set("n", "<C-Space>", ":term<CR>", { desc = "Open terminal" })
 vim.keymap.set(
   "t",
   "<C-\\><C-\\>",
-  "<C-\\><C-n>:bdelete!<CR>",
-  { desc = "Exit terminal" }
+  "<C-\\><C-n>",
+  { desc = "Alternative Terminal Exit" }
 )
 
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -15,19 +15,5 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.wo.number = false
     vim.wo.wrap = true
     vim.cmd("startinsert")
-  end,
-})
-
-vim.api.nvim_create_autocmd("TermClose", {
-  group = "nxs",
-  pattern = TERM_PATTERNS,
-  callback = function()
-    if vim.g.lazygit_opened == 1 then
-      return
-    end
-
-    vim.defer_fn(function()
-      vim.cmd("Oil")
-    end, 0)
   end,
 })
