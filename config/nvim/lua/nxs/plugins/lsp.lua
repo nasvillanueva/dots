@@ -1,7 +1,7 @@
 local NXS_LSP_CONFIG = {
   cssls = {},
   tailwindcss = {
-    filetypes = { "vue", "html", "css", "scss" }
+    filetypes = { "vue", "html", "css", "scss" },
   },
   elixirls = {
     cmd = {
@@ -89,6 +89,7 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
+    event = "VeryLazy",
     version = "v2.*",
     build = "make install_jsregexp",
   },
@@ -111,16 +112,20 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "L3MON4D3/LuaSnip" },
       { "zbirenbaum/copilot.lua" },
+      { "onsails/lspkind.nvim" },
     },
     config = function()
       local cmp = require("cmp")
+      local lspkind = require("lspkind")
 
       cmp.setup({
+        formatting = {
+          format = lspkind.cmp_format(),
+        },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -140,7 +145,6 @@ return {
         sources = {
           { name = "nvim_lsp" },
           { name = "path" },
-          { name = "buffer" },
           { name = "copilot" },
         },
       })
