@@ -6,7 +6,6 @@ vim.api.nvim_create_augroup("nxs", {})
 vim.opt.exrc = false
 
 -- Searching/Autocomplete
-vim.opt.completeopt = "menu,preview,longest"
 vim.opt.gdefault = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
