@@ -279,6 +279,7 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
+        elixir = { "mix" },
         ["*"] = { "codespell", "trim_whitespace" },
       },
     },
