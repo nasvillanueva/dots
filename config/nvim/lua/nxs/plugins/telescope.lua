@@ -29,6 +29,10 @@ return {
           mappings = {
             i = {
               ["<C-t>"] = trouble.open_with_trouble,
+              ["<ESC>"] = telescope_actions.close,
+              ["<C-\\><C-\\>"] = function()
+                vim.cmd("stopinsert")
+              end,
             },
             n = {
               ["<C-t>"] = trouble.open_with_trouble,
@@ -47,7 +51,7 @@ return {
           buffers = {
             mappings = {
               i = {
-                ["<C-q>"] = telescope_actions.delete_buffer,
+                ["<C-d>"] = telescope_actions.delete_buffer,
               },
             },
           },
