@@ -110,6 +110,16 @@ return {
     end,
   },
   {
+    "antosha417/nvim-lsp-file-operations",
+    event = "VeryLazy",
+    name = "lsp-file-operations",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-tree/nvim-tree.lua" },
+    },
+    opts = {},
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       { "hrsh7th/cmp-path" },
@@ -143,9 +153,9 @@ return {
           ["<C-c>"] = cmp.mapping.close(),
         },
         sources = {
-          { name = "nvim_lsp" },
-          { name = "path" },
-          { name = "copilot" },
+          { name = "nvim_lsp", group_index = 1 },
+          { name = "path", group_index = 1 },
+          { name = "copilot", group_index = 2 },
         },
       })
     end,

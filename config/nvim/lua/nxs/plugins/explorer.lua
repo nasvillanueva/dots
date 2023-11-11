@@ -16,7 +16,7 @@ return {
           group_empty = true,
         },
         view = {
-          width = 40,
+          width = 30,
         },
         on_attach = function(bufnr)
           local nvim_tree = require("nvim-tree.api")
