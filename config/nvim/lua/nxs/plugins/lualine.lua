@@ -17,11 +17,10 @@ return {
           {
             function()
               local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-              local msg = buf_ft
               local clients = vim.lsp.get_active_clients()
 
               if next(clients) == nil then
-                return msg
+                return buf_ft
               end
 
               local active_lsp = {}
@@ -32,7 +31,11 @@ return {
                 end
               end
 
-              return table.concat(active_lsp, ", ")
+              if #active_lsp == 0 then
+                return buf_ft
+              end
+
+              return buf_ft .. ": " .. table.concat(active_lsp, ", ")
             end,
             icon = "",
           },
