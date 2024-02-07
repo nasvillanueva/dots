@@ -13,7 +13,6 @@ files=(
   nxs-omz
   skhdrc
   tmux.conf
-  tool-versions
   zshenv
   zshrc
 )
