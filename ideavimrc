@@ -1,96 +1,34 @@
 let mapleader=' '
-let maplocalleader='\\'
 
-" Plugins
-set easymotion
 set surround
-set multiple-cursors
 set which-key
-set commentary
 set NERDTree
-
-" Plugin Config
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_use_migemo = 1
-
-" Settings
-set showmode
-set showcmd
-set number
-set numberwidth=4
-set matchpairs
-set ignorecase
-set smartcase
-set scrolloff=10
-set hlsearch
-set incsearch
-set gdefault
-set history=1000
-set undolevels=1000
-set visualbell
-set noerrorbells
-set startofline
-set notimeout
 
 set clipboard+=unnamed
 set clipboard+=ideaput
 
-" Keybindings
+set showmode
+set showcmd
+set matchpairs="(:),{:},[:],<:>"
+set ignorecase
+set smartcase
+set scrolloff=10
+set visualbell
+set noerrorbells
+set history=10000
+set undolevels=10000
+set notimeout
+set gdefault
 
-" Navigation
-map <leader>f <Plug>(easymotion-s)
-map <leader>e <Plug>(easymotion-f)
-map U <C-R>
-map [[ <Action>(MethodUp)
-map ]] <Action>(MethodDown)
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gp :action GotoSuperMethod<CR>
-nnoremap gt :action GotoTest<CR>
-
-" Tab also goes to the pair match
-nnoremap <Tab> %
-vnoremap <Tab> %
-
-" Better navigation on panes
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
-" Use shift-H and shift-L for move to beginning/end
-nnoremap H 0
-nnoremap L $
-
-" Clears the search register
-" There's an issue with hlsearch where it persists across restart
-" https://youtrack.jetbrains.com/issue/VIM-2879/Dont-persist-search-highlighting-using-hlsearch-when-restart-the-IDE
-nnoremap <leader>/ :nohlsearch<CR>
-
-" Quick yanking to the end of the line
-nnoremap Y y$
-
-" Refactoring
-map <leader>r <Action>(Refactorings.QuickListPopupAction)
-map <leader>= <Action>(ReformatCode)
-map <leader><leader>= <Action>(Javascript.Linters.EsLint.Fix)
-map <leader>o <Action>(OptimizeImports)
-
-" Config
 nnoremap <leader>ve :e ~/.ideavimrc<CR>
 nnoremap <leader>vs :action IdeaVim.ReloadVimRc.reload<CR>
 
-" Distraction Free
-map <C-z> <Action>(ToggleDistractionFreeMode)
+nnoremap <leader>q :close<CR>
+nnoremap <leader>Q :bd!<CR>
 
-" Split
-map <C-\> <Action>(SplitVertically)
-map <C-=> <Action>(SplitHorizontally)
+nnoremap [c :action VcsShowPrevChangeMarker<CR>
+nnoremap ]c :action VcsShowNextChangeMarker<CR>
 
-imap <A-\> <Action>(copilot.requestCompletions)
 
-" Focus active file in the file explorer
-nmap <leader>` <Action>(SelectInProjectView)
-
-" Restart TS Service
-nmap <leader>tsr <Action>(TypeScript.Restart.Service)
+nnoremap [e :action GotoPrevError<CR>
+nnoremap ]e :action GotoNextError<CR>
