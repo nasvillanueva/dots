@@ -30,4 +30,4 @@ font:
 draw_bold_text_with_bright_colors: true
 
 import:
-  - ~/.config/alacritty/themes/rose-pine/rose-pine-dawn.yml
+  - ~/.config/alacritty/themes/nord.yml
