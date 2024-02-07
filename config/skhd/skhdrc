@@ -1,7 +1,9 @@
 cmd + ctrl - w : open -a /Users/nxs/Applications/WebStorm.app
-cmd + ctrl - t : open -a /Applications/Alacritty.app
+cmd + ctrl - e : open -a /Applications/Alacritty.app
 cmd + ctrl - d : open -a /Applications/Discord.app
 cmd + ctrl - r : open -a /Applications/Google\ Chrome.app
+
+ctrl + shift - 0x29 : im-select com.apple.inputmethod.Kotoeri.RomajiTyping.Roman
 
 cmd + ctrl - f : open -g "rectangle://execute-action?name=maximize"
 
