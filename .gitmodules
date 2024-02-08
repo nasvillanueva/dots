@@ -7,6 +7,3 @@
 [submodule "nxs-omz/plugins/fast-syntax-highlighting"]
 	path = nxs-omz/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
-[submodule "config/alacritty/themes/rose-pine"]
-	path = config/alacritty/themes/rose-pine
-	url = https://github.com/rose-pine/alacritty
