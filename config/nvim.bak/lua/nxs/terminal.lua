@@ -1,18 +1,18 @@
-local keybind = require("nxs.utils.keybind")
+local TERM_PATTERNS = { "term://*" }
 
-keybind.set("n", "<C-Space>", ":term<CR>", "Open terminal" )
-keybind.set(
+vim.keymap.set("n", "<C-Space>", ":term<CR>", { desc = "Open terminal" })
+vim.keymap.set(
   "t",
   "<C-\\><C-\\>",
   "<C-\\><C-n>",
-  "Alternative Terminal Exit"
+  { desc = "Alternative Terminal Exit" }
 )
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  pattern = { "term://*" },
+  group = "nxs",
+  pattern = TERM_PATTERNS,
   callback = function()
     vim.wo.number = false
-    vim.wo.relativenumber = false
     vim.wo.wrap = true
     vim.wo.spell = false
     vim.cmd("startinsert")
