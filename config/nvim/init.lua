@@ -6,3 +6,4 @@ require("nxs.terminal")
 require("nxs.keybinds")
 
 require("nxs.colorscheme")
+require("nxs.ime")

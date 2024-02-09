@@ -10,3 +10,6 @@
 [submodule "local/share/nvim/site/pack/nxs/start/nord.nvim"]
 	path = local/share/nvim/site/pack/nxs/start/nord.nvim
 	url = https://github.com/shaunsingh/nord.nvim
+[submodule "local/share/nvim/site/pack/nxs/start/im-select.nvim"]
+	path = local/share/nvim/site/pack/nxs/start/im-select.nvim
+	url = https://github.com/keaising/im-select.nvim
