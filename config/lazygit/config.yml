@@ -4,6 +4,7 @@ gui:
   border: "single"
   showCommandLog: false
   nerdFontsVersion: "3"
+  showBottomLine: false
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
 os:
