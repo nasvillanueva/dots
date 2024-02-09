@@ -7,3 +7,6 @@
 [submodule "nxs-omz/plugins/fast-syntax-highlighting"]
 	path = nxs-omz/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+[submodule "local/share/nvim/site/pack/nxs/start/nord.nvim"]
+	path = local/share/nvim/site/pack/nxs/start/nord.nvim
+	url = https://github.com/shaunsingh/nord.nvim
