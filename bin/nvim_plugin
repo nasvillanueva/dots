@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 CONFIG_HOME="$HOME/dots"
-PLUGIN_BASE_DIR="start" # Make all plugin auto load
+PLUGIN_BASE_DIR="start" # Make all plugin auto load, TODO: Support opt
 PLUGIN_HOME="$CONFIG_HOME/local/share/nvim/site/pack/nxs/$PLUGIN_BASE_DIR"
 
 function add() {
@@ -46,6 +46,4 @@ case $command in
     exit 1
     ;;
 esac
-
-
 
