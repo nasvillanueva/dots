@@ -50,7 +50,7 @@ vim.opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard, at le
 
 -- Files
 vim.opt.hidden = true -- Abandons changes in hidden buffers
-vim.opt.autochdir = true -- Autochange directory based on active file
+vim.opt.autochdir = false -- Prevent autochange directory
 vim.opt.confirm = true -- enable confirmation for some operations
 vim.opt.autowrite = false -- disables autosaving
 vim.opt.backup = false -- disables creating a backup for overwritten files
