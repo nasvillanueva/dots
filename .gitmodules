@@ -13,3 +13,21 @@
 [submodule "local/share/nvim/site/pack/nxs/start/im-select.nvim"]
 	path = local/share/nvim/site/pack/nxs/start/im-select.nvim
 	url = https://github.com/keaising/im-select.nvim
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/gitsigns.nvim"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/neogit"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/neogit
+	url = https://github.com/NeogitOrg/neogit
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/plenary.nvim"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/diffview.nvim"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/diffview.nvim
+	url = https://github.com/sindrets/diffview.nvim
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/telescope.nvim"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-web-devicons"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-web-devicons
+	url = https://github.com/nvim-tree/nvim-web-devicons
