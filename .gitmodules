@@ -31,3 +31,12 @@
 [submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-web-devicons"]
 	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-web-devicons
 	url = https://github.com/nvim-tree/nvim-web-devicons
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/telescope-fzf-native.nvim"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/telescope-fzf-native.nvim
+	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-ts-autotag"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-ts-autotag
+	url = https://github.com/windwp/nvim-ts-autotag
+[submodule "/Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-treesitter"]
+	path = /Users/nxs/dots/local/share/nvim/site/pack/nxs/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
