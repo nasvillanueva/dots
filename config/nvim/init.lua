@@ -1,3 +1,6 @@
+local lazyload = require("nxs.utils.lazyload")
+lazyload.init()
+
 vim.g.mapleader = " "
 
 require("nxs.colorscheme")
@@ -14,3 +17,7 @@ require("nxs.ime")
 require("nxs.treesitter")
 require("nxs.telescope") -- requires treesitter
 require("nxs.git") -- requires git
+
+require("nxs.whichkey")
+
+lazyload.load()
