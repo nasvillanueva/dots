@@ -13,15 +13,23 @@ local keybind = require("nxs.utils.keybind")
 -- TODO: Automate it
 
 local telescope = require("telescope")
+local actions = require("telescope.actions")
 
 telescope.setup({
   defaults = require("telescope.themes").get_ivy({
-    layout_strategy = "bottom_pane",
-    prompt_position = "bottom",
     sorting_strategy = "descending",
+    layout_config = { prompt_position = "bottom" },
     border = false,
     prompt_prefix = '➜ ',
     selection_caret = '  ',
+    mappings = {
+      i = {
+        ["<ESC>"] = actions.close,
+        ["<C-\\><C-\\>"] = function()
+          vim.cmd("stopinsert")
+        end,
+      },
+    },
   }),
   extensions = {
     fzf = {
