@@ -7,7 +7,6 @@ files=(
   config/ranger
   config/skhd
   config/lazygit
-  local/share/nvim/site/pack
   gitconfig_global
   gitconfig
   ideavimrc

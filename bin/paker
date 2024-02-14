@@ -1,0 +1,65 @@
+#!/usr/bin/env zsh
+
+NVIM_CONFIG_ROOT="$HOME/dots/config/nvim"
+NVIM_DEPS_ROOT="$HOME/.local/share/nvim/site/pack"
+DEPS_PATH="$NVIM_CONFIG_ROOT/deps"
+
+if [[ "$*" == *"--clean"* ]]; then
+  rm -rf "$NVIM_DEPS_ROOT"
+fi
+
+mkdir -p "$NVIM_DEPS_ROOT"
+
+cmd=() # array of nvim commands to run after installing
+
+while IFS= read -r dep; do
+  # Ignore comments
+  [[ "$dep" =~ ^#.*$ ]] && continue
+
+  # Format is expected to be:
+  # author/project[?[lazy][:key=value]]
+  dep_params=(${(@s/?/)dep})
+  dep_name="${dep_params[1]}" # get the name part
+  dep_opts=(${(@s/:/)dep_params[2]}) # get the opts part separating them by ':'
+  dep_subdir="start" # by default autoload the pacakge
+  cli=() # array of cli commands to run after installing
+
+  # Process opts
+  for opt in $dep_opts;
+  do
+    IFS='=' read -r key value <<< "$opt"
+    
+    case "$key" in
+      lazy)
+        dep_subdir="opt" # put in opt folder for manually loaded deps
+        ;;
+      cmd)
+        cmd+="$value"
+        ;;
+      cli)
+        cli+="$value"
+        ;;
+    esac
+  done
+
+  author="$(dirname $dep_name)"
+  project="$(basename $dep_name)"
+  install_dir="$NVIM_DEPS_ROOT/$author/$dep_subdir/$project"
+
+  if [[ -d "$install_dir" ]]; then
+    (cd "$install_dir" && git pull --depth 1)
+  else
+    git clone --depth 1 "https://github.com/$dep_name" "$install_dir"
+  fi
+
+
+  for c in $cli;
+  do
+    (cd "$install_dir" && eval "$c")
+  done
+done < "$DEPS_PATH"
+
+for c in $cmd;
+do
+  nvim -c "$c" --headless +q
+done

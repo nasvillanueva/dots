@@ -7,6 +7,7 @@ require("nvim-treesitter.configs").setup({
   highlight = { enable = true },
   autotag = { enable = true },
   additional_vim_regex_highlighting = false,
+  parser_install_dir = vim.fn.stdpath("data") .. "/site",
 })
 
 vim.opt.foldmethod = "expr"

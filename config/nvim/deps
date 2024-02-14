@@ -1,0 +1,12 @@
+NeogitOrg/neogit
+folke/which-key.nvim?lazy
+keaising/im-select.nvim
+lewis6991/gitsigns.nvim
+nvim-lua/plenary.nvim
+nvim-telescope/telescope-fzf-native.nvim?cli=make
+nvim-telescope/telescope.nvim
+nvim-tree/nvim-web-devicons
+nvim-treesitter/nvim-treesitter?cmd=TSUpdateSync
+shaunsingh/nord.nvim
+sindrets/diffview.nvim
+windwp/nvim-ts-autotag
