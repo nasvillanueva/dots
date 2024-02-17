@@ -10,3 +10,4 @@ nvim-treesitter/nvim-treesitter?cmd=TSUpdateSync
 shaunsingh/nord.nvim
 sindrets/diffview.nvim
 windwp/nvim-ts-autotag
+nvim-tree/nvim-tree.lua
