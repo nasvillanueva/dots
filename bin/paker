@@ -47,9 +47,9 @@ while IFS= read -r dep; do
   install_dir="$NVIM_DEPS_ROOT/$author/$dep_subdir/$project"
 
   if [[ -d "$install_dir" ]]; then
-    (cd "$install_dir" && git pull --depth 1)
+    (cd "$install_dir" && git pull)
   else
-    git clone --depth 1 "https://github.com/$dep_name" "$install_dir"
+    git clone "https://github.com/$dep_name" "$install_dir"
   fi
 
 
@@ -63,3 +63,5 @@ for c in $cmd;
 do
   nvim -c "$c" --headless +q
 done
+
+nvim -c "helptags ALL" --headless +q
