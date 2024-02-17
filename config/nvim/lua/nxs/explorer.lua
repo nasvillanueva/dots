@@ -25,6 +25,8 @@ require("nvim-tree").setup({
       else
         nvim_tree.tree.focus()
       end
-    end)
+    end, "Explorer: Toggle")
+
+    keybind.set("n", "<leader>4", ":NvimTreeFindFile<CR>", "Explorer: Focus File")
   end,
 })
