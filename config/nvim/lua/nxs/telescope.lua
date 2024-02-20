@@ -19,9 +19,6 @@ telescope.setup({
   defaults = require("telescope.themes").get_ivy({
     sorting_strategy = "descending",
     layout_config = { prompt_position = "bottom" },
-    border = false,
-    prompt_prefix = '➜ ',
-    selection_caret = '  ',
     mappings = {
       i = {
         ["<ESC>"] = actions.close,
