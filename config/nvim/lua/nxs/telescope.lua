@@ -54,9 +54,9 @@ local function is_git_project()
 end
 
 if is_git_project() then
-  keybind.set("n", "<leader>O", ":Telescope find_files<CR>", "Telescope: Find Files")
-else
   keybind.set("n", "<leader>O", ":Telescope git_files<CR>", "Telescope: Git Files")
+else
+  keybind.set("n", "<leader>O", ":Telescope find_files<CR>", "Telescope: Find Files")
 end
 
 keybind.set("n", "<leader>e", ":Telescope oldfiles<CR>", "Telescope: Recent Files")
