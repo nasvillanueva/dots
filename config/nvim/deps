@@ -28,3 +28,4 @@ williamboman/mason.nvim
 windwp/nvim-ts-autotag
 onsails/lspkind.nvim
 stevearc/conform.nvim?lazy
+nvim-lualine/lualine.nvim

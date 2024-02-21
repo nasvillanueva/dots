@@ -13,6 +13,7 @@ require("nxs.keybinds")
 -- Needed by many dependencies
 require("nvim-web-devicons").setup({})
 
+require("nxs.lualine")
 require("nxs.explorer")
 require("nxs.ime")
 require("nxs.treesitter")
