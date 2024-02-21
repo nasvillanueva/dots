@@ -19,5 +19,3 @@ keybind.set("v", "J", ":m '>+1<CR>gv=gv", "Move lines up")
 keybind.set("v", "K", ":m '<-2<CR>gv=gv", "Move lines down")
 
 keybind.set("n", "Q", "<NOP>", "Disable macro recording")
-
-keybind.set({ "n", "v" }, "p", [["0p]], "Paste without replacing yank buffer")
