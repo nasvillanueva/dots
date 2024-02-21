@@ -21,4 +21,6 @@ require("nxs.git") -- requires git
 
 require("nxs.whichkey")
 
+require("nxs.lsp")
+
 lazyload.load()
