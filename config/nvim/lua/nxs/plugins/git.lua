@@ -69,13 +69,14 @@ return {
     },
     init = function()
       keybind.set("n", "<leader>gg", "<cmd>LazyGit<CR>", "LazyGit")
+      keybind.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<CR>", "LazyGit: Current File Commit History")
     end,
   },
   {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
     init = function()
-      keybind.set("n", "<leader>ge", "<cmd>DiffviewOpen<CR>", "DiffView")
+      keybind.set("n", "<leader>ge", "<cmd>DiffViewOpen<CR>", "DiffView")
     end,
   },
 }

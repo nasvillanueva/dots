@@ -81,6 +81,7 @@ return {
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason-lspconfig.nvim" },
+      { "nvim-telescope/telescope.nvim" },
     },
     event = {
       "BufReadPost",
@@ -137,61 +138,103 @@ return {
       end
 
       local function setup_keybindings(args)
+        local has_capability = function(capability)
+          -- Only on nvim 0.10.0
+          -- local clients = vim.lsp.get_clients({ bufnr = args.buf })
+          local clients = vim.lsp.get_active_clients({ bufnr = args.buf })
+          local method = "textDocument/" .. capability
+
+          for _, client in ipairs(clients) do
+            if client.supports_method(method) then
+              return true
+            end
+          end
+
+          return false
+        end
+
+        keybind.set("n", "<leader>cli", "<cmd>LspInfo<CR>", "LSP: Info")
+        keybind.set("n", "<leader>clr", "<cmd>LspRestart<CR>", "LSP: Restart")
+
         keybind.set(
           "n",
-          "<leader>lsp",
-          ":silent :LspRestart<CR>",
-          "LSP: Restart"
+          "gD",
+          vim.lsp.buf.declaration,
+          "LSP: Goto declaration",
+          { buffer = args.buf }
         )
+        keybind.set("n", "gI", function()
+          require("telescope.builtin").lsp_implementations({ reuse_win = true })
+        end, "LSP: Goto Implementation")
+        keybind.set("n", "gy", function()
+          require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+        end, "LSP: Goto Type Definition")
+
         keybind.set(
           "n",
-          "<leader>ck",
+          "K",
           vim.lsp.buf.hover,
-          { buffer = args.buf, desc = "LSP: Hover" }
+          "LSP: Hover",
+          { buffer = args.buf }
         )
-        keybind.set(
-          "n",
-          "<leader>ca",
-          vim.lsp.buf.code_action,
-          "LSP: Code Actions"
-        )
-        keybind.set("n", "<leader>cr", vim.lsp.buf.rename, "LSP: Rename")
-        keybind.set(
-          "n",
-          "<leader>cd",
-          vim.lsp.buf.definition,
-          "LSP: Go to Definition"
-        )
-        keybind.set(
-          "n",
-          "<leader>cu",
-          vim.lsp.buf.references,
-          "LSP: Find Usages"
-        )
-        keybind.set(
-          "n",
-          "<leader>ch",
-          vim.lsp.buf.signature_help,
-          "LSP: Show Signature Help"
-        )
-        keybind.set(
-          "n",
-          "<leader>ce",
-          vim.diagnostic.open_float,
-          "LSP: View Error"
-        )
-        keybind.set(
-          "n",
-          "<leader>c[",
-          vim.diagnostic.goto_prev,
-          "LSP: Goto Previous Diagnostic Error"
-        )
-        keybind.set(
-          "n",
-          "<leader>c]",
-          vim.diagnostic.goto_next,
-          "LSP: Goto Next Diagnostic Error"
-        )
+
+        if has_capability("definition") then
+          keybind.set("n", "gd", function()
+            require("telescope.builtin").lsp_defintions({ reuse_win = true })
+          end, "LSP: Goto definition", { buffer = args.buf })
+        end
+
+        if has_capability("References") then
+          keybind.set(
+            "n",
+            "gr",
+            "<cmd>Telescope lsp_references<CR>",
+            "LSP: Find Usages",
+            { buffer = args.buf }
+          )
+        end
+
+        if has_capability("signatureHelp") then
+          keybind.set(
+            "n",
+            "gK",
+            vim.lsp.buf.signature_help,
+            "LSP: Signature Help",
+            { buffer = args.buf }
+          )
+          keybind.set(
+            "i",
+            "<C-k>",
+            vim.lsp.buf.signature_help,
+            "LSP: Signature Help",
+            { buffer = args.buf }
+          )
+        end
+
+        if has_capability("codeAction") then
+          keybind.set(
+            { "n", "v" },
+            "<leader>ca",
+            vim.lsp.buf.code_action,
+            "LSP: Code Actions",
+            { buffer = args.buf }
+          )
+
+          keybind.set("n", "<leader>cA", function()
+            vim.lsp.buf.code_action({
+              context = { only = { "source" }, diagnostics = {} },
+            })
+          end, "LSP: Source Action", { buffer = args.buf })
+        end
+
+        if has_capability("rename") then
+          keybind.set("n", "<leader>cr", vim.lsp.buf.rename, "LSP: Rename", { buffer = args.buf })
+        end
+
+        if has_capability("codeLens") then
+          keybind.set({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, "LSP: Run CodeLens", { buffer = args.buf })
+          keybind.set({ "n", "v" }, "<leader>cC", vim.lsp.codelens.refresh, "LSP: Refresh and Display CodeLens", { buffer = args.buf })
+        end
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {
