@@ -44,7 +44,6 @@ vim.opt.visualbell = false -- disable visual bells
 vim.opt.colorcolumn = "80" -- shows colored column at 80th character
 vim.opt.errorbells = false -- disable error bells
 
-
 -- Clipboard
 vim.opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard, at least on macos
 

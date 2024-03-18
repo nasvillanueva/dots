@@ -7,6 +7,3 @@ gui:
   showBottomLine: false
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
-os:
-  edit: lazygit_edit {{filename}}
-  editAtLine: lazygit_edit {{filename}} "{{line}}"

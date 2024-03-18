@@ -13,7 +13,12 @@ keybind.set("n", "<C-d>", "<C-d>zz", "Scroll down and center cursor")
 keybind.set("n", "<C-u>", "<C-u>zz", "Scroll up and center cursor")
 
 keybind.set("n", "n", "nzzzv", "Move to next search result and center cursor")
-keybind.set("n", "N", "Nzzzv", "Move to previous search result and center cursor")
+keybind.set(
+  "n",
+  "N",
+  "Nzzzv",
+  "Move to previous search result and center cursor"
+)
 
 keybind.set("v", "J", ":m '>+1<CR>gv=gv", "Move lines up")
 keybind.set("v", "K", ":m '<-2<CR>gv=gv", "Move lines down")
