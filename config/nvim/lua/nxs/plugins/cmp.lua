@@ -9,9 +9,8 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind-nvim",
       "windwp/nvim-autopairs",
-      "LuaSnip", -- points to the already-initialized config in nxs.plugins.luasnip
-      "copilot.lua", -- points to the already-initialized config in nxs.plugins.copilot
-      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+      require("nxs.plugins.luasnip"),
+      require("nxs.plugins.copilot"),
     },
     config = function()
       local cmp = require("cmp")
@@ -73,17 +72,16 @@ return {
         sources = {
           { name = "nvim_lsp_signature_help", group_index = 1 },
           {
-            name = "luasnip",
-            max_item_count = 5,
-            group_index = 1,
-          },
-          {
             name = "nvim_lsp",
-            max_item_count = 20,
             group_index = 1,
           },
           { name = "path", group_index = 2 },
           { name = "copilot", group_index = 3 },
+          {
+            name = "luasnip",
+            max_item_count = 5,
+            group_index = 3,
+          },
         },
       })
 

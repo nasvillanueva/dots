@@ -31,10 +31,9 @@ lazy.setup({
     require("nxs.plugins.treesitter"),
     require("nxs.plugins.utilities"),
     require("nxs.plugins.mason"),
-    require("nxs.plugins.copilot"),
-    require("nxs.plugins.luasnip"),
     require("nxs.plugins.cmp"),
     require("nxs.plugins.lsp"),
+    require("nxs.plugins.format"),
   },
   install = {
     missing = true,
