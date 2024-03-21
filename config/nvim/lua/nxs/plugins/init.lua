@@ -30,6 +30,7 @@ lazy.setup({
     require("nxs.plugins.lualine"),
     require("nxs.plugins.treesitter"),
     require("nxs.plugins.utilities"),
+    require("nxs.plugins.trouble"),
     require("nxs.plugins.mason"),
     require("nxs.plugins.cmp"),
     require("nxs.plugins.lsp"),

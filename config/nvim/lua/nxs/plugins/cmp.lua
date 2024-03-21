@@ -8,7 +8,6 @@ return {
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind-nvim",
-      "windwp/nvim-autopairs",
       require("nxs.plugins.luasnip"),
       require("nxs.plugins.copilot"),
     },
@@ -29,7 +28,7 @@ return {
       end
       local cmp_next = function(fallback)
         if cmp.visible() then
-          cmp.select_next_item()
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
         -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
         -- that way you will only jump inside the snippet region
         elseif luasnip.expand_or_jumpable() then
@@ -42,7 +41,7 @@ return {
       end
       local cmp_prev = function(fallback)
         if cmp.visible() then
-          cmp.select_prev_item()
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
         elseif luasnip.jumpable(-1) then
           luasnip.jump(-1)
         else
@@ -64,7 +63,10 @@ return {
           ["<C-space>"] = cmp.mapping.complete(),
           ["<S-Tab>"] = cmp.mapping(cmp_prev),
           ["<Tab>"] = cmp.mapping(cmp_next),
-          ["<CR>"] = cmp.mapping.confirm(),
+          ["<CR>"] = cmp.mapping.confirm({
+            select = false,
+            behavior = cmp.ConfirmBehavior.Replace, -- required by copilot; otherwise indention will be removed when completing
+          }),
           ["<C-k>"] = cmp.mapping.scroll_docs(-4),
           ["<C-j>"] = cmp.mapping.scroll_docs(4),
           ["<C-c>"] = cmp.mapping.close(),
@@ -85,15 +87,8 @@ return {
         },
       })
 
-      local autopairs_present, cmp_autopairs =
-        pcall(require, "nvim-autopairs.completion.cmp")
-      if not autopairs_present then
-        return
-      end
-      cmp.event:on(
-        "confirm_done",
-        cmp_autopairs.on_confirm_done({ map_char = { tex = "" } })
-      )
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 }

@@ -180,7 +180,7 @@ return {
 
         if has_capability("definition") then
           keybind.set("n", "gd", function()
-            require("telescope.builtin").lsp_defintions({ reuse_win = true })
+            require("telescope.builtin").lsp_definitions({ reuse_win = true })
           end, "LSP: Goto definition", { buffer = args.buf })
         end
 
