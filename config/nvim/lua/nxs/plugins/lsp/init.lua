@@ -8,8 +8,7 @@ local NXS_LSP_CONFIG = {
   },
   elixirls = {
     cmd = {
-      os.getenv("HOME")
-        .. "/.local/share/nvim/mason/packages/elixir-ls/language_server.sh",
+      os.getenv("HOME") .. "/.elixirls/language_server.sh",
     },
   },
   eslint = {
@@ -75,6 +74,28 @@ local NXS_LSP_CONFIG = {
   },
 }
 
+-- Volar Takeover mode
+-- https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode
+local volar_client = nil
+local tsserver_client = nil
+local function volar_takeover(args)
+  local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+  if client.name == "tsserver" then
+    if volar_client then
+      client:stop()
+    else
+      tsserver_client = client
+    end
+  elseif client.name == "volar" then
+    volar_client = client
+
+    if tsserver_client then
+      tsserver_client:stop()
+    end
+  end
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -113,28 +134,6 @@ return {
         lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
           capabilities = lsp_capabilities,
         }, nxs_lsp_config))
-      end
-
-      -- Volar Takeover mode
-      -- https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode
-      local volar_client = nil
-      local tsserver_client = nil
-      local function volar_takeover(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-        if client.name == "tsserver" then
-          if volar_client then
-            client:stop()
-          else
-            tsserver_client = client
-          end
-        elseif client.name == "volar" then
-          volar_client = client
-
-          if tsserver_client then
-            tsserver_client:stop()
-          end
-        end
       end
 
       local function setup_keybindings(args)
@@ -228,12 +227,30 @@ return {
         end
 
         if has_capability("rename") then
-          keybind.set("n", "<leader>cr", vim.lsp.buf.rename, "LSP: Rename", { buffer = args.buf })
+          keybind.set(
+            "n",
+            "<leader>cr",
+            vim.lsp.buf.rename,
+            "LSP: Rename",
+            { buffer = args.buf }
+          )
         end
 
         if has_capability("codeLens") then
-          keybind.set({ "n", "v" }, "<leader>cc", vim.lsp.codelens.run, "LSP: Run CodeLens", { buffer = args.buf })
-          keybind.set({ "n", "v" }, "<leader>cC", vim.lsp.codelens.refresh, "LSP: Refresh and Display CodeLens", { buffer = args.buf })
+          keybind.set(
+            { "n", "v" },
+            "<leader>cc",
+            vim.lsp.codelens.run,
+            "LSP: Run CodeLens",
+            { buffer = args.buf }
+          )
+          keybind.set(
+            { "n", "v" },
+            "<leader>cC",
+            vim.lsp.codelens.refresh,
+            "LSP: Refresh and Display CodeLens",
+            { buffer = args.buf }
+          )
         end
       end
 
