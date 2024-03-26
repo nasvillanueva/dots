@@ -69,14 +69,26 @@ return {
     },
     init = function()
       keybind.set("n", "<leader>gg", "<cmd>LazyGit<CR>", "LazyGit")
-      keybind.set("n", "<leader>gf", "<cmd>LazyGitFilterCurrentFile<CR>", "LazyGit: Current File Commit History")
+      keybind.set(
+        "n",
+        "<leader>gf",
+        "<cmd>LazyGitFilterCurrentFile<CR>",
+        "LazyGit: Current File Commit History"
+      )
     end,
   },
   {
     "sindrets/diffview.nvim",
-    cmd = "DiffViewOpen",
+    event = "VeryLazy",
     init = function()
       keybind.set("n", "<leader>ge", "<cmd>DiffViewOpen<CR>", "DiffView")
     end,
+  },
+  {
+    "ruifm/gitlinker.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = true,
   },
 }
