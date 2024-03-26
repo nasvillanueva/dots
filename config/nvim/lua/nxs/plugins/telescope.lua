@@ -75,8 +75,8 @@ return {
       keybind.set(
         "n",
         "<leader><leader>",
-        "<CMD>Telescope find_files<CR>",
-        "Telescope: Files"
+        "<CMD>Telescope git_files show_untracted=true<CR>",
+        "Telescope: Git Files"
       ) -- TODO: Conditionally trigger git_files based on directory is git project
       keybind.set(
         "n",
@@ -87,13 +87,13 @@ return {
       keybind.set(
         "n",
         "<leader>fg",
-        "<CMD>Telescope git_files show_untracted=true",
+        "<CMD>Telescope git_files show_untracted=true<CR>",
         "Telescope: Git Files"
       )
       keybind.set(
         "n",
         "<leader>ff",
-        "<CMD>Telescope find_files",
+        "<CMD>Telescope find_files<CR>",
         "Telescope: Files"
       )
       keybind.set("n", "<leader>fr", function()
