@@ -7,9 +7,9 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
-      "onsails/lspkind-nvim",
       require("nxs.plugins.luasnip"),
       require("nxs.plugins.copilot"),
+      require("nxs.plugins.lspkind"),
     },
     config = function()
       local cmp = require("cmp")
@@ -49,7 +49,6 @@ return {
         end
       end
 
-      lsp_kind.init()
       cmp.setup({
         formatting = {
           format = lsp_kind.cmp_format(),
