@@ -3,11 +3,14 @@ local keybind = require("nxs.utils.keybind")
 return {
   {
     "stevearc/oil.nvim",
-    opts = {},
+    opts = {
+      view_options = {
+        show_hidden = true
+      }
+    },
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     init = function()
-
       keybind.set("n", "<leader>E", "<CMD>Oil<CR>", "File Explorer")
     end,
   },
@@ -40,15 +43,5 @@ return {
         "Explorer: Focus File"
       )
     end,
-  },
-  {
-    "antosha417/nvim-lsp-file-operations",
-    event = "VeryLazy",
-    name = "lsp-file-operations",
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-tree/nvim-tree.lua" },
-    },
-    opts = {},
   },
 }
