@@ -14,6 +14,8 @@ return {
       local telescope = require("telescope")
       local telescope_actions = require("telescope.actions")
 
+      local trouble_actions = require("trouble.providers.telescope")
+
       telescope.setup({
         defaults = require("telescope.themes").get_ivy({
           sorting_strategy = "descending",
@@ -24,6 +26,10 @@ return {
               ["<C-\\><C-\\>"] = function()
                 vim.cmd("stopinsert")
               end,
+              ["<C-t>"] = trouble_actions.smart_open_with_trouble,
+            },
+            n = {
+              ["<C-t>"] = trouble_actions.smart_open_with_trouble,
             },
           },
         }),
