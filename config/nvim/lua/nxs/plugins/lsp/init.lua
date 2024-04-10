@@ -19,33 +19,6 @@ local NXS_LSP_CONFIG = {
       })
     end,
   },
-  tsserver = {
-    on_attach = function()
-      keybind.set("", "<leader>co", ":OrganizeImports<CR>")
-    end,
-    commands = {
-      OrganizeImports = {
-        function()
-          vim.lsp.buf.execute_command({
-            command = "_typescript.organizeImports",
-            arguments = { vim.api.nvim_buf_get_name(0) },
-            title = "",
-          })
-        end,
-        description = "Organize Imports",
-      },
-    },
-  },
-  volar = {
-    filetypes = { "vue", "typescript" },
-    settings = {
-      scss = {
-        lint = {
-          unknownAtRules = "ignore",
-        },
-      },
-    },
-  },
   jsonls = { filetypes = { "json", "jsonc" } },
   stylelint_lsp = {
     settings = {
@@ -73,28 +46,6 @@ local NXS_LSP_CONFIG = {
     },
   },
 }
-
--- Volar Takeover mode
--- https://vuejs.org/guide/typescript/overview.html#volar-takeover-mode
-local volar_client = nil
-local tsserver_client = nil
-local function volar_takeover(args)
-  local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-  if client.name == "tsserver" then
-    if volar_client then
-      client:stop()
-    else
-      tsserver_client = client
-    end
-  elseif client.name == "volar" then
-    volar_client = client
-
-    if tsserver_client then
-      tsserver_client:stop()
-    end
-  end
-end
 
 return {
   {
@@ -127,9 +78,64 @@ return {
       local lspconfig = require("lspconfig")
       local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
+      local mason_registry = require("mason-registry")
+
+      -- TODO: Move this to a different file
+      local vue_language_server_path = mason_registry
+        .get_package("vue-language-server")
+        :get_install_path() .. "/node_modules/@vue/language-server"
+      local configured_servers = vim.tbl_deep_extend("force", NXS_LSP_CONFIG, {
+        tsserver = {
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vue_language_server_path,
+                languages = { "vue" },
+              },
+            },
+          },
+          filetypes = {
+            "typescript",
+            "javascript",
+            "javascriptreact",
+            "typescriptreact",
+            "vue",
+          },
+          on_attach = function()
+            keybind.set("", "<leader>co", ":OrganizeImports<CR>")
+          end,
+          commands = {
+            OrganizeImports = {
+              function()
+                vim.lsp.buf.execute_command({
+                  command = "_typescript.organizeImports",
+                  arguments = { vim.api.nvim_buf_get_name(0) },
+                  title = "",
+                })
+              end,
+              description = "Organize Imports",
+            },
+          },
+        },
+        volar = {
+          -- init_options = {
+          --   vue = {
+          --     hybridMode = true,
+          --   }
+          -- },
+          settings = {
+            scss = {
+              lint = {
+                unknownAtRules = "ignore",
+              },
+            },
+          },
+        },
+      })
 
       for _, server_name in ipairs(get_mason_servers()) do
-        local nxs_lsp_config = NXS_LSP_CONFIG[server_name] or {}
+        local nxs_lsp_config = configured_servers[server_name] or {}
 
         lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
           capabilities = lsp_capabilities,
@@ -256,7 +262,6 @@ return {
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
-          volar_takeover(args)
           setup_keybindings(args)
         end,
       })
