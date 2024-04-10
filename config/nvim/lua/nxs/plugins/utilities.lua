@@ -57,10 +57,17 @@ return {
     build = false,
     cmd = "Spectre",
     opts = { open_cmd = "noswapfile vnew" },
-    init = function ()
-      keybind.set("n", "<leader>sr", function ()
+    init = function()
+      keybind.set("n", "<leader>sr", function()
         require("spectre").open()
       end, "Replace in files (Spectre)")
-    end
+    end,
+  },
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    event = { "WinNew" },
+    opts = {
+      smooth = false,
+    },
   },
 }
