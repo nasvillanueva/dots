@@ -95,13 +95,6 @@ return {
               },
             },
           },
-          filetypes = {
-            "typescript",
-            "javascript",
-            "javascriptreact",
-            "typescriptreact",
-            "vue",
-          },
           on_attach = function()
             keybind.set("", "<leader>co", ":OrganizeImports<CR>")
           end,
@@ -119,11 +112,11 @@ return {
           },
         },
         volar = {
-          -- init_options = {
-          --   vue = {
-          --     hybridMode = true,
-          --   }
-          -- },
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
           settings = {
             scss = {
               lint = {
