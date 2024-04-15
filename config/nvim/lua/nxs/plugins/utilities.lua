@@ -70,4 +70,5 @@ return {
       smooth = false,
     },
   },
+  { "folke/neodev.nvim", opts = {} },
 }
