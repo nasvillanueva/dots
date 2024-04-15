@@ -1,4 +1,5 @@
 local keybind = require("nxs.utils.keybind")
+local lsp = require("nxs.utils.lsp")
 
 -- TODO: Move this to separate server files
 local NXS_LSP_CONFIG = {
@@ -11,14 +12,7 @@ local NXS_LSP_CONFIG = {
       os.getenv("HOME") .. "/.elixirls/language_server.sh",
     },
   },
-  eslint = {
-    on_attach = function(_, bufnr)
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        command = "EslintFixAll",
-      })
-    end,
-  },
+  eslint = {},
   jsonls = { filetypes = { "json", "jsonc" } },
   stylelint_lsp = {
     settings = {
@@ -136,21 +130,6 @@ return {
       end
 
       local function setup_keybindings(args)
-        local has_capability = function(capability)
-          -- Only on nvim 0.10.0
-          -- local clients = vim.lsp.get_clients({ bufnr = args.buf })
-          local clients = vim.lsp.get_active_clients({ bufnr = args.buf })
-          local method = "textDocument/" .. capability
-
-          for _, client in ipairs(clients) do
-            if client.supports_method(method) then
-              return true
-            end
-          end
-
-          return false
-        end
-
         keybind.set("n", "<leader>cli", "<cmd>LspInfo<CR>", "LSP: Info")
         keybind.set("n", "<leader>clr", "<cmd>LspRestart<CR>", "LSP: Restart")
 
@@ -176,13 +155,13 @@ return {
           { buffer = args.buf }
         )
 
-        if has_capability("definition") then
+        if lsp.supports("textDocument/definition", args.buf) then
           keybind.set("n", "gd", function()
             require("telescope.builtin").lsp_definitions({ reuse_win = true })
           end, "LSP: Goto definition", { buffer = args.buf })
         end
 
-        if has_capability("References") then
+        if lsp.supports("textDocument/References", args.buf) then
           keybind.set(
             "n",
             "gr",
@@ -192,7 +171,7 @@ return {
           )
         end
 
-        if has_capability("signatureHelp") then
+        if lsp.supports("textDocument/signatureHelp", args.buf) then
           keybind.set(
             "n",
             "gK",
@@ -209,7 +188,7 @@ return {
           )
         end
 
-        if has_capability("codeAction") then
+        if lsp.supports("textDocument/codeAction", args.buf) then
           keybind.set(
             { "n", "v" },
             "<leader>ca",
@@ -225,7 +204,7 @@ return {
           end, "LSP: Source Action", { buffer = args.buf })
         end
 
-        if has_capability("rename") then
+        if lsp.supports("textDocument/rename", args.buf) then
           keybind.set(
             "n",
             "<leader>cr",
@@ -235,7 +214,7 @@ return {
           )
         end
 
-        if has_capability("codeLens") then
+        if lsp.supports("textDocument/codeLens", args.buf) then
           keybind.set(
             { "n", "v" },
             "<leader>cc",
