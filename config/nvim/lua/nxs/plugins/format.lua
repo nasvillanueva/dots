@@ -1,3 +1,5 @@
+local keybind = require("nxs.utils.keybind")
+
 return {
   {
     "stevearc/conform.nvim",
@@ -8,11 +10,18 @@ return {
         lua = { "stylua" },
         ["*"] = { "codespell", "trim_whitespace" },
       },
-      format_on_save = {
-        lsp_fallback = true,
-        async = true,
-        timeout_ms = 500,
-      },
     },
+    init = function()
+      vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+      keybind.set("", "<leader>=", function()
+        require("conform").format(
+          { async = true, lsp_fallback = true },
+          function()
+            vim.cmd("w!")
+          end
+        )
+      end, "Code: Format Buffer")
+    end,
   },
 }
