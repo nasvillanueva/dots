@@ -1,0 +1,38 @@
+import = ["~/.config/alacritty/themes/rosepine.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 16
+
+[font.bold]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+
+[window]
+decorations = "buttonless"
+opacity = 1
+option_as_alt = "OnlyLeft"
+
+[window.dimensions]
+columns = 200
+lines = 60
+
+[window.padding]
+x = 10
+y = 10
