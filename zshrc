@@ -14,6 +14,8 @@ source $(brew --prefix)/etc/bash_completion.d/az
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(fzf --zsh)"
+
 # User Config
 
 alias rms='remetis_server'
