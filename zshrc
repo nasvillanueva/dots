@@ -18,7 +18,10 @@ eval "$(fzf --zsh)"
 
 # User Config
 
-alias rms='remetis_server'
+rms() {
+  (cd "$REMETIS_PATH" && $REMETIS_PATH/command/bin/remetis_server "$@")
+}
+
 alias rmy='rms yarn'
 alias rml='rms logs'
 alias rmn='rms npm'
