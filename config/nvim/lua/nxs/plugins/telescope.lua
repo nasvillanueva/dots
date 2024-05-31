@@ -32,6 +32,11 @@ return {
               ["<C-t>"] = trouble_actions.smart_open_with_trouble,
             },
           },
+          path_display = {
+            filename_first = {
+              reverse_directories = true,
+            },
+          },
         }),
         extensions = {
           ["ui-select"] = {
