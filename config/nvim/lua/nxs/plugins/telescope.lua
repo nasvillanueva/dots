@@ -17,9 +17,17 @@ return {
       local trouble_actions = require("trouble.providers.telescope")
 
       telescope.setup({
-        defaults = require("telescope.themes").get_ivy({
-          sorting_strategy = "descending",
-          layout_config = { prompt_position = "bottom" },
+        defaults = require("telescope.themes").get_dropdown({
+          layout_strategy = "vertical",
+          layout_config = {
+            vertical = {
+              mirror = true,
+              prompt_position = "top",
+              preview_height = 0.3
+            },
+            height = 0.80,
+            width = 0.87,
+          },
           mappings = {
             i = {
               ["<ESC>"] = telescope_actions.close,
