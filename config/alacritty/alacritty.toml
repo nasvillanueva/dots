@@ -27,7 +27,7 @@ history = 10000
 [window]
 decorations = "buttonless"
 opacity = 1
-option_as_alt = "OnlyLeft"
+option_as_alt = "Both"
 
 [window.dimensions]
 columns = 200
