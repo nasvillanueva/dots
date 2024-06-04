@@ -39,6 +39,6 @@ lazy.setup({
   },
   install = {
     missing = true,
-    colorscheme = { "rose-pine" },
+    colorscheme = { "neofusion" },
   },
 })

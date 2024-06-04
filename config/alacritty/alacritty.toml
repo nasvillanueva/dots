@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/rosepine.toml"]
+import = ["~/.config/alacritty/themes/neofusion.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -7,7 +7,7 @@ draw_bold_text_with_bright_colors = true
 TERM = "alacritty"
 
 [font]
-size = 16
+size = 12
 
 [font.bold]
 family = "JetBrainsMono Nerd Font Mono"
