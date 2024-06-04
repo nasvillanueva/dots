@@ -64,11 +64,16 @@ return {
     end,
   },
   {
-    "nvim-zh/colorful-winsep.nvim",
-    event = { "WinNew" },
+    "sunjon/shade.nvim",
+    main = "shade",
     opts = {
-      smooth = false,
+      overlay_opacity = 50,
     },
+    init = function()
+      keybind.set("", "<leader>S", function()
+        require("shade").toggle()
+      end, "Toggle Shade")
+    end,
   },
   { "folke/neodev.nvim", opts = {} },
 }
