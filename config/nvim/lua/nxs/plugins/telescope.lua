@@ -14,7 +14,7 @@ return {
       local telescope = require("telescope")
       local telescope_actions = require("telescope.actions")
 
-      local trouble_actions = require("trouble.providers.telescope")
+      local open_with_trouble = require("trouble.sources.telescope").open
 
       telescope.setup({
         defaults = require("telescope.themes").get_dropdown({
@@ -34,10 +34,10 @@ return {
               ["<C-\\><C-\\>"] = function()
                 vim.cmd("stopinsert")
               end,
-              ["<C-t>"] = trouble_actions.smart_open_with_trouble,
+              ["<C-t>"] = open_with_trouble,
             },
             n = {
-              ["<C-t>"] = trouble_actions.smart_open_with_trouble,
+              ["<C-t>"] = open_with_trouble,
             },
           },
           path_display = {
