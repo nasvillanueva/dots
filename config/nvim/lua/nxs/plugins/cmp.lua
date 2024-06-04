@@ -13,7 +13,6 @@ return {
     },
     config = function()
       local cmp = require("cmp")
-      local luasnip = require("luasnip")
       local lsp_kind = require("lspkind")
 
       local has_words_before = function()
@@ -29,10 +28,8 @@ return {
       local cmp_next = function(fallback)
         if cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- that way you will only jump inside the snippet region
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+        elseif vim.snippet.active({ direction = 1 }) then
+          vim.snippet.jump(1)
         elseif has_words_before() then
           cmp.complete()
         else
@@ -42,8 +39,8 @@ return {
       local cmp_prev = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
+        elseif vim.snippet.active({ direction = -1 }) then
+          vim.snippet.jump(-1)
         else
           fallback()
         end
@@ -55,7 +52,7 @@ return {
         },
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)
+            vim.snippet.expand(args.body)
           end,
         },
         mapping = {
