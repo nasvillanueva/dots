@@ -33,6 +33,7 @@ lazy.setup({
     require("nxs.plugins.utilities"),
     require("nxs.plugins.trouble"),
     require("nxs.plugins.mason"),
+    require("nxs.plugins.copilot"),
     require("nxs.plugins.cmp"),
     require("nxs.plugins.lsp"),
     require("nxs.plugins.format"),

@@ -1,3 +1,5 @@
+local keybind = require("nxs.utils.keybind")
+
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -8,10 +10,19 @@ return {
     },
     config = function()
       require("copilot").setup({
-        suggestion = { enabled = false },
         panel = { enabled = false },
+        suggestion = {
+          enabled = true,
+        },
       })
-      require("copilot_cmp").setup()
+
+      keybind.set("", "<C-p>", function()
+        require("copilot.suggestion").toggle_auto_trigger()
+        vim.notify(
+          "copilot enabled: "
+            .. (vim.b.copilot_suggestion_auto_trigger and "yes" or "no")
+        )
+      end, "Copilot: Trigger suggestion")
     end,
   },
 }
