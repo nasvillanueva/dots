@@ -13,6 +13,7 @@ return {
         panel = { enabled = false },
         suggestion = {
           enabled = true,
+          auto_trigger = true,
         },
       })
 
@@ -22,7 +23,7 @@ return {
           "copilot enabled: "
             .. (vim.b.copilot_suggestion_auto_trigger and "yes" or "no")
         )
-      end, "Copilot: Trigger suggestion")
+      end, "Copilot: Toggle suggestions")
     end,
   },
 }
