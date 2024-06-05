@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    version = false,
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -8,7 +9,6 @@ return {
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
       require("nxs.plugins.luasnip"),
-      require("nxs.plugins.copilot"),
       require("nxs.plugins.lspkind"),
     },
     config = function()
@@ -59,10 +59,7 @@ return {
           ["<C-space>"] = cmp.mapping.complete(),
           ["<S-Tab>"] = cmp.mapping(cmp_prev),
           ["<Tab>"] = cmp.mapping(cmp_next),
-          ["<CR>"] = cmp.mapping.confirm({
-            select = false,
-            behavior = cmp.ConfirmBehavior.Replace, -- required by copilot; otherwise indention will be removed when completing
-          }),
+          ["<CR>"] = cmp.mapping.confirm(),
           ["<C-k>"] = cmp.mapping.scroll_docs(-4),
           ["<C-j>"] = cmp.mapping.scroll_docs(4),
           ["<C-c>"] = cmp.mapping.close(),
@@ -74,7 +71,6 @@ return {
             group_index = 1,
           },
           { name = "path", group_index = 2 },
-          { name = "copilot", group_index = 3 },
           {
             name = "luasnip",
             max_item_count = 5,
