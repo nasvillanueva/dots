@@ -47,6 +47,9 @@ return {
       end
 
       cmp.setup({
+        completion = {
+          autocomplete = false,
+        },
         formatting = {
           format = lsp_kind.cmp_format(),
         },
