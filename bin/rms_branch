@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Helper function to find the maximum length of a list of strings.
+function maxlength {
+  for arg in "$@"; do
+    printf "$arg" | wc -c
+  done | sort --numeric-sort | tail -n 1
+}
+
+# Make sure our remotes are up to date.
+#
+# This accesses the network and is by far the slowest part of this function.
+# This can be disabled for speed if you have already git-fetched recently.
+#
+# Note that this will remove any locally-stored remote references that no
+# longer actually exist on the remote.
+git fetch --prune --quiet
+
+branches=()
+authors=()
+dates=()
+
+# Iterate over all frontend branches from "newest" to "oldest" (based on the
+# last commit date) and extract information about each branch.
+for branch in $(git branch --remotes --sort=-committerdate | grep frontend); do
+  branches+=("$branch")
+  authors+=("$(git show $branch --format="%an" | head -n 1)")
+  dates+=("$(git show $branch --format="%ar" | head -n 1)")
+done
+
+max_author_length=$(maxlength "${authors[@]}")
+max_branch_length=$(maxlength "${branches[@]}")
+
+# Print a formatted table of existing frontend branches on the remote.
+num_branches="${#branches[@]}"
+for ((i=1; i < $num_branches; i++)); do
+  printf "[%-*s] %-*s (%s)\n" $max_author_length "${authors[$i]}" $max_branch_length "${branches[$i]}" "${dates[$i]}"
+done
