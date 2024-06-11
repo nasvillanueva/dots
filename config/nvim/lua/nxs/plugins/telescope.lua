@@ -48,7 +48,9 @@ return {
         }),
         extensions = {
           ["ui-select"] = {
-            codeactions = false,
+            require("telescope.themes").get_dropdown({
+              layout_strategy = "cursor",
+            }),
           },
           fzf = {
             fuzzy = true,
