@@ -6,20 +6,22 @@ return {
     wk.setup({
       plugins = { spelling = true },
     })
-    wk.register({
-      mode = { "n", "v" },
-      ["g"] = { name = "+goto" },
-      ["["] = { name = "+prev" },
-      ["]"] = { name = "+next" },
-      ["<leader>c"] = { name = "+code" },
-      ["<leader>l"] = { name = "+lsp" },
-      ["<leader>g"] = { name = "+git" },
-      ["<leader>gh"] = { name = "+hunks" },
-      ["<leader>f"] = { name = "+files" },
-      ["<leader>s"] = { name = "+search" },
-      ["<leader>x"] = { name = "+quickfix/loclist" },
-      ["<leader>v"] = { name = "+nvim" },
-      ["<leader><tab>"] = { name = "+tab" },
+    wk.add({
+      {
+        mode = { "n", "v" },
+        { "<leader><tab>", group = "tab" },
+        { "<leader>c", group = "code" },
+        { "<leader>f", group = "files" },
+        { "<leader>g", group = "git" },
+        { "<leader>gh", group = "hunks" },
+        { "<leader>l", group = "lsp" },
+        { "<leader>s", group = "search" },
+        { "<leader>v", group = "nvim" },
+        { "<leader>x", group = "quickfix/loclist" },
+        { "[", group = "prev" },
+        { "]", group = "next" },
+        { "g", group = "goto" },
+      },
     })
 
     vim.opt.timeout = true
