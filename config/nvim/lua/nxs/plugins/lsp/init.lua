@@ -89,7 +89,13 @@ return {
               },
             },
           },
-          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+          filetypes = {
+            "typescript",
+            "javascript",
+            "javascriptreact",
+            "typescriptreact",
+            "vue",
+          },
           on_attach = function()
             keybind.set("", "<leader>co", ":OrganizeImports<CR>")
           end,
@@ -103,6 +109,16 @@ return {
                 })
               end,
               description = "Organize Imports",
+            },
+          },
+          javascript = {
+            inlayHints = {
+              parameterTypes = { enabled = true },
+            },
+          },
+          typescript = {
+            inlayHints = {
+              parameterTypes = { enabled = true },
             },
           },
         },
@@ -122,6 +138,7 @@ return {
 
         lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
           capabilities = lsp_capabilities,
+          inlay_hints = { enabled = true },
         }, nxs_lsp_config))
       end
 
