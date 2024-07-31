@@ -36,6 +36,14 @@ local NXS_LSP_CONFIG = {
         telemetry = {
           enable = false,
         },
+        hint = {
+          enable = true,
+          setType = false,
+          paramType = true,
+          paramName = "Disable",
+          semicolon = "Disable",
+          arrayIndex = "Disable",
+        },
       },
     },
   },
@@ -111,14 +119,28 @@ return {
               description = "Organize Imports",
             },
           },
-          javascript = {
-            inlayHints = {
-              parameterTypes = { enabled = true },
+          settings = {
+            javascript = {
+              inlayHints = {
+                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionLikeReturnTypeHints = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayVariableTypeHints = false,
+              },
             },
-          },
-          typescript = {
-            inlayHints = {
-              parameterTypes = { enabled = true },
+            typescript = {
+              inlayHints = {
+                includeInlayEnumMemberValueHints = true,
+                includeInlayFunctionLikeReturnTypeHints = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayVariableTypeHints = false,
+              },
             },
           },
         },
@@ -129,6 +151,14 @@ return {
                 unknownAtRules = "ignore",
               },
             },
+            vue = {
+              inlayHints = {
+                missingProps = true,
+                inlineHandlerLeading = false,
+                optionsWrapper = false,
+                vBindShorthand = false,
+              }
+            },
           },
         },
       })
@@ -138,7 +168,6 @@ return {
 
         lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
           capabilities = lsp_capabilities,
-          inlay_hints = { enabled = true },
         }, nxs_lsp_config))
       end
 
@@ -247,6 +276,13 @@ return {
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
+          if
+            lsp.supports("textDocument/inlayHint", args.buf)
+            and vim.api.nvim_buf_is_valid(args.buf)
+          then
+            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+          end
+
           setup_keybindings(args)
         end,
       })
