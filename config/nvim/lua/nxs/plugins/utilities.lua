@@ -76,4 +76,11 @@ return {
     end,
   },
   { "folke/neodev.nvim", opts = {} },
+  {
+    "bsuth/emacs-bindings.nvim",
+    config = function()
+      require("emacs-bindings")
+    end
+  }
+
 }

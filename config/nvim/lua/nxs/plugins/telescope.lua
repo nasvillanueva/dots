@@ -35,6 +35,7 @@ return {
                 vim.cmd("stopinsert")
               end,
               ["<C-t>"] = open_with_trouble,
+              ["<C-f>"] = false, -- Prevent conflict with bsuth/emacs-binding
             },
             n = {
               ["<C-t>"] = open_with_trouble,
