@@ -88,6 +88,20 @@ return {
       )
       keybind.set(
         "n",
+        "<leader>.",
+        function()
+          local path = vim.fn.expand("%:p:h")
+          if vim.bo.filetype == "oil" then
+            path = string.sub(path, 5)
+          end
+          require("telescope.builtin").live_grep({
+            cwd = path
+          })
+        end,
+        "Telescope: Search"
+      )
+      keybind.set(
+        "n",
         "<leader>:",
         "<CMD>Telescope command_history<CR>",
         "Telescope: Command History"
