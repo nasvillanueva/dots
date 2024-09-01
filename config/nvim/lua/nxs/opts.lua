@@ -14,7 +14,7 @@ vim.opt.wrap = false -- don't wrap
 vim.opt.shiftround = true -- round indent to multiple of 'shiftwidth'
 
 -- Interface
-vim.opt.laststatus = 3 -- Only active window has statusline
+vim.opt.laststatus = 2 -- Only active window has statusline
 vim.opt.listchars:append({ -- visualize whitespace
   lead = "·",
   trail = "·",

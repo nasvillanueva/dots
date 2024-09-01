@@ -63,18 +63,6 @@ return {
       end, "Replace in files (Spectre)")
     end,
   },
-  {
-    "sunjon/shade.nvim",
-    main = "shade",
-    opts = {
-      overlay_opacity = 50,
-    },
-    init = function()
-      keybind.set("", "<leader>S", function()
-        require("shade").toggle()
-      end, "Toggle Shade")
-    end,
-  },
   { "folke/neodev.nvim", opts = {} },
   {
     "bsuth/emacs-bindings.nvim",
