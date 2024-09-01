@@ -9,6 +9,13 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "smartpde/telescope-recent-files" },
+      {
+        "danielfalk/smart-open.nvim",
+        branch = "0.2.x",
+        dependencies = {
+          "kkharji/sqlite.lua",
+        },
+      },
     },
     config = function()
       local telescope = require("telescope")
@@ -79,6 +86,7 @@ return {
       telescope.load_extension("fzf")
       telescope.load_extension("ui-select")
       telescope.load_extension("recent_files")
+      telescope.load_extension("smart_open")
 
       keybind.set(
         "n",
@@ -106,9 +114,9 @@ return {
       keybind.set(
         "n",
         "<leader><leader>",
-        "<CMD>Telescope git_files show_untracted=true<CR>",
+        "<CMD>Telescope smart_open cwd_only=true match_algorithm=fzf<CR>",
         "Telescope: Git Files"
-      ) -- TODO: Conditionally trigger git_files based on directory is git project
+      )
       keybind.set(
         "n",
         "<leader>fb",
