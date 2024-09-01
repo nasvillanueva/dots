@@ -23,7 +23,7 @@ return {
             vertical = {
               mirror = true,
               prompt_position = "top",
-              preview_height = 0.3
+              preview_height = 0.3,
             },
             height = 0.80,
             width = 0.87,
@@ -86,20 +86,15 @@ return {
         "<CMD>Telescope live_grep<CR>",
         "Telescope: Search"
       )
-      keybind.set(
-        "n",
-        "<leader>.",
-        function()
-          local path = vim.fn.expand("%:p:h")
-          if vim.bo.filetype == "oil" then
-            path = string.sub(path, 5)
-          end
-          require("telescope.builtin").live_grep({
-            cwd = path
-          })
-        end,
-        "Telescope: Search"
-      )
+      keybind.set("n", "<leader>.", function()
+        local path = vim.fn.expand("%:p:h")
+        if vim.bo.filetype == "oil" then
+          path = string.sub(path, 5)
+        end
+        require("telescope.builtin").live_grep({
+          cwd = path,
+        })
+      end, "Telescope: Search in current file's directory")
       keybind.set(
         "n",
         "<leader>:",
