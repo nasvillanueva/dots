@@ -1,7 +1,10 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", "diegoulloao/neofusion.nvim" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "diegoulloao/neofusion.nvim",
+    },
     config = function()
       require("lualine").setup({
         options = {
@@ -11,14 +14,49 @@ return {
         },
         sections = {
           lualine_b = { "diagnostics" },
+          lualine_c = {},
+          lualine_x = {
+            "branch",
+          },
+          lualine_y = {},
+        },
+        inactive_sections = {},
+        tabline = {
           lualine_c = {
             { "filename", path = 3 },
           },
           lualine_x = {
-            "branch",
-            "filetype",
+            {
+              function()
+                local buf_ft = vim.api.nvim_get_option_value("filetype", {
+                  buf = 0,
+                })
+                local clients = vim.lsp.get_clients()
+
+                if next(clients) == nil then
+                  return buf_ft
+                end
+
+                local active_lsp = {}
+                for _, client in ipairs(clients) do
+                  if client.name == "copilot" then
+                    table.insert(active_lsp, "copilot")
+                  end
+
+                  local filetypes = client.config.filetypes
+                  if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                    table.insert(active_lsp, client.name)
+                  end
+                end
+                if #active_lsp == 0 then
+                  return buf_ft
+                end
+
+                return buf_ft .. ": " .. table.concat(active_lsp, ", ")
+              end,
+              icon = "",
+            },
           },
-          lualine_y = {},
         },
       })
     end,
