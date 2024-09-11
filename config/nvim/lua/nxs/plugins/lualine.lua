@@ -1,3 +1,8 @@
+local icon_by_string = {
+  ["oil:"] = "",
+  ["term:"] = ""
+}
+
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -6,6 +11,7 @@ return {
       "diegoulloao/neofusion.nvim",
     },
     config = function()
+      local palette = require("neofusion.palette")
       require("lualine").setup({
         options = {
           theme = require("neofusion.lualine"),
@@ -23,7 +29,25 @@ return {
         inactive_sections = {},
         tabline = {
           lualine_c = {
-            { "filename", path = 3 },
+            {
+              function()
+                local path = vim.fn.expand("%:p:~")
+                local crumbs = {}
+
+                for crumb in string.gmatch(path, "([^/]+)") do
+                  local icon = icon_by_string[crumb]
+
+                  if icon then
+                    table.insert(crumbs, "")
+                  else
+                    table.insert(crumbs, crumb)
+                  end
+                end
+
+                return table.concat(crumbs, " ⟩ ")
+              end,
+              color = { bg = palette.light0, fg = palette.dark0, gui = "bold" },
+            },
           },
           lualine_x = {
             {
