@@ -1,6 +1,7 @@
 local icon_by_string = {
   ["oil:"] = "",
-  ["term:"] = ""
+  ["term:"] = "",
+  ["NvimTree_1"] = "",
 }
 
 return {
@@ -38,7 +39,7 @@ return {
                   local icon = icon_by_string[crumb]
 
                   if icon then
-                    table.insert(crumbs, "")
+                    table.insert(crumbs, icon)
                   else
                     table.insert(crumbs, crumb)
                   end
