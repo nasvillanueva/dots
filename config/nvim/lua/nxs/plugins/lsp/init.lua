@@ -87,7 +87,7 @@ return {
         .get_package("vue-language-server")
         :get_install_path() .. "/node_modules/@vue/language-server"
       local configured_servers = vim.tbl_deep_extend("force", NXS_LSP_CONFIG, {
-        tsserver = {
+        ts_ls = {
           init_options = {
             plugins = {
               {
@@ -166,14 +166,7 @@ return {
       for _, server_name in ipairs(get_mason_servers()) do
         local nxs_lsp_config = configured_servers[server_name] or {}
 
-        local lsp_server_name = server_name
-
-        -- temporarily rename tsserver to ts_ls because of an update
-        if server_name == "tsserver" then
-          lsp_server_name = "ts_ls"
-        end
-
-        lspconfig[lsp_server_name].setup(vim.tbl_deep_extend("force", {
+        lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
           capabilities = lsp_capabilities,
         }, nxs_lsp_config))
       end
