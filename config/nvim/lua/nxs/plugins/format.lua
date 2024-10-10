@@ -4,8 +4,16 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
+      formatters = {
+        mix_format = {
+          command = "mix",
+          args = { "format", "$FILENAME" },
+          stdin = false,
+        }
+      },
       formatters_by_ft = {
         lua = { "stylua" },
+        elixir = { "mix_format" },
         ["*"] = { "codespell", "trim_whitespace" },
       },
     },
