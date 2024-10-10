@@ -7,11 +7,6 @@ local NXS_LSP_CONFIG = {
   tailwindcss = {
     filetypes = { "vue", "html", "css", "scss" },
   },
-  elixirls = {
-    cmd = {
-      os.getenv("HOME") .. "/.elixirls/language_server.sh",
-    },
-  },
   eslint = {},
   jsonls = { filetypes = { "json", "jsonc" } },
   stylelint_lsp = {
@@ -86,7 +81,15 @@ return {
       local vue_language_server_path = mason_registry
         .get_package("vue-language-server")
         :get_install_path() .. "/node_modules/@vue/language-server"
+      local elixirls_server_path = mason_registry
+        .get_package("elixir-ls")
+        :get_install_path() .. "/language_server.sh"
       local configured_servers = vim.tbl_deep_extend("force", NXS_LSP_CONFIG, {
+        elixirls = {
+          cmd = {
+            elixirls_server_path,
+          },
+        },
         ts_ls = {
           init_options = {
             plugins = {
@@ -157,7 +160,7 @@ return {
                 inlineHandlerLeading = false,
                 optionsWrapper = false,
                 vBindShorthand = false,
-              }
+              },
             },
           },
         },
