@@ -11,7 +11,7 @@ return {
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     init = function()
-      keybind.set("n", "<leader>E", "<CMD>Oil<CR>", "File Explorer")
+      keybind.set("n", "<leader>e", "<CMD>Oil<CR>", "File Explorer")
     end,
   },
   {
@@ -34,7 +34,7 @@ return {
         },
       })
 
-      keybind.set("n", "<leader>e", "<CMD>NvimTreeOpen<CR>", "File Explorer: Tree")
+      keybind.set("n", "<leader>E", "<CMD>NvimTreeOpen<CR>", "File Explorer: Tree")
 
       keybind.set(
         "n",
