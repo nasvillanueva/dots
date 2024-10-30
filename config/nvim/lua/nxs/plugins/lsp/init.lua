@@ -284,8 +284,11 @@ return {
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+
           if
-            lsp.supports("textDocument/inlayHint", args.data.client_id)
+            client.name ~= "volar"
+            and lsp.supports("textDocument/inlayHint", args.data.client_id)
             and vim.api.nvim_buf_is_valid(args.data.client_id)
           then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
