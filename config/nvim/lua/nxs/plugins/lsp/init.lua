@@ -51,6 +51,8 @@ return {
       { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason-lspconfig.nvim" },
       { "nvim-telescope/telescope.nvim" },
+      { "folke/neodev.nvim" },
+      { "ravibrock/spellwarn.nvim" },
     },
     event = {
       "BufReadPost",
@@ -62,6 +64,9 @@ return {
       "LspUninstall",
     },
     config = function()
+      require("neodev").setup()
+      require("spellwarn").setup()
+
       local server_names = {}
       for server_name, _ in pairs(NXS_LSP_CONFIG) do
         table.insert(server_names, server_name)
@@ -200,13 +205,13 @@ return {
           { buffer = args.buf }
         )
 
-        if lsp.supports("textDocument/definition", args.buf) then
+        if lsp.supports("textDocument/definition", args.data.client_id) then
           keybind.set("n", "gd", function()
             require("telescope.builtin").lsp_definitions({ reuse_win = true })
           end, "LSP: Goto definition", { buffer = args.buf })
         end
 
-        if lsp.supports("textDocument/References", args.buf) then
+        if lsp.supports("textDocument/References", args.data.client_id) then
           keybind.set(
             "n",
             "gr",
@@ -216,7 +221,7 @@ return {
           )
         end
 
-        if lsp.supports("textDocument/signatureHelp", args.buf) then
+        if lsp.supports("textDocument/signatureHelp", args.data.client_id) then
           keybind.set(
             "n",
             "gK",
@@ -233,7 +238,7 @@ return {
           )
         end
 
-        if lsp.supports("textDocument/codeAction", args.buf) then
+        if lsp.supports("textDocument/codeAction", args.data.client_id) then
           keybind.set(
             { "n", "v" },
             "<leader>ca",
@@ -249,7 +254,7 @@ return {
           end, "LSP: Source Action", { buffer = args.buf })
         end
 
-        if lsp.supports("textDocument/rename", args.buf) then
+        if lsp.supports("textDocument/rename", args.data.client_id) then
           keybind.set(
             "n",
             "<leader>cr",
@@ -259,7 +264,7 @@ return {
           )
         end
 
-        if lsp.supports("textDocument/codeLens", args.buf) then
+        if lsp.supports("textDocument/codeLens", args.data.client_id) then
           keybind.set(
             { "n", "v" },
             "<leader>cc",
@@ -280,8 +285,8 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           if
-            lsp.supports("textDocument/inlayHint", args.buf)
-            and vim.api.nvim_buf_is_valid(args.buf)
+            lsp.supports("textDocument/inlayHint", args.data.client_id)
+            and vim.api.nvim_buf_is_valid(args.data.client_id)
           then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
           end

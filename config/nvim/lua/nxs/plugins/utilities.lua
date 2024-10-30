@@ -63,7 +63,6 @@ return {
       end, "Replace in files (Spectre)")
     end,
   },
-  { "folke/neodev.nvim", opts = {} },
   {
     "bsuth/emacs-bindings.nvim",
     config = function()

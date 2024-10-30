@@ -1,13 +1,7 @@
 return {
-  supports = function(method, bufnr)
-    local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  supports = function(method, client_id)
+    local client = vim.lsp.get_client_by_id(client_id)
 
-    for _, client in ipairs(clients) do
-      if client.supports_method(method) then
-        return true
-      end
-    end
-
-    return false
+    return client.supports_method(method);
   end,
 }
