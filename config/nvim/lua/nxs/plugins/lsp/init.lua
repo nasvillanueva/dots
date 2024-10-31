@@ -52,7 +52,6 @@ return {
       { "williamboman/mason-lspconfig.nvim" },
       { "nvim-telescope/telescope.nvim" },
       { "folke/neodev.nvim" },
-      { "ravibrock/spellwarn.nvim" },
     },
     event = {
       "BufReadPost",
@@ -65,7 +64,6 @@ return {
     },
     config = function()
       require("neodev").setup()
-      require("spellwarn").setup()
 
       local server_names = {}
       for server_name, _ in pairs(NXS_LSP_CONFIG) do
