@@ -4,5 +4,11 @@
   excludesfile = ~/.gitignore_global
 [push]
   autoSetupRemote = true
+# colors for neofusion
+[color "diff"]
+  new = cyan
+[color "status"]
+  added = yellow
+  changed = red
 
 # vim: ft=gitconfig
