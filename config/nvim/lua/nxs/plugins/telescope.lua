@@ -43,6 +43,7 @@ return {
               end,
               ["<C-t>"] = open_with_trouble,
               ["<C-f>"] = false, -- Prevent conflict with bsuth/emacs-binding
+              ["<C-q>"] = telescope_actions.smart_send_to_qflist + telescope_actions.open_qflist
             },
             n = {
               ["<C-t>"] = open_with_trouble,
