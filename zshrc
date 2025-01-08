@@ -28,7 +28,7 @@ alias rmn='rms npm'
 alias vim=$(which nvim)
 
 alias lg="lazygit"
-alias ls="exa --icons --group-directories-first"
+alias ls="eza --icons --group-directories-first"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
