@@ -67,7 +67,6 @@ return {
     "bsuth/emacs-bindings.nvim",
     config = function()
       require("emacs-bindings")
-    end
-  }
-
+    end,
+  },
 }

@@ -35,8 +35,18 @@ keybind.set(
 
 keybind.set("n", "<C-w><S-j>", "<cmd>resize +2<cr>", "Increase window height")
 keybind.set("n", "<C-w><S-k>", "<cmd>resize -2<cr>", "Decrease window height")
-keybind.set("n", "<C-w><S-h>", "<cmd>vertical resize -2<cr>", "Decrease window width")
-keybind.set("n", "<C-w><S-l>", "<cmd>vertical resize +2<cr>", "Increase window width")
+keybind.set(
+  "n",
+  "<C-w><S-h>",
+  "<cmd>vertical resize -2<cr>",
+  "Decrease window width"
+)
+keybind.set(
+  "n",
+  "<C-w><S-l>",
+  "<cmd>vertical resize +2<cr>",
+  "Increase window width"
+)
 
 keybind.set("n", "<C-d>", "<C-d>zz", "Scroll down and center cursor")
 keybind.set("n", "<C-u>", "<C-u>zz", "Scroll up and center cursor")
@@ -59,7 +69,12 @@ keybind.set("v", "<A-k>", ":m '<-2<cr>gv=gv", "Move current line up")
 keybind.set("n", "[b", "<cmd>bprevious<cr>", "Prev buffer")
 keybind.set("n", "]b", "<cmd>bnext<cr>", "Next buffer")
 
-keybind.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", "Escape and clear hlsearch")
+keybind.set(
+  { "i", "n" },
+  "<esc>",
+  "<cmd>noh<cr><esc>",
+  "Escape and clear hlsearch"
+)
 
 keybind.set("v", "<", "<gv", "Indent Left")
 keybind.set("v", ">", ">gv", "Indent Right")
@@ -77,7 +92,12 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-keybind.set("n", "<leader>cd", vim.diagnostic.open_float, "View Line Diagnostics")
+keybind.set(
+  "n",
+  "<leader>cd",
+  vim.diagnostic.open_float,
+  "View Line Diagnostics"
+)
 keybind.set("n", "]d", diagnostic_goto(true), "Next Diagnostic")
 keybind.set("n", "[d", diagnostic_goto(false), "Prev Diagnostic")
 keybind.set("n", "]e", diagnostic_goto(true, "ERROR"), "Next Error")

@@ -5,8 +5,8 @@ return {
     "stevearc/oil.nvim",
     opts = {
       view_options = {
-        show_hidden = true
-      }
+        show_hidden = true,
+      },
     },
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -34,7 +34,12 @@ return {
         },
       })
 
-      keybind.set("n", "<leader>E", "<CMD>NvimTreeOpen<CR>", "File Explorer: Tree")
+      keybind.set(
+        "n",
+        "<leader>E",
+        "<CMD>NvimTreeOpen<CR>",
+        "File Explorer: Tree"
+      )
 
       keybind.set(
         "n",

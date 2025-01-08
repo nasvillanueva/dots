@@ -9,7 +9,7 @@ return {
           command = "mix",
           args = { "format", "$FILENAME" },
           stdin = false,
-        }
+        },
       },
       formatters_by_ft = {
         lua = { "stylua" },
