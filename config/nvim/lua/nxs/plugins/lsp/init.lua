@@ -42,16 +42,103 @@ local NXS_LSP_CONFIG = {
       },
     },
   },
+  elixirls = {
+    -- provide cmd in nvim-lspconfig config function
+  },
+  ts_ls = {
+    init_options = {
+      plugins = {
+        {
+          name = "@vue/typescript-plugin",
+          location = "", -- set in nvim-lspconfig config function
+          languages = { "vue" },
+        },
+      },
+    },
+    filetypes = {
+      "typescript",
+      "javascript",
+      "javascriptreact",
+      "typescriptreact",
+      "vue",
+    },
+    on_attach = function()
+      keybind.set("", "<leader>co", ":OrganizeImports<CR>")
+    end,
+    commands = {
+      OrganizeImports = {
+        function()
+          vim.lsp.buf.execute_command({
+            command = "_typescript.organizeImports",
+            arguments = { vim.api.nvim_buf_get_name(0) },
+            title = "",
+          })
+        end,
+        description = "Organize Imports",
+      },
+    },
+    settings = {
+      javascript = {
+        inlayHints = {
+          includeInlayEnumMemberValueHints = true,
+          includeInlayFunctionLikeReturnTypeHints = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayVariableTypeHints = false,
+        },
+      },
+      typescript = {
+        inlayHints = {
+          includeInlayEnumMemberValueHints = true,
+          includeInlayFunctionLikeReturnTypeHints = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayVariableTypeHints = false,
+        },
+      },
+    },
+  },
+  volar = {
+    settings = {
+      scss = {
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+      vue = {
+        inlayHints = {
+          missingProps = true,
+          inlineHandlerLeading = false,
+          optionsWrapper = false,
+          vBindShorthand = false,
+        },
+      },
+    },
+  },
 }
 
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason-lspconfig.nvim" },
       { "nvim-telescope/telescope.nvim" },
-      { "folke/neodev.nvim" },
+      require("nxs.plugins.cmp"),
     },
     event = {
       "BufReadPost",
@@ -63,8 +150,6 @@ return {
       "LspUninstall",
     },
     config = function()
-      require("neodev").setup()
-
       local server_names = {}
       for server_name, _ in pairs(NXS_LSP_CONFIG) do
         table.insert(server_names, server_name)
@@ -76,105 +161,30 @@ return {
       })
 
       local lspconfig = require("lspconfig")
-      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
       local mason_registry = require("mason-registry")
 
-      -- TODO: Move this to a different file
       local vue_language_server_path = mason_registry
         .get_package("vue-language-server")
         :get_install_path() .. "/node_modules/@vue/language-server"
       local elixirls_server_path = mason_registry
         .get_package("elixir-ls")
         :get_install_path() .. "/language_server.sh"
-      local configured_servers = vim.tbl_deep_extend("force", NXS_LSP_CONFIG, {
-        elixirls = {
-          cmd = {
-            elixirls_server_path,
-          },
-        },
-        ts_ls = {
-          init_options = {
-            plugins = {
-              {
-                name = "@vue/typescript-plugin",
-                location = vue_language_server_path,
-                languages = { "vue" },
-              },
-            },
-          },
-          filetypes = {
-            "typescript",
-            "javascript",
-            "javascriptreact",
-            "typescriptreact",
-            "vue",
-          },
-          on_attach = function()
-            keybind.set("", "<leader>co", ":OrganizeImports<CR>")
-          end,
-          commands = {
-            OrganizeImports = {
-              function()
-                vim.lsp.buf.execute_command({
-                  command = "_typescript.organizeImports",
-                  arguments = { vim.api.nvim_buf_get_name(0) },
-                  title = "",
-                })
-              end,
-              description = "Organize Imports",
-            },
-          },
-          settings = {
-            javascript = {
-              inlayHints = {
-                includeInlayEnumMemberValueHints = true,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayVariableTypeHints = false,
-              },
-            },
-            typescript = {
-              inlayHints = {
-                includeInlayEnumMemberValueHints = true,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayVariableTypeHints = false,
-              },
-            },
-          },
-        },
-        volar = {
-          settings = {
-            scss = {
-              lint = {
-                unknownAtRules = "ignore",
-              },
-            },
-            vue = {
-              inlayHints = {
-                missingProps = true,
-                inlineHandlerLeading = false,
-                optionsWrapper = false,
-                vBindShorthand = false,
-              },
-            },
-          },
-        },
-      })
 
       for _, server_name in ipairs(get_mason_servers()) do
-        local nxs_lsp_config = configured_servers[server_name] or {}
+        local nxs_lsp_config = NXS_LSP_CONFIG[server_name] or {}
 
-        lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
-          capabilities = lsp_capabilities,
-        }, nxs_lsp_config))
+        if server_name == "elixirls" then
+          nxs_lsp_config.cmd = { elixirls_server_path }
+        elseif server_name == "ts_ls" then
+          nxs_lsp_config.init_options.plugins[1].location =
+            vue_language_server_path
+        end
+
+        nxs_lsp_config.capabilities =
+          require("blink.cmp").get_lsp_capabilities(nxs_lsp_config.capabilities)
+
+        lspconfig[server_name].setup(nxs_lsp_config)
       end
 
       local function setup_keybindings(args)
@@ -285,7 +295,8 @@ return {
           local client = vim.lsp.get_client_by_id(args.data.client_id)
 
           if
-            client.name ~= "volar"
+            client ~= nil
+            and client.name ~= "volar"
             and lsp.supports("textDocument/inlayHint", args.data.client_id)
             and vim.api.nvim_buf_is_valid(args.data.client_id)
           then

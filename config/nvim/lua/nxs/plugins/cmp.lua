@@ -1,86 +1,123 @@
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0
+    and vim.api
+        .nvim_buf_get_lines(0, line - 1, line, true)[1]
+        :sub(col, col)
+        :match("%s")
+      == nil
+end
+
 return {
   {
-    "hrsh7th/nvim-cmp",
-    version = false,
-    event = "InsertEnter",
+    "saghen/blink.cmp",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      require("nxs.plugins.luasnip"),
-      require("nxs.plugins.lspkind"),
+      { "rafamadriz/friendly-snippets" },
     },
-    config = function()
-      local cmp = require("cmp")
-      local lsp_kind = require("lspkind")
-
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-          and vim.api
-              .nvim_buf_get_lines(0, line - 1, line, true)[1]
-              :sub(col, col)
-              :match("%s")
-            == nil
-      end
-      local cmp_next = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-        elseif vim.snippet.active({ direction = 1 }) then
-          vim.snippet.jump(1)
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-      local cmp_prev = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-        elseif vim.snippet.active({ direction = -1 }) then
-          vim.snippet.jump(-1)
-        else
-          fallback()
-        end
-      end
-
-      cmp.setup({
-        formatting = {
-          format = lsp_kind.cmp_format(),
+    version = "*",
+    opts = {
+      keymap = {
+        preset = "none",
+        ["<C-space>"] = { "show" },
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              return cmp.select_next()
+            elseif vim.snippet.active({ direction = 1 }) then
+              vim.snippet.jump(1)
+              return true
+            elseif has_words_before() then
+              return cmp.show()
+            end
+          end,
+          "fallback",
         },
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
+        ["<S-Tab>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              return cmp.select_prev()
+            elseif vim.snippet.active({ direction = -1 }) then
+              vim.snippet.jump(-1)
+              return true
+            end
+          end,
+          "fallback",
+        },
+        ["<CR>"] = { "accept", "fallback" },
+        ["<C-k>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-j>"] = { "scroll_documentation_down", "fallback" },
+        ["<C-c>"] = { "cancel", "fallback" },
+        ["<C-d>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              cmp.select_next()
+              cmp.select_next()
+              cmp.select_next()
+              cmp.select_next()
+              return true
+            end
+          end,
+          "fallback",
+        },
+        ["<C-u>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              cmp.select_prev()
+              cmp.select_prev()
+              cmp.select_prev()
+              cmp.select_prev()
+              return true
+            end
+          end,
+          "fallback",
+        },
+        ["<Up>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              return cmp.select_prev()
+            end
+          end,
+          "fallback",
+        },
+        ["<Down>"] = {
+          function(cmp)
+            if cmp.is_visible() then
+              return cmp.select_next()
+            end
+          end,
+          "fallback",
+        },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = false,
+        nerd_font_variant = "mono",
+      },
+      sources = {
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          -- lazydev configured in nxs.plugins.lsp
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
+      },
+      completion = {
+        menu = {
+          auto_show = function(ctx)
+            return ctx.mode ~= "cmdline"
           end,
         },
-        mapping = {
-          ["<C-space>"] = cmp.mapping.complete(),
-          ["<S-Tab>"] = cmp.mapping(cmp_prev),
-          ["<Tab>"] = cmp.mapping(cmp_next),
-          ["<CR>"] = cmp.mapping.confirm(),
-          ["<C-k>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-j>"] = cmp.mapping.scroll_docs(4),
-          ["<C-c>"] = cmp.mapping.close(),
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 500,
         },
-        sources = {
-          { name = "nvim_lsp_signature_help", group_index = 1 },
-          {
-            name = "nvim_lsp",
-            group_index = 1,
-          },
-          { name = "path", group_index = 2 },
-          {
-            name = "luasnip",
-            max_item_count = 5,
-            group_index = 3,
-          },
-        },
-      })
-
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-    end,
+      },
+      signature = { enabled = true },
+    },
+    opts_extend = { "sources.default" },
   },
 }
