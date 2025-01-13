@@ -18,6 +18,14 @@ eval "$(fzf --zsh)"
 
 # User Config
 
+function nvim_on_exit() {
+  if [[ ! -z $NVIM ]] && [[ $- == *i* ]]; then
+    nvim --server $NVIM --remote-send "<c-\\><c-n>:lua RESTORE_TERM_WINDOW_BUFFER(); print(' ')<cr>i"
+  fi
+}
+
+zshexit_functions=(${zshexit_functions[@]} "nvim_on_exit")
+
 rms() {
   (cd "$REMETIS_PATH" && $REMETIS_PATH/command/bin/remetis_server "$@")
 }
