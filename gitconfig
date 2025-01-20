@@ -6,7 +6,7 @@
   autoSetupRemote = true
 # colors for neofusion
 [color "diff"]
-  new = cyan
+  new = green
 [color "status"]
   added = yellow
   changed = red
