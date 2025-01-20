@@ -1,8 +1,9 @@
 local keybind = require("nxs.utils.keybind")
 
+keybind.set("", "<leader>w", ":write <CR>")
+keybind.set("", "<leader>W", ":wall <CR>")
 keybind.set("", "<leader>ve", ":edit $MYVIMRC<CR>", "Edit Neovim Config")
 keybind.set("", "<leader>vs", ":source $MYVIMRC<CR>", "Reload Neovim Config")
-keybind.set("n", "q", "<NOP>", "Disable macro recording")
 
 keybind.set(
   { "n", "x" },
