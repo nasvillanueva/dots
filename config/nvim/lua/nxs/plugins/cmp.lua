@@ -95,6 +95,18 @@ return {
       },
       sources = {
         default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        cmdline = function()
+          local type = vim.fn.getcmdtype()
+          -- Search forward and backward
+          if type == "/" or type == "?" then
+            return { "buffer" }
+          end
+          -- Commands
+          if type == ":" then
+            return { "cmdline" }
+          end
+          return {}
+        end,
         providers = {
           -- lazydev configured in nxs.plugins.lsp
           lazydev = {
@@ -106,14 +118,29 @@ return {
         },
       },
       completion = {
+        accept = { auto_brackets = { enabled = true } },
         menu = {
           auto_show = function(ctx)
             return ctx.mode ~= "cmdline"
           end,
+          draw = {
+            treesitter = { "lsp" },
+          },
         },
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 500,
+          auto_show_delay_ms = 250,
+          update_delay_ms = 50,
+          treesitter_highlighting = true,
+        },
+        list = {
+          selection = {
+            preselect = false,
+            auto_insert = true,
+          },
+        },
+        trigger = {
+          prefetch_on_insert = true,
         },
       },
       signature = { enabled = true },
