@@ -12,3 +12,5 @@
   changed = red
 
 # vim: ft=gitconfig
+[fetch]
+	prune = true
