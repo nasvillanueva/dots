@@ -161,6 +161,7 @@ return {
       })
 
       local lspconfig = require("lspconfig")
+      local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
       local mason_registry = require("mason-registry")
 
@@ -181,10 +182,9 @@ return {
             vue_language_server_path
         end
 
-        nxs_lsp_config.capabilities =
-          require("blink.cmp").get_lsp_capabilities(nxs_lsp_config.capabilities)
-
-        lspconfig[server_name].setup(nxs_lsp_config)
+        lspconfig[server_name].setup(vim.tbl_deep_extend("force", {
+          capabilities = lsp_capabilities,
+        }, nxs_lsp_config))
       end
 
       local function setup_keybindings(args)
