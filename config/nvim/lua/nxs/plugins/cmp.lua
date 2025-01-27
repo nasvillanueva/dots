@@ -8,11 +8,13 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
+      "js-everts/cmp-tailwind-colors",
       require("nxs.plugins.snippets"),
       require("nxs.plugins.lspkind"),
     },
     config = function()
       local cmp = require("cmp")
+      local tailwind_colors = require("cmp-tailwind-colors")
       local lsp_kind = require("lspkind")
 
       local has_words_before = function()
@@ -47,8 +49,17 @@ return {
       end
 
       cmp.setup({
+        ---@diagnostic disable-next-line: missing-fields
         formatting = {
-          format = lsp_kind.cmp_format(),
+          expandable_indicator = false,
+          fields = { "kind", "abbr", "menu" },
+          format = lsp_kind.cmp_format({
+            mode = "symbol",
+            before = function(entry, item)
+              tailwind_colors.format(entry, item)
+              return item
+            end,
+          }),
         },
         snippet = {
           expand = function(args)
