@@ -4,7 +4,6 @@ return {
     version = false,
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
@@ -91,7 +90,6 @@ return {
         },
         sources = {
           { name = "lazydev" },
-          { name = "nvim_lsp_signature_help", group_index = 1 },
           {
             name = "nvim_lsp",
             group_index = 1,
