@@ -7,6 +7,11 @@ return {
       view_options = {
         show_hidden = true,
       },
+      skip_confirm_for_simple_edits = true,
+      lsp_file_methods = {
+        enabled = true,
+        autosave_changes = true,
+      },
     },
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
