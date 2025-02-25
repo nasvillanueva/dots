@@ -109,6 +109,11 @@ local NXS_LSP_CONFIG = {
           unknownAtRules = "ignore",
         },
       },
+      css = {
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
       vue = {
         inlayHints = {
           missingProps = true,
