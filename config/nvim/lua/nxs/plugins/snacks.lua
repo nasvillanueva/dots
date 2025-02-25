@@ -23,13 +23,13 @@ return {
           formatters = {
             file = {
               filename_first = true,
-              truncate = 100
+              truncate = 100,
             },
           },
           layout = {
             layout = {
               row = 1,
-              width = 0.4,
+              width = 0.6,
               min_width = 80,
               height = 0.9,
               border = "none",
@@ -78,9 +78,9 @@ return {
               -- Need to add cwd as filter.path because `smart` picker includes
               -- vim.v.oldfiles which may contain files outside the cwd
               [vim.fn.getcwd()] = true,
-              [vim.fn.getcwd() .. "/.git"] = false
+              [vim.fn.getcwd() .. "/.git"] = false,
             },
-          }
+          },
         })
       end, "Picker: Smart Find Files")
       keybind.set("", "<leader>,", function()
@@ -89,6 +89,14 @@ return {
       keybind.set("", "<leader>/", function()
         Snacks.picker.grep()
       end, "Picker: Grep")
+      keybind.set("", "<leader>.", function()
+        local path = vim.fn.expand("%:p:h")
+        if vim.bo.filetype == "oil" then
+          path = string.sub(path, 5)
+        end
+        Snacks.picker.grep({ cwd = path })
+      end, "Picker: Grep CWD")
+
       keybind.set("", "<leader>:", function()
         Snacks.picker.command_history()
       end, "Picker: Command History")

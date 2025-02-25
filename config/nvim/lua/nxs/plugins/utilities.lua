@@ -73,8 +73,8 @@ return {
       local mode = { "i", "c" }
 
       keybind.set(mode, "<C-f>", "<Right>")
-      keybind.set(mode, "<C-a>", "<Home>")
-      keybind.set(mode, "<C-e>", "<End>")
+      -- keybind.set(mode, "<C-a>", "<Home>")
+      -- keybind.set(mode, "<C-e>", "<End>")
       keybind.set(mode, "<A-b>", emacs.move_word_back)
       keybind.set(mode, "<A-f>", emacs.move_word_forward)
       keybind.set(mode, "<C-h>", emacs.delete_char_back)
