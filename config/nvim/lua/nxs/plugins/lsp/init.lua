@@ -142,7 +142,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       { "williamboman/mason-lspconfig.nvim" },
-      { "nvim-telescope/telescope.nvim" },
+      { "folke/snacks.nvim" },
       require("nxs.plugins.cmp"),
     },
     event = {
@@ -165,6 +165,7 @@ return {
         automatic_installation = true,
       })
 
+      local Snacks = require("snacks")
       local lspconfig = require("lspconfig")
       local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
@@ -196,18 +197,21 @@ return {
         keybind.set("n", "<leader>cli", "<cmd>LspInfo<CR>", "LSP: Info")
         keybind.set("n", "<leader>clr", "<cmd>LspRestart<CR>", "LSP: Restart")
 
-        keybind.set(
-          "n",
-          "gD",
-          vim.lsp.buf.declaration,
-          "LSP: Goto declaration",
-          { buffer = args.buf }
-        )
+        keybind.set("n", "<leader>ss", function()
+          Snacks.picker.lsp_symbols()
+        end, "LSP Symbols")
+        keybind.set("n", "<leader>sS", function()
+          Snacks.picker.lsp_workspace_symbols()
+        end, "LSP Workspace Symbols")
+
+        keybind.set("n", "gD", function()
+          Snacks.picker.lsp_declarations()
+        end, "LSP: Goto declaration", { buffer = args.buf })
         keybind.set("n", "gI", function()
-          require("telescope.builtin").lsp_implementations({ reuse_win = true })
+          Snacks.picker.lsp_implementations()
         end, "LSP: Goto Implementation")
         keybind.set("n", "gy", function()
-          require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+          Snacks.picker.lsp_type_definitions()
         end, "LSP: Goto Type Definition")
 
         keybind.set(
@@ -220,7 +224,7 @@ return {
 
         if lsp.supports("textDocument/definition", args.data.client_id) then
           keybind.set("n", "gd", function()
-            require("telescope.builtin").lsp_definitions({ reuse_win = true })
+            Snacks.picker.lsp_definitions()
           end, "LSP: Goto definition", { buffer = args.buf })
         end
 
@@ -228,9 +232,14 @@ return {
           keybind.set(
             "n",
             "gr",
-            "<cmd>Telescope lsp_references<CR>",
+            function()
+              Snacks.picker.lsp_references()
+            end,
             "LSP: Find Usages",
-            { buffer = args.buf }
+            {
+              buffer = args.buf,
+              nowait = true,
+            }
           )
         end
 

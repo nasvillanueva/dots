@@ -4,13 +4,14 @@ return {
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
-    opts = {
-      use_diagnostic_signs = true,
-      auto_close = true,
-      auto_preview = false,
-    },
-    keys = {},
-    init = function()
+    config = function()
+      local trouble = require("trouble")
+      trouble.setup({
+        use_diagnostic_signs = true,
+        auto_close = true,
+        auto_preview = false,
+      })
+
       keybind.set(
         "n",
         "<leader>xx",
@@ -37,7 +38,7 @@ return {
       )
       keybind.set("n", "[q", function()
         if require("trouble").is_open() then
-          require("trouble").prev({ skip_groups = true, jump = true })
+          trouble.prev({ skip_groups = true, jump = true })
         else
           local ok, err = pcall(vim.cmd.cprev)
           if not ok then
@@ -47,7 +48,7 @@ return {
       end, "Previous trouble/quickfix item")
       keybind.set("n", "]q", function()
         if require("trouble").is_open() then
-          require("trouble").next({ skip_groups = true, jump = true })
+          trouble.next({ skip_groups = true, jump = true })
         else
           local ok, err = pcall(vim.cmd.cnext)
           if not ok then
@@ -60,6 +61,7 @@ return {
   {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
+    dependencies = { "folke/snacks.nvim" },
     opts = {
       signs = false,
     },
@@ -77,13 +79,14 @@ return {
         "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
         "Todo/Fix/Fixme (Trouble)"
       )
-      keybind.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", "Todo")
-      keybind.set(
-        "n",
-        "<leader>sT",
-        "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
-        "Todo/Fix/Fixme"
-      )
+      keybind.set("n", "<leader>st", function()
+        require("snacks").picker.todo_comments()
+      end, "Todo")
+      keybind.set("n", "<leader>sT", function()
+        require("snacks").picker.todo_comments({
+          keywords = { "TODO", "FIX", "FIXME" },
+        })
+      end, "Todo/Fix/Fixme")
     end,
   },
 }

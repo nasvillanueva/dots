@@ -26,7 +26,7 @@ lazy.setup({
     require("nxs.plugins.whichkey"),
     require("nxs.plugins.files"),
     require("nxs.plugins.notes"),
-    require("nxs.plugins.telescope"),
+    require("nxs.plugins.snacks"),
     require("nxs.plugins.ime"),
     require("nxs.plugins.lualine"),
     require("nxs.plugins.treesitter"),
