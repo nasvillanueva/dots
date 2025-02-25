@@ -81,12 +81,12 @@ return {
       )
       keybind.set("n", "<leader>st", function()
         require("snacks").picker.todo_comments()
-      end, "Todo")
+      end, "Picker: Todo")
       keybind.set("n", "<leader>sT", function()
         require("snacks").picker.todo_comments({
           keywords = { "TODO", "FIX", "FIXME" },
         })
-      end, "Todo/Fix/Fixme")
+      end, "Picker: Todo/Fix/Fixme")
     end,
   },
 }

@@ -199,10 +199,10 @@ return {
 
         keybind.set("n", "<leader>ss", function()
           Snacks.picker.lsp_symbols()
-        end, "LSP Symbols")
+        end, "Picker: LSP Symbols")
         keybind.set("n", "<leader>sS", function()
           Snacks.picker.lsp_workspace_symbols()
-        end, "LSP Workspace Symbols")
+        end, "Picker: LSP Workspace Symbols")
 
         keybind.set("n", "gD", function()
           Snacks.picker.lsp_declarations()
