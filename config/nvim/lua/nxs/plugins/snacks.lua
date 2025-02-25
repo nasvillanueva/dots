@@ -71,7 +71,16 @@ return {
       })
 
       keybind.set("", "<leader><space>", function()
-        Snacks.picker.smart()
+        Snacks.picker.smart({
+          filter = {
+            paths = {
+              -- Need to add cwd as filter.path because `smart` picker includes
+              -- vim.v.oldfiles which may contain files outside the cwd
+              [vim.fn.getcwd()] = true,
+              [vim.fn.getcwd() .. "/.git"] = false
+            },
+          }
+        })
       end, "Smart Find Files")
       keybind.set("", "<leader>,", function()
         Snacks.picker.buffers()
