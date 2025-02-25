@@ -66,7 +66,23 @@ return {
   {
     "bsuth/emacs-bindings.nvim",
     config = function()
-      require("emacs-bindings")
+      vim.g.loaded_emacs_bindings = true
+
+      local emacs = require("emacs-bindings")
+
+      local mode = { "i", "c" }
+
+      keybind.set(mode, "<C-f>", "<Right>")
+      keybind.set(mode, "<C-a>", "<Home>")
+      keybind.set(mode, "<C-e>", "<End>")
+      keybind.set(mode, "<A-b>", emacs.move_word_back)
+      keybind.set(mode, "<A-f>", emacs.move_word_forward)
+      keybind.set(mode, "<C-h>", emacs.delete_char_back)
+      keybind.set(mode, "<C-d>", emacs.delete_char_forward)
+      keybind.set(mode, "<A-backspace>", emacs.delete_word_back)
+      keybind.set(mode, "<A-d>", emacs.delete_word_forward)
+      keybind.set(mode, "<C-u>", emacs.delete_line_back)
+      keybind.set(mode, "<C-k>", emacs.delete_line_forward)
     end,
   },
 }
