@@ -20,6 +20,9 @@ return {
         picker = {
           enabled = true,
           actions = trouble_actions,
+          main = {
+            file = false, -- allow non file windows open the selected file
+          },
           formatters = {
             file = {
               filename_first = true,
