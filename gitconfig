@@ -1,4 +1,6 @@
 [include]
+  path = ~/.gitconfig_personal
+[includeIf "gitdir:~/dev/projects/"]
   path = ~/.gitconfig_work
 [core]
   excludesfile = ~/.gitignore_global
