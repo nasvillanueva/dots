@@ -1,110 +1,101 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    version = false,
-    event = "InsertEnter",
+    "saghen/blink.cmp",
+    version = "v0.13.0",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      "js-everts/cmp-tailwind-colors",
-      require("nxs.plugins.snippets"),
-      require("nxs.plugins.lspkind"),
+      "rafamadriz/friendly-snippets",
     },
     config = function()
-      local cmp = require("cmp")
-      local tailwind_colors = require("cmp-tailwind-colors")
-      local lsp_kind = require("lspkind")
+      require("blink-cmp").setup({
+        keymap = {
+          preset = "none",
+          ["<C-space>"] = { "show" },
+          ["<Tab>"] = {
+            function(cmp)
+              if cmp.snippet_active() then
+                return cmp.accept()
+              else
+                local has_words_before = function()
+                  unpack = unpack or table.unpack
+                  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                  return col ~= 0
+                    and vim.api
+                        .nvim_buf_get_lines(0, line - 1, line, true)[1]
+                        :sub(col, col)
+                        :match("%s")
+                      == nil
+                end
 
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-          and vim.api
-              .nvim_buf_get_lines(0, line - 1, line, true)[1]
-              :sub(col, col)
-              :match("%s")
-            == nil
-      end
-      local cmp_next = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-        elseif vim.snippet.active({ direction = 1 }) then
-          vim.snippet.jump(1)
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-      local cmp_prev = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-        elseif vim.snippet.active({ direction = -1 }) then
-          vim.snippet.jump(-1)
-        else
-          fallback()
-        end
-      end
-
-      cmp.setup({
-        ---@diagnostic disable-next-line: missing-fields
-        formatting = {
-          expandable_indicator = false,
-          fields = { "kind", "abbr", "menu" },
-          format = lsp_kind.cmp_format({
-            mode = "symbol",
-            before = function(entry, item)
-              tailwind_colors.format(entry, item)
-              return item
+                return cmp.select_next({ auto_insert = has_words_before() })
+              end
             end,
-          }),
+            "snippet_forward",
+            "fallback",
+          },
+          ["<S-Tab>"] = {
+            function(cmp)
+              if cmp.snippet_active() then
+                return cmp.snippet_backward()
+              else
+                return cmp.select_prev()
+              end
+            end,
+            "fallback",
+          },
+          ["<CR>"] = { "accept", "fallback" },
+          ["<C-k>"] = {
+            "scroll_documentation_up",
+            "fallback",
+          },
+          ["<C-j>"] = {
+            "scroll_documentation_down",
+            "fallback",
+          },
+          ["<Up>"] = { "select_prev", "fallback" },
+          ["<Down>"] = { "select_next", "fallback" },
         },
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
-        },
-        mapping = {
-          ["<C-space>"] = cmp.mapping.complete(),
-          ["<S-Tab>"] = cmp.mapping(cmp_prev),
-          ["<Tab>"] = cmp.mapping(cmp_next),
-          ["<CR>"] = cmp.mapping.confirm(),
-          ["<C-k>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-j>"] = cmp.mapping.scroll_docs(4),
-          ["<C-c>"] = cmp.mapping.close(),
-          ["<Up>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              fallback()
-            end
-          end),
-          ["<Down>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end),
+        appearance = {
+          use_nvim_cmp_as_default = true,
+          nerd_font_variant = "mono",
         },
         sources = {
-          { name = "lazydev" },
-          {
-            name = "nvim_lsp",
-            group_index = 1,
-          },
-          { name = "path", group_index = 2 },
-          {
-            name = "luasnip",
-            max_item_count = 5,
-            group_index = 3,
+          default = { "lazydev", "lsp", "path", "snippets" },
+          providers = {
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
+              -- make lazydev completions top priority (see `:h blink.cmp`)
+              score_offset = 100,
+            },
           },
         },
+        fuzzy = { implementation = "prefer_rust" },
+        completion = {
+          keyword = { range = "full" },
+          list = {
+            selection = {
+              preselect = false,
+            },
+          },
+          documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 200,
+          },
+          accept = {
+            auto_brackets = { enabled = true },
+          },
+          menu = {
+            draw = {
+              treesitter = {
+                'lsp'
+              }
+            }
+          },
+          trigger = {
+            prefetch_on_insert = true,
+          }
+        },
       })
-
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 }
