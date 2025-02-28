@@ -30,26 +30,31 @@ return {
             },
           },
           layout = {
-            layout = {
-              row = 1,
-              width = 0.6,
-              min_width = 80,
-              height = 0.9,
-              border = "none",
-              box = "vertical",
-              {
+            preset = "nxs"
+          },
+          layouts = {
+            nxs = {
+              layout = {
+                row = 1,
+                width = 0.6,
+                min_width = 80,
+                height = 0.9,
+                border = "none",
                 box = "vertical",
-                border = "rounded",
-                title = "{title} {live} {flags}",
-                title_pos = "center",
-                { win = "input", height = 1, border = "bottom" },
-                { win = "list", border = "none" },
-              },
-              {
-                win = "preview",
-                title = "{preview}",
-                height = 0.6,
-                border = "rounded",
+                {
+                  box = "vertical",
+                  border = "rounded",
+                  title = "{title} {live} {flags}",
+                  title_pos = "center",
+                  { win = "input", height = 1, border = "bottom" },
+                  { win = "list", border = "none" },
+                },
+                {
+                  win = "preview",
+                  title = "{preview}",
+                  height = 0.6,
+                  border = "rounded",
+                },
               },
             },
           },
