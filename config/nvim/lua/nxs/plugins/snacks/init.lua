@@ -5,6 +5,7 @@ return {
     lazy = false,
     specs = {
       require("nxs.plugins.snacks.picker"),
+      require("nxs.plugins.snacks.lazygit"),
     },
   },
 }

@@ -56,28 +56,6 @@ return {
     },
   },
   {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    init = function()
-      keybind.set("n", "<leader>gg", "<cmd>LazyGit<CR>", "LazyGit")
-      keybind.set(
-        "n",
-        "<leader>gf",
-        "<cmd>LazyGitFilterCurrentFile<CR>",
-        "LazyGit: Current File Commit History"
-      )
-    end,
-  },
-  {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
     init = function()
