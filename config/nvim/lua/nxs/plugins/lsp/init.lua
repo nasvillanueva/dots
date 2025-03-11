@@ -187,9 +187,13 @@ return {
             vue_language_server_path
         end
 
-        lspconfig[server_name].setup(vim.tbl_deep_extend("force", nxs_lsp_config, {
-          capabilities = require("blink.cmp").get_lsp_capabilities(nxs_lsp_config.capabilities),
-        }))
+        lspconfig[server_name].setup(
+          vim.tbl_deep_extend("force", nxs_lsp_config, {
+            capabilities = require("blink.cmp").get_lsp_capabilities(
+              nxs_lsp_config.capabilities
+            ),
+          })
+        )
       end
 
       local function setup_keybindings(args)

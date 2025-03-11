@@ -87,13 +87,13 @@ return {
           menu = {
             draw = {
               treesitter = {
-                'lsp'
-              }
-            }
+                "lsp",
+              },
+            },
           },
           trigger = {
             prefetch_on_insert = true,
-          }
+          },
         },
       })
     end,
