@@ -7,13 +7,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   pattern = { "*.ex", "*.exs", "*.heex" },
---   callback = function(args)
---     local filename = vim.api.nvim_buf_get_name(args.buf)
---
---     vim.system({ "mix", "format", filename })
---     -- TODO: Reload the file automatically?
---     -- Also, using :wait() shows prompt about saving an already-modified-file
---   end,
--- })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.ex", "*.exs", "*.heex" },
+  callback = function(args)
+    local filename = vim.api.nvim_buf_get_name(args.buf)
+
+    vim.system({ "mix", "format", filename }, {}, function(obj)
+      if obj.signal == 0 then
+        vim.cmd("edit!")
+      else
+        vim.print(obj.stderr)
+      end
+    end)
+  end,
+})
