@@ -51,18 +51,16 @@ local NXS_LSP_CONFIG = {
   },
   ts_ls = {
     on_new_config = function(new_config)
-      new_config.init_options.plugins[0].location = require("mason-registry")
-        .get_package("vue-language-server")
-        :get_install_path() .. "/node_modules/@vue/language-server"
+      table.insert(new_config.init_options.plugins, {
+        name = "@vue/typescript-plugin",
+        languages = { "vue" },
+        location = require("mason-registry")
+          .get_package("vue-language-server")
+          :get_install_path() .. "/node_modules/@vue/language-server",
+      })
     end,
     init_options = {
-      plugins = {
-        {
-          name = "@vue/typescript-plugin",
-          location = "", -- set in nvim-lspconfig config function
-          languages = { "vue" },
-        },
-      },
+      plugins = {},
     },
     filetypes = {
       "typescript",
