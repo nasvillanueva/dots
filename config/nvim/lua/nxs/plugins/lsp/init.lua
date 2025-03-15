@@ -43,9 +43,18 @@ local NXS_LSP_CONFIG = {
     },
   },
   elixirls = {
-    -- provide cmd in nvim-lspconfig config function
+    on_new_config = function(new_config)
+      new_config.cmd = require("mason-registry")
+        .get_package("elixir-ls")
+        :get_install_path() .. "/language_server.sh"
+    end,
   },
   ts_ls = {
+    on_new_config = function(new_config)
+      new_config.init_options.plugins[0].location = require("mason-registry")
+        .get_package("vue-language-server")
+        :get_install_path() .. "/node_modules/@vue/language-server"
+    end,
     init_options = {
       plugins = {
         {
@@ -168,24 +177,9 @@ return {
       local Snacks = require("snacks")
       local lspconfig = require("lspconfig")
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
-      local mason_registry = require("mason-registry")
-
-      local vue_language_server_path = mason_registry
-        .get_package("vue-language-server")
-        :get_install_path() .. "/node_modules/@vue/language-server"
-      local elixirls_server_path = mason_registry
-        .get_package("elixir-ls")
-        :get_install_path() .. "/language_server.sh"
 
       for _, server_name in ipairs(get_mason_servers()) do
         local nxs_lsp_config = NXS_LSP_CONFIG[server_name] or {}
-
-        if server_name == "elixirls" then
-          nxs_lsp_config.cmd = { elixirls_server_path }
-        elseif server_name == "ts_ls" then
-          nxs_lsp_config.init_options.plugins[1].location =
-            vue_language_server_path
-        end
 
         lspconfig[server_name].setup(
           vim.tbl_deep_extend("force", nxs_lsp_config, {
