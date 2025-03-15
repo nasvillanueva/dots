@@ -44,9 +44,10 @@ local NXS_LSP_CONFIG = {
   },
   elixirls = {
     on_new_config = function(new_config)
-      new_config.cmd = require("mason-registry")
-        .get_package("elixir-ls")
-        :get_install_path() .. "/language_server.sh"
+      new_config.cmd = {
+        require("mason-registry").get_package("elixir-ls"):get_install_path()
+          .. "/language_server.sh",
+      }
     end,
   },
   ts_ls = {
