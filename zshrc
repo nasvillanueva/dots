@@ -18,13 +18,8 @@ eval "$(fzf --zsh)"
 
 # User Config
 
-rms() {
-  (cd "$REMETIS_PATH" && $REMETIS_PATH/command/bin/remetis_server "$@")
-}
+source $REMETIS_PATH/remetis_aliases.sh
 
-alias rmy='rms yarn'
-alias rml='rms logs'
-alias rmn='rms npm'
 alias vim=$(which nvim)
 
 alias lg="lazygit"
