@@ -31,7 +31,7 @@ return {
               box = "vertical",
               {
                 box = "vertical",
-                border = "rounded",
+                border = "single",
                 title = "{title} {live} {flags}",
                 title_pos = "center",
                 { win = "input", height = 1, border = "bottom" },
@@ -41,7 +41,7 @@ return {
                 win = "preview",
                 title = "{preview}",
                 height = 0.6,
-                border = "rounded",
+                border = "single",
               },
             },
           },
@@ -218,6 +218,6 @@ return {
     end, "Picker: Undo History"),
     keybind.lazyKey("", "<leader>uC", function()
       require("snacks").picker.colorschemes()
-    end, "Picker: Colorschemes")
-  }
+    end, "Picker: Colorschemes"),
+  },
 }
