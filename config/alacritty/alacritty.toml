@@ -36,5 +36,10 @@ lines = 60
 x = 10
 y = 10
 
+[keyboard]
+bindings = [
+  { key = "W", mods = "Command", action = "None" }
+]
+
 [general]
 import = ["~/.config/alacritty/themes/neofusion.toml"]
