@@ -9,13 +9,13 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "diegoulloao/neofusion.nvim",
+      "rose-pine/neovim",
     },
     config = function()
-      local palette = require("neofusion.palette")
+      local palette = require("rose-pine.palette")
       require("lualine").setup({
         options = {
-          theme = require("neofusion.lualine"),
+          theme = "rose-pine",
           component_separators = "",
           section_separators = "",
         },
@@ -47,7 +47,7 @@ return {
 
                 return table.concat(crumbs, " ⟩ ")
               end,
-              color = { bg = palette.light0, fg = palette.dark0, gui = "bold" },
+              color = { bg = palette.rose, fg = palette.base, gui = "bold" },
             },
           },
           lualine_x = {

@@ -1,15 +1,15 @@
 return {
-  "diegoulloao/neofusion.nvim",
+  "rose-pine/neovim",
+  name = "rose-pine",
   lazy = false,
   priority = 1000,
   config = function()
-    require("neofusion").setup({
-      overrides = {
-        NonText = { link = "NeofusionGray" }
-      }
+    require("rose-pine").setup({
+      variant = "dawn",
+      extend_background_behind_borders = false,
     })
 
-    vim.o.background = "dark"
-    vim.cmd("colorscheme neofusion")
+    vim.o.background = "light"
+    vim.cmd("colorscheme rose-pine")
   end,
 }

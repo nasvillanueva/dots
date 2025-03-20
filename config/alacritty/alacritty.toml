@@ -42,4 +42,4 @@ bindings = [
 ]
 
 [general]
-import = ["~/.config/alacritty/themes/neofusion.toml"]
+import = ["~/.config/alacritty/themes/rosepine-dawn.toml"]

@@ -1,5 +1,5 @@
 # cmd + ctrl - w : open -a /Users/nxs/Applications/WebStorm.app
-cmd + ctrl - e : open -a /Applications/Alacritty.app
+cmd + ctrl - e : open -a /Applications/WezTerm.app
 cmd + ctrl - d : open -a /Applications/Discord.app
 cmd + ctrl - r : open -a /Applications/Google\ Chrome.app
 cmd + ctrl - s : open -a /System/Applications/Music.app
