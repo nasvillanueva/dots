@@ -12,6 +12,9 @@ return {
         enabled = true,
         autosave_changes = true,
       },
+      keymaps = {
+        ["<C-l>"] = false,
+      },
     },
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
