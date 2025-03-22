@@ -12,6 +12,8 @@ return {
         SnacksPickerTitle = { bg = "base" },
         SnacksPickerList = { bg = "base" },
         SnacksPickerPreview = { bg = "base" },
+        IblWhitespace = { fg = "subtle" },
+        IblIndent = { fg = "subtle" },
       },
     })
 
