@@ -4,6 +4,8 @@ ZSH_CUSTOM=$HOME/.nxs-omz
 
 plugins=(git fast-syntax-highlighting zsh-autosuggestions zsh-completions)
 
+export PROMPT='%B%(?.%F{blue}>.%F{red}>)%f%b '
+
 # Completions
 autoload -Uz compinit
 compinit
