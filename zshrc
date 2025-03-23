@@ -23,6 +23,7 @@ source $REMETIS_PATH/remetis_aliases.sh
 alias vim=$(which nvim)
 
 alias lg="lazygit"
+alias ldock="lazydocker"
 alias ls="eza --icons --group-directories-first"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
