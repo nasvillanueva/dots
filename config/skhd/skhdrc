@@ -4,10 +4,6 @@ cmd + ctrl - d : open -a /Applications/Discord.app
 cmd + ctrl - r : open -a /Applications/Google\ Chrome.app
 cmd + ctrl - s : open -a /System/Applications/Music.app
 
-cmd + ctrl - j : im-select com.apple.inputmethod.Kotoeri.RomajiTyping.Japanese
-cmd + ctrl - k : im-select com.apple.inputmethod.Kotoeri.RomajiTyping.Japanese.Katakana
-cmd + ctrl - l : im-select com.apple.inputmethod.Kotoeri.RomajiTyping.Roman
-
 cmd + ctrl - f : open -g "rectangle://execute-action?name=maximize"
 
 .blacklist [
