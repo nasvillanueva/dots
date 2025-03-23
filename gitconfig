@@ -12,7 +12,9 @@
 [color "status"]
   added = yellow
   changed = red
+[fetch]
+  prune = true
+[mergeTool]
+  hideResolved = true
 
 # vim: ft=gitconfig
-[fetch]
-	prune = true
