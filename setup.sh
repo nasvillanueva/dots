@@ -6,6 +6,7 @@ files=(
   config/skhd
   config/lazygit
   config/wezterm
+  config/zsh
   gitconfig_global
   gitconfig
   ideavimrc

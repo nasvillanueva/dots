@@ -1,3 +1,5 @@
 /config/nvim/lazy-lock.json
 /config/lazygit/*
 !/config/lazygit/config.yml
+/config/zsh/*
+!/config/zsh/.gitkeep
