@@ -39,6 +39,8 @@ source $REMETIS_PATH/remetis_aliases.sh
 
 alias vim=$(which nvim)
 
+set -o emacs
+
 alias lg="lazygit"
 alias ldock="lazydocker"
 alias ls="eza --icons --group-directories-first"
