@@ -2,7 +2,6 @@
 
 files=(
   bin
-  config/alacritty
   config/nvim
   config/ranger
   config/skhd
