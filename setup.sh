@@ -3,7 +3,6 @@
 files=(
   bin
   config/nvim
-  config/ranger
   config/skhd
   config/lazygit
   config/wezterm
