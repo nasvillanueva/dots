@@ -1,9 +1,20 @@
-source ${0:A:h}/plugins.zsh
-source ${0:A:h}/completions.zsh # Should be after plugins if there are completion plugins
-source ${0:A:h}/aliases.zsh
-source ${0:A:h}/directories.zsh
-source ${0:A:h}/history.zsh
-source ${0:A:h}/keybinds.zsh
-source ${0:A:h}/misc.zsh
-source ${0:A:h}/spectrum.zsh
-source ${0:A:h}/prompt.zsh
+scripts_dir="${0:A:h}"
+
+scripts=(
+  plugins.zsh
+  completions.zsh # Should be after plugins if there are completion plugins
+  aliases.zsh
+  directories.zsh
+  history.zsh
+  keybinds.zsh
+  misc.zsh
+  spectrum.zsh
+  prompt.zsh
+)
+
+for s in $scripts; do
+  source "$scripts_dir/$s"
+done
+
+unset scripts_dir
+unset scripts
