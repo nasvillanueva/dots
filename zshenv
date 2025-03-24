@@ -1,3 +1,4 @@
+export NXS_ZSH_HOME="$HOME/.config/zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export NXS_DEV="$HOME/dev"
