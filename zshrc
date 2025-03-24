@@ -1,5 +1,8 @@
-# globals
+# Globals
 NXS_ZSH_HOME="$HOME/.config/zsh"
+
+# Options
+set -o emacs
 
 # Theme
 PROMPT='%B%(?.%F{blue}>.%F{red}>)%f%b '
@@ -31,6 +34,7 @@ unset -f install_plugin
 autoload -Uz compinit
 compinit
 
+# Searching
 eval "$(fzf --zsh)"
 
 # User Config
@@ -38,9 +42,6 @@ eval "$(fzf --zsh)"
 source $REMETIS_PATH/remetis_aliases.sh
 
 alias vim=$(which nvim)
-
-set -o emacs
-
 alias lg="lazygit"
 alias ldock="lazydocker"
 alias ls="eza --icons --group-directories-first"
