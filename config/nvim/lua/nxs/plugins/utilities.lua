@@ -91,4 +91,9 @@ return {
       keybind.set(mode, "<C-k>", emacs.delete_line_forward)
     end,
   },
+  {
+    "chrisgrieser/nvim-early-retirement",
+    event = "VeryLazy",
+    opts = {},
+  },
 }
