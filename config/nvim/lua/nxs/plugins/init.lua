@@ -36,7 +36,6 @@ lazy.setup({
     require("nxs.plugins.cmp"),
     require("nxs.plugins.lsp"),
     require("nxs.plugins.format"),
-    require("nxs.plugins.tmux"),
   },
   install = {
     missing = true,
