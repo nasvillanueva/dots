@@ -91,9 +91,9 @@ return {
               },
             },
           },
-          trigger = {
-            prefetch_on_insert = true,
-          },
+          -- trigger = {
+          --   prefetch_on_insert = true,
+          -- },
         },
       })
     end,
