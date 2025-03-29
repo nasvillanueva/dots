@@ -8,6 +8,7 @@ local NXS_LSP_CONFIG = {
     filetypes = { "vue", "html", "css", "scss" },
   },
   eslint = {},
+  svelte = {},
   jsonls = { filetypes = { "json", "jsonc" } },
   stylelint_lsp = {
     settings = {
