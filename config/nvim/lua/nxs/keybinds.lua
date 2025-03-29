@@ -86,15 +86,7 @@ keybind.set("n", "<leader>xq", "<cmd>copen<cr>", "Quickfix List")
 keybind.set("n", "[q", vim.cmd.cprev, "Previous quickfix")
 keybind.set("n", "]q", vim.cmd.cnext, "Next quickfix")
 
-local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
-
-keybind.set("n", "<leader>d", function()
+local open_diagnostic_virtual_line = function()
   vim.diagnostic.config({
     virtual_lines = { current_line = true },
     virtual_text = false,
@@ -109,7 +101,24 @@ keybind.set("n", "<leader>d", function()
       vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
     end,
   })
-end, "View Line Diagnostics")
+end
+
+local diagnostic_goto = function(next, severity)
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    vim.diagnostic.jump({ count = next and 1 or -1, severity = severity })
+    vim.schedule(function()
+      open_diagnostic_virtual_line()
+    end)
+  end
+end
+
+keybind.set(
+  "n",
+  "<leader>d",
+  open_diagnostic_virtual_line,
+  "View Line Diagnostics"
+)
 keybind.set("n", "]d", diagnostic_goto(true), "Next Diagnostic")
 keybind.set("n", "[d", diagnostic_goto(false), "Prev Diagnostic")
 keybind.set("n", "]e", diagnostic_goto(true, "ERROR"), "Next Error")
