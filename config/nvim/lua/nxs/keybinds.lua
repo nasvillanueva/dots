@@ -93,12 +93,23 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-keybind.set(
-  "n",
-  "<leader>cd",
-  vim.diagnostic.open_float,
-  "View Line Diagnostics"
-)
+
+keybind.set("n", "<leader>d", function()
+  vim.diagnostic.config({
+    virtual_lines = { current_line = true },
+    virtual_text = false,
+  })
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    group = vim.api.nvim_create_augroup(
+      "nxs-line-diagnostic",
+      { clear = true }
+    ),
+    once = true,
+    callback = function()
+      vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
+    end,
+  })
+end, "View Line Diagnostics")
 keybind.set("n", "]d", diagnostic_goto(true), "Next Diagnostic")
 keybind.set("n", "[d", diagnostic_goto(false), "Prev Diagnostic")
 keybind.set("n", "]e", diagnostic_goto(true, "ERROR"), "Next Error")
