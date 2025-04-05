@@ -4,6 +4,7 @@ vim.opt.smartcase = false -- strict case-insensitive search even with upper ccas
 vim.opt.magic = true -- basically regex syntax for searching
 vim.opt.hlsearch = true -- highlight search matches
 vim.opt.incsearch = true -- highlight matches while searching
+vim.opt.inccommand = "nosplit"
 
 -- Spaces / Wrapping
 vim.opt.expandtab = true -- tabs into spaces
@@ -22,6 +23,10 @@ vim.opt.listchars:append({ -- visualize whitespace
 })
 vim.opt.list = true
 vim.opt.fillchars:append({ -- characters to fill interface
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
   eob = " ",
 })
 vim.opt.matchpairs:append({ -- characters that are treated as pairs; gets highlighted together
@@ -43,6 +48,10 @@ vim.opt.title = false -- don't set window title
 vim.opt.visualbell = false -- disable visual bells
 vim.opt.colorcolumn = "80" -- shows colored column at 80th character
 vim.opt.errorbells = false -- disable error bells
+vim.opt.completeopt = "menu,menuone,noselect"
+
+vim.opt.autowrite = true
+vim.opt.formatoptions = "jcroqlnt"
 
 -- Clipboard
 vim.opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard, at least on macos
