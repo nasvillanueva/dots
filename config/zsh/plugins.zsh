@@ -21,4 +21,3 @@ install_plugin "zsh-users/zsh-completions" "zsh-completions.plugin.zsh"
 
 unset -f install_plugin
 
-eval "$(fzf --zsh)"
