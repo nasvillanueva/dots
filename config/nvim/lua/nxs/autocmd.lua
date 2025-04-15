@@ -1,10 +1,12 @@
+local constants = require("config.nvim.lua.nxs.constants")
+
 local augroup = function(name)
   return vim.api.nvim_create_augroup("nxs_" .. name, { clear = true })
 end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("eslint_format_on_save"),
-  pattern = { "*.js", "*.cjs", "*.mjs", "*.jsx", "*.ts", "*.tsx", "*.vue" },
+  pattern = constants.js_files,
   callback = function()
     if vim.fn.exists(":EslintFixAll") ~= 0 then
       vim.cmd("EslintFixAll")
