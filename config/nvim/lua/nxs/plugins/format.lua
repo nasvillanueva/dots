@@ -14,6 +14,7 @@ return {
         typescript = {},
         typescriptreact = {},
         vue = {},
+        svelte = {},
       },
       format_on_save = true,
     },
