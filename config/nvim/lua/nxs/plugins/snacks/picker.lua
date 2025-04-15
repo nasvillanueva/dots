@@ -118,7 +118,16 @@ return {
       require("snacks").picker.projects()
     end, "Picker: Projects"),
     keybind.lazyKey("", "<leader>fr", function()
-      require("snacks").picker.recent()
+      require("snacks").picker.recent({
+        filter = {
+          paths = {
+            -- Need to add cwd as filter.path because `smart` picker includes
+            -- vim.v.oldfiles which may contain files outside the cwd
+            [vim.fn.getcwd()] = true,
+            [vim.fn.getcwd() .. "/.git"] = false,
+          },
+        },
+      })
     end, "Picker: Recent"),
     -- git
     keybind.lazyKey("", "<leader>gb", function()
