@@ -1,4 +1,4 @@
-local constants = require("config.nvim.lua.nxs.constants")
+local constants = require("nxs.constants")
 
 local augroup = function(name)
   return vim.api.nvim_create_augroup("nxs_" .. name, { clear = true })
