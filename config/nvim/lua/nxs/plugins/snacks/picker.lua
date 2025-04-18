@@ -64,6 +64,11 @@ return {
             },
           },
         },
+        sources = {
+          files = {
+            hidden = true,
+          },
+        },
       },
     })
   end,
