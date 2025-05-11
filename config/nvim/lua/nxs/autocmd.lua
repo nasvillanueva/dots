@@ -8,8 +8,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("eslint_format_on_save"),
   pattern = constants.js_files,
   callback = function()
-    if vim.fn.exists(":EslintFixAll") ~= 0 then
-      vim.cmd("EslintFixAll")
+    if vim.fn.exists(":LspEslintFixAll") ~= 0 then
+      vim.cmd("LspEslintFixAll")
     end
   end,
 })
