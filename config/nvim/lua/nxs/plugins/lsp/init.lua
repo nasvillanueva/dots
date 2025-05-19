@@ -161,6 +161,8 @@ return {
       local Snacks = require("snacks")
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
 
+      vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
+
       for _, server_name in ipairs(get_mason_servers()) do
         local nxs_lsp_config = NXS_LSP_CONFIG[server_name] or {}
 
