@@ -21,6 +21,7 @@ end
 
 lazy.setup({
   spec = {
+    { "folke/lazy.nvim", version = "*" },
     require("nxs.plugins.colorscheme"),
     require("nxs.plugins.git"),
     require("nxs.plugins.whichkey"),
