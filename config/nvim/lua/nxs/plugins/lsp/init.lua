@@ -95,7 +95,7 @@ local NXS_LSP_CONFIG = {
       },
     },
   },
-  volar = {
+  vue_ls = {
     settings = {
       scss = {
         lint = {
