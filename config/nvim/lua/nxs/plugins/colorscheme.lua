@@ -5,19 +5,19 @@ return {
   priority = 1000,
   config = function()
     require("rose-pine").setup({
-      variant = "dawn",
+      variant = "moon",
       extend_background_behind_borders = false,
       highlight_groups = {
         SnacksPickerInput = { bg = "base" },
         SnacksPickerTitle = { bg = "base" },
         SnacksPickerList = { bg = "base" },
         SnacksPickerPreview = { bg = "base" },
-        IblWhitespace = { link = "NonText" },
-        IblIndent = { link = "NonText" },
+        SnacksPickerIdx = { link = "SnacksPickerCol" },
+        SnacksPickerRow = { link = "SnacksPickerCol" },
       },
     })
 
-    vim.o.background = "light"
+    vim.o.background = "dark"
     vim.cmd("colorscheme rose-pine")
   end,
 }

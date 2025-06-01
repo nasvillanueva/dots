@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm").dawn
+local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm").moon
 
 config.colors = theme.colors()
 
