@@ -13,7 +13,7 @@ config.enable_tab_bar = false
 config.use_ime = true
 config.use_dead_keys = false
 
-config.font = wezterm.font("MesloLGS Nerd Font Mono")
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 
 config.disable_default_key_bindings = true
 config.keys = {
