@@ -20,34 +20,6 @@ return {
           lualine_b = { "diagnostics" },
           lualine_c = {},
           lualine_x = {
-            "branch",
-          },
-          lualine_y = {},
-        },
-        inactive_sections = {},
-        tabline = {
-          lualine_c = {
-            {
-              function()
-                local path = vim.fn.expand("%:p:~")
-                local crumbs = {}
-
-                for crumb in string.gmatch(path, "([^/]+)") do
-                  local icon = icon_by_string[crumb]
-
-                  if icon then
-                    table.insert(crumbs, icon)
-                  else
-                    table.insert(crumbs, crumb)
-                  end
-                end
-
-                return table.concat(crumbs, " ⟩ ")
-              end,
-              color = { bg = "#a7c080", fg = "#272e33", gui = "bold" },
-            },
-          },
-          lualine_x = {
             {
               function()
                 local buf_ft = vim.api.nvim_get_option_value("filetype", {
@@ -78,8 +50,11 @@ return {
               end,
               icon = "",
             },
+            "branch",
           },
+          lualine_y = {},
         },
+        inactive_sections = {},
       })
     end,
   },
