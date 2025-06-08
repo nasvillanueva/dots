@@ -4,9 +4,8 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-local theme = wezterm.plugin.require("https://github.com/neapsix/wezterm").moon
-
-config.colors = theme.colors()
+-- As of adding, needs wezterm@nightly
+config.color_scheme = "Everforest Dark Hard (Gogh)"
 
 config.enable_tab_bar = false
 
