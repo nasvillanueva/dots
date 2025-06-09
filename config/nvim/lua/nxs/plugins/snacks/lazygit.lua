@@ -2,9 +2,11 @@ local keybind = require("nxs.utils.keybind")
 
 return {
   "folke/snacks.nvim",
-  opts = {
-    lazygit = {},
-  },
+  opts = function(_, opts)
+    return vim.tbl_deep_extend("force", opts or {}, {
+      lazygit = {},
+    })
+  end,
   keys = {
     keybind.lazyKey("n", "<leader>gg", function()
       require("snacks").lazygit.open()
