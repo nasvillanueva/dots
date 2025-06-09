@@ -13,7 +13,7 @@ return {
         javascriptreact = {},
         typescript = {},
         typescriptreact = {},
-        vue = { "stylelint" },
+        vue = {},
         svelte = {},
         css = { "stylelint" },
         json = { "fixjson" },
