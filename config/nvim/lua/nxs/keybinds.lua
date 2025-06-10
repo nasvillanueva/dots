@@ -132,3 +132,16 @@ keybind.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", "New Tab")
 keybind.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", "Next Tab")
 keybind.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", "Close Tab")
 keybind.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", "Previous Tab")
+
+keybind.set(
+  "n",
+  "<leader>fy",
+  "<cmd>CopyRelativeFilePath<CR>",
+  "Copy Relative File Path"
+)
+keybind.set(
+  "n",
+  "<leader>fY",
+  "<cmd>CopyAbsoluteFilePath<CR>",
+  "Copy Absolute File Path"
+)
