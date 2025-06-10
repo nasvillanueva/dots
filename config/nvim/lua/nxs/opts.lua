@@ -50,8 +50,8 @@ vim.opt.colorcolumn = "80" -- shows colored column at 80th character
 vim.opt.errorbells = false -- disable error bells
 vim.opt.completeopt = "menu,menuone,noselect"
 
-vim.opt.autowrite = true
 vim.opt.formatoptions = "jcroqlnt"
+vim.opt.hidden = false
 
 -- Clipboard
 vim.opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard, at least on macos
