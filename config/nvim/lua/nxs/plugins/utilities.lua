@@ -49,17 +49,6 @@ return {
     },
   },
   {
-    "nvim-pack/nvim-spectre",
-    build = false,
-    cmd = "Spectre",
-    opts = { open_cmd = "noswapfile vnew" },
-    init = function()
-      keybind.set("n", "<leader>sr", function()
-        require("spectre").open()
-      end, "Replace in files (Spectre)")
-    end,
-  },
-  {
     "bsuth/emacs-bindings.nvim",
     config = function()
       vim.g.loaded_emacs_bindings = true
