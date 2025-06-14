@@ -22,7 +22,7 @@ local NXS_LSP_CONFIG = {
       Lua = {
         diagnostics = {
           -- Prevents getting Undefined global `vim`
-          globals = { "vim" },
+          globals = { "vim", "Snacks" },
         },
         workspace = {
           -- Help lua_ls be aware of neovim runtime files
@@ -135,7 +135,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       { "williamboman/mason-lspconfig.nvim" },
-      { "folke/snacks.nvim" },
+      require("nxs.plugins.snacks"),
       require("nxs.plugins.cmp"),
     },
     event = {
@@ -158,7 +158,6 @@ return {
         automatic_installation = true,
       })
 
-      local Snacks = require("snacks")
       local get_mason_servers = require("mason-lspconfig").get_installed_servers
 
       vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
@@ -205,13 +204,13 @@ return {
           { buffer = args.buf }
         )
 
-        if lsp.supports("textDocument/definition", args.data.client_id) then
+        if lsp.supports("textDocument/definition", args) then
           keybind.set("n", "gd", function()
             Snacks.picker.lsp_definitions()
           end, "LSP: Goto definition", { buffer = args.buf })
         end
 
-        if lsp.supports("textDocument/References", args.data.client_id) then
+        if lsp.supports("textDocument/References", args) then
           keybind.set(
             "n",
             "gr",
@@ -226,7 +225,7 @@ return {
           )
         end
 
-        if lsp.supports("textDocument/signatureHelp", args.data.client_id) then
+        if lsp.supports("textDocument/signatureHelp", args) then
           keybind.set(
             "n",
             "gK",
@@ -243,7 +242,7 @@ return {
           )
         end
 
-        if lsp.supports("textDocument/codeAction", args.data.client_id) then
+        if lsp.supports("textDocument/codeAction", args) then
           keybind.set(
             { "n", "v" },
             "<leader>ca",
@@ -259,7 +258,7 @@ return {
           end, "LSP: Source Action", { buffer = args.buf })
         end
 
-        if lsp.supports("textDocument/rename", args.data.client_id) then
+        if lsp.supports("textDocument/rename", args) then
           keybind.set(
             "n",
             "<leader>cr",
@@ -269,7 +268,7 @@ return {
           )
         end
 
-        if lsp.supports("textDocument/codeLens", args.data.client_id) then
+        if lsp.supports("textDocument/codeLens", args) then
           keybind.set(
             { "n", "v" },
             "<leader>cc",
@@ -294,8 +293,8 @@ return {
           if
             client ~= nil
             and vim.fn.getbufvar(args.buf, "&filetype") ~= "vue"
-            and lsp.supports("textDocument/inlayHint", args.data.client_id)
-            and vim.api.nvim_buf_is_valid(args.data.client_id)
+            and lsp.supports("textDocument/inlayHint", args)
+            and vim.api.nvim_buf_is_valid(args.buf)
           then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
           end
