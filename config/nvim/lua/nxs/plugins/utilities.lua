@@ -86,4 +86,9 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  {
+    "gregorias/coerce.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }
