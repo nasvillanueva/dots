@@ -114,6 +114,8 @@ return {
             auto_brackets = { enabled = true },
           },
           menu = {
+            max_height = 15,
+            min_width = 20,
             draw = {
               treesitter = {
                 "lsp",
