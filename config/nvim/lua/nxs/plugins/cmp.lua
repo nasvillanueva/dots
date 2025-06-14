@@ -72,7 +72,24 @@ return {
             },
           },
         },
-        fuzzy = { implementation = "prefer_rust" },
+        fuzzy = {
+          implementation = "prefer_rust",
+          sorts = {
+            "exact",
+            -- Deprioritize emmet_ls
+            function(a, b)
+              if
+                (a.client_name == nil or b.client_name == nil)
+                or (a.client_name == b.client_name)
+              then
+                return
+              end
+              return b.client_name == "emmet_ls"
+            end,
+            "score",
+            "sort_text",
+          },
+        },
         completion = {
           keyword = { range = "full" },
           list = {
