@@ -6,7 +6,8 @@ return {
       "rafamadriz/friendly-snippets",
     },
     config = function()
-      require("blink-cmp").setup({
+      local blink = require("blink-cmp")
+      blink.setup({
         keymap = {
           preset = "none",
           ["<C-space>"] = { "show" },
@@ -43,16 +44,18 @@ return {
             "fallback",
           },
           ["<CR>"] = { "accept", "fallback" },
-          ["<C-k>"] = {
+          ["<C-u>"] = {
             "scroll_documentation_up",
             "fallback",
           },
-          ["<C-j>"] = {
+          ["<C-d>"] = {
             "scroll_documentation_down",
             "fallback",
           },
           ["<Up>"] = { "select_prev", "fallback" },
           ["<Down>"] = { "select_next", "fallback" },
+          ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+          ["<C-n>"] = { "select_next", "fallback_to_mappings" },
         },
         appearance = {
           use_nvim_cmp_as_default = true,
@@ -74,7 +77,11 @@ return {
           keyword = { range = "full" },
           list = {
             selection = {
-              preselect = false,
+              preselect = function()
+                return not blink.snippet_active({
+                  direction = 1,
+                })
+              end,
             },
           },
           documentation = {
@@ -91,9 +98,6 @@ return {
               },
             },
           },
-          -- trigger = {
-          --   prefetch_on_insert = true,
-          -- },
         },
       })
     end,
