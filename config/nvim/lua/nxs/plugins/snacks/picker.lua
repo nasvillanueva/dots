@@ -45,7 +45,7 @@ return {
   end,
   keys = {
     keybind.lazyKey("", "<leader><space>", function()
-      require("snacks").picker.smart({
+      Snacks.picker.smart({
         filter = {
           paths = {
             -- Need to add cwd as filter.path because `smart` picker includes
@@ -57,44 +57,44 @@ return {
       })
     end, "Picker: Smart Find Files"),
     keybind.lazyKey("", "<leader>,", function()
-      require("snacks").picker.buffers()
+      Snacks.picker.buffers()
     end, "Picker: Buffers"),
     keybind.lazyKey("", "<leader>/", function()
-      require("snacks").picker.grep()
+      Snacks.picker.grep()
     end, "Picker: Grep"),
     keybind.lazyKey("", "<leader>.", function()
       local path = vim.fn.expand("%:p:h")
       if vim.bo.filetype == "oil" then
         path = string.sub(path, 5)
       end
-      require("snacks").picker.grep({ cwd = path })
+      Snacks.picker.grep({ cwd = path })
     end, "Picker: Grep CWD"),
 
     keybind.lazyKey("", "<leader>:", function()
-      require("snacks").picker.command_history()
+      Snacks.picker.command_history()
     end, "Picker: Command History"),
     keybind.lazyKey("", "<leader>n", function()
-      require("snacks").picker.notifications()
+      Snacks.picker.notifications()
     end, "Picker: Notification History"),
     -- find
     keybind.lazyKey("", "<leader>fb", function()
-      require("snacks").picker.buffers()
+      Snacks.picker.buffers()
     end, "Picker: Buffers"),
     keybind.lazyKey("", "<leader>fc", function()
       ---@diagnostic disable-next-line: assign-type-mismatch
-      require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
+      Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
     end, "Picker: Find Config File"),
     keybind.lazyKey("", "<leader>ff", function()
-      require("snacks").picker.files()
+      Snacks.picker.files()
     end, "Picker: Find Files"),
     keybind.lazyKey("", "<leader>fg", function()
-      require("snacks").picker.git_files()
+      Snacks.picker.git_files()
     end, "Picker: Find Git Files"),
     keybind.lazyKey("", "<leader>fp", function()
-      require("snacks").picker.projects()
+      Snacks.picker.projects()
     end, "Picker: Projects"),
     keybind.lazyKey("", "<leader>fr", function()
-      require("snacks").picker.recent({
+      Snacks.picker.recent({
         filter = {
           paths = {
             -- Need to add cwd as filter.path because `smart` picker includes
@@ -107,102 +107,102 @@ return {
     end, "Picker: Recent"),
     -- git
     keybind.lazyKey("", "<leader>gb", function()
-      require("snacks").picker.git_branches()
+      Snacks.picker.git_branches()
     end, "Picker: Git Branches"),
     keybind.lazyKey("", "<leader>gl", function()
-      require("snacks").picker.git_log()
+      Snacks.picker.git_log()
     end, "Picker: Git Log"),
     keybind.lazyKey("", "<leader>gL", function()
-      require("snacks").picker.git_log_line()
+      Snacks.picker.git_log_line()
     end, "Picker: Git Log Line"),
     keybind.lazyKey("", "<leader>gs", function()
-      require("snacks").picker.git_status()
+      Snacks.picker.git_status()
     end, "Picker: Git Status"),
     keybind.lazyKey("", "<leader>gS", function()
-      require("snacks").picker.git_stash()
+      Snacks.picker.git_stash()
     end, "Picker: Git Stash"),
     keybind.lazyKey("", "<leader>gd", function()
-      require("snacks").picker.git_diff()
+      Snacks.picker.git_diff()
     end, "Picker: Git Diff (Hunks)"),
     keybind.lazyKey("", "<leader>gf", function()
-      require("snacks").picker.git_log_file()
+      Snacks.picker.git_log_file()
     end, "Picker: Git Log File"),
     -- Grep
     keybind.lazyKey("", "<leader>sb", function()
-      require("snacks").picker.lines()
+      Snacks.picker.lines()
     end, "Picker: Buffer Lines"),
     keybind.lazyKey("", "<leader>sB", function()
-      require("snacks").picker.grep_buffers()
+      Snacks.picker.grep_buffers()
     end, "Picker: Grep Open Buffers"),
     keybind.lazyKey("", "<leader>sg", function()
-      require("snacks").picker.grep()
+      Snacks.picker.grep()
     end, "Picker: Grep"),
     keybind.lazyKey({ "n", "x" }, "<leader>sw", function()
-      require("snacks").picker.grep_word()
+      Snacks.picker.grep_word()
     end, "Picker: Visual selection or word"),
     -- search
     keybind.lazyKey("", '<leader>s"', function()
-      require("snacks").picker.registers()
+      Snacks.picker.registers()
     end, "Picker: Registers"),
     keybind.lazyKey("", "<leader>s/", function()
-      require("snacks").picker.search_history()
+      Snacks.picker.search_history()
     end, "Picker: Search History"),
     keybind.lazyKey("", "<leader>sa", function()
-      require("snacks").picker.autocmds()
+      Snacks.picker.autocmds()
     end, "Picker: Autocmds"),
     keybind.lazyKey("", "<leader>sb", function()
-      require("snacks").picker.lines()
+      Snacks.picker.lines()
     end, "Picker: Buffer Lines"),
     keybind.lazyKey("", "<leader>sc", function()
-      require("snacks").picker.command_history()
+      Snacks.picker.command_history()
     end, "Picker: Command History"),
     keybind.lazyKey("", "<leader>sC", function()
-      require("snacks").picker.commands()
+      Snacks.picker.commands()
     end, "Picker: Commands"),
     keybind.lazyKey("", "<leader>sd", function()
-      require("snacks").picker.diagnostics()
+      Snacks.picker.diagnostics()
     end, "Picker: Diagnostics"),
     keybind.lazyKey("", "<leader>sD", function()
-      require("snacks").picker.diagnostics_buffer()
+      Snacks.picker.diagnostics_buffer()
     end, "Picker: Buffer Diagnostics"),
     keybind.lazyKey("", "<leader>sh", function()
-      require("snacks").picker.help()
+      Snacks.picker.help()
     end, "Picker: Help Pages"),
     keybind.lazyKey("", "<leader>sH", function()
-      require("snacks").picker.highlights()
+      Snacks.picker.highlights()
     end, "Picker: Highlights"),
     keybind.lazyKey("", "<leader>si", function()
-      require("snacks").picker.icons()
+      Snacks.picker.icons()
     end, "Picker: Icons"),
     keybind.lazyKey("", "<leader>sj", function()
-      require("snacks").picker.jumps()
+      Snacks.picker.jumps()
     end, "Picker: Jumps"),
     keybind.lazyKey("", "<leader>sk", function()
-      require("snacks").picker.keymaps()
+      Snacks.picker.keymaps()
     end, "Picker: Keymaps"),
     keybind.lazyKey("", "<leader>sl", function()
-      require("snacks").picker.loclist()
+      Snacks.picker.loclist()
     end, "Picker: Location List"),
     keybind.lazyKey("", "<leader>sm", function()
-      require("snacks").picker.marks()
+      Snacks.picker.marks()
     end, "Picker: Marks"),
     keybind.lazyKey("", "<leader>sM", function()
-      require("snacks").picker.man()
+      Snacks.picker.man()
     end, "Picker: Man Pages"),
     keybind.lazyKey("", "<leader>sp", function()
-      require("snacks").picker.lazy()
+      Snacks.picker.lazy()
     end, "Picker: Search for Plugin Spec"),
     keybind.lazyKey("", "<leader>sq", function()
-      require("snacks").picker.qflist()
+      Snacks.picker.qflist()
     end, "Picker: Quickfix List"),
     keybind.lazyKey("", "<leader>sR", function()
-      require("snacks").picker.resume()
+      Snacks.picker.resume()
     end, "Picker: Resume"),
     keybind.lazyKey("", "<leader>su", function()
-      require("snacks").picker.undo()
+      Snacks.picker.undo()
     end, "Picker: Undo History"),
     keybind.lazyKey("", "<leader>uC", function()
-      require("snacks").picker.colorschemes()
+      Snacks.picker.colorschemes()
     end, "Picker: Colorschemes"),
   },
 }
