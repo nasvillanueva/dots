@@ -6,6 +6,7 @@ return {
   config = function()
     require("everforest").setup({
       background = "hard",
+      dim_inactive_windows = true,
     })
 
     vim.o.background = "dark"
