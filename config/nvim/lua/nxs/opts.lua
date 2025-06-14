@@ -49,6 +49,7 @@ vim.opt.visualbell = false -- disable visual bells
 vim.opt.colorcolumn = "80" -- shows colored column at 80th character
 vim.opt.errorbells = false -- disable error bells
 vim.opt.completeopt = "menu,menuone,noselect"
+vim.o.winborder = "solid"
 
 vim.opt.formatoptions = "jcroqlnt"
 vim.opt.hidden = false
