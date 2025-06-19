@@ -4,7 +4,8 @@ return {
   config = function()
     local wk = require("which-key")
     wk.setup({
-      plugins = { spelling = true },
+      preset = "helix",
+      show_help = false,
     })
     wk.add({
       {
