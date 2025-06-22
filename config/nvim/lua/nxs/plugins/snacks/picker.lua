@@ -121,9 +121,6 @@ return {
     keybind.lazyKey("", "<leader>gS", function()
       Snacks.picker.git_stash()
     end, "Picker: Git Stash"),
-    keybind.lazyKey("", "<leader>gd", function()
-      Snacks.picker.git_diff()
-    end, "Picker: Git Diff (Hunks)"),
     keybind.lazyKey("", "<leader>gf", function()
       Snacks.picker.git_log_file()
     end, "Picker: Git Log File"),
