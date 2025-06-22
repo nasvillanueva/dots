@@ -51,6 +51,10 @@ keybind.set(
 
 keybind.set("n", "<C-d>", "<C-d>zz", "Scroll down and center cursor")
 keybind.set("n", "<C-u>", "<C-u>zz", "Scroll up and center cursor")
+keybind.set("n", "<PageDown>", "<C-d>", "Scroll down and center cursor")
+keybind.set("n", "<PageUp>", "<C-u>", "Scroll up and center cursor")
+keybind.set("i", "<PageDown>", "<C-o><C-d>", "Scroll down and center cursor")
+keybind.set("i", "<PageUp>", "<C-o><C-u>", "Scroll up and center cursor")
 
 keybind.set("n", "n", "nzzzv", "Move to next search result and center cursor")
 keybind.set(
