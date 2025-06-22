@@ -59,7 +59,7 @@ return {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
     init = function()
-      keybind.set("n", "<leader>ge", "<cmd>DiffViewOpen<CR>", "DiffView")
+      keybind.set("n", "<leader>gdo", "<cmd>DiffviewOpen<CR>", "DiffView")
     end,
   },
   {
