@@ -1,1 +1,20 @@
-Test
+## Setup
+
+- Install [nvm](https://github.com/nvm-sh/nvm)
+    - Install latest node lts
+- Install [homebrew](https://brew.sh), then install packages:
+    - git
+    - tmux
+    - coreutils
+    - --cask wezterm@nightly
+        - Install [terminfo](https://wezterm.org/config/lua/config/term.html)
+    - ripgrep (needed by snacks.nvim grep)
+    - fzf
+    - lazygit
+    - koekeishiya/formulae/skhd
+    - eza
+    - --cask font-jetbrains-mono-nerd-font
+    - macism
+        - brew tap laishulu/homebrew
+    - asdf
+- clone dots
