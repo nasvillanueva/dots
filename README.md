@@ -17,4 +17,5 @@
     - macism
         - brew tap laishulu/homebrew
     - asdf
+    - --cask rectangle
 - clone dots
