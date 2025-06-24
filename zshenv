@@ -1,7 +1,3 @@
-export HOMEBREW_NO_ANALYTICS=1
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export HOMEBREW_CURLRC="$HOME/.curlrc"
-
 export NXS_ZSH_HOME="$HOME/.config/zsh"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
