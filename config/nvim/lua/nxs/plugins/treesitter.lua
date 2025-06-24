@@ -9,7 +9,7 @@ return {
       require("nvim-ts-autotag").setup()
       require("nvim-treesitter.configs").setup({
         ensure_installed = "all",
-        ignore_install = { "po" },
+        ignore_install = { "po", "ipkg" },
         indent = { enable = true },
         highlight = { enable = true },
         additional_vim_regex_highlighting = false,
