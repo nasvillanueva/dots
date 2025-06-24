@@ -10,8 +10,6 @@ files=(
   curlrc
   gitconfig_global
   gitconfig
-  ideavimrc
-  nxs-omz
   skhdrc
   tmux.conf
   zshenv
