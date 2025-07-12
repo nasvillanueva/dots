@@ -9,6 +9,9 @@
     - --cask wezterm@nightly
         - Install [terminfo](https://wezterm.org/config/lua/config/term.html)
     - ripgrep (needed by snacks.nvim grep)
+    - imagemagick
+    - fd
+    - ghostscript
     - fzf
     - lazygit
     - koekeishiya/formulae/skhd
