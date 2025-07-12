@@ -50,19 +50,17 @@ local NXS_LSP_CONFIG = {
       }
     end,
   },
-  ts_ls = {
+  vtsls = {
     before_init = function(_, config)
-      table.insert(config.init_options.plugins, {
+      table.insert(config.settings.vtsls.tsserver.globalPlugins, {
         name = "@vue/typescript-plugin",
         languages = { "vue" },
         location = vim.fn.expand(
           "$MASON/packages/vue-language-server/node_modules/@vue/language-server"
         ),
+        configNamespace = "typescript",
       })
     end,
-    init_options = {
-      plugins = {},
-    },
     filetypes = {
       "typescript",
       "javascript",
@@ -71,6 +69,11 @@ local NXS_LSP_CONFIG = {
       "vue",
     },
     settings = {
+      vtsls = {
+        tsserver = {
+          globalPlugins = {},
+        },
+      },
       javascript = {
         inlayHints = {
           includeInlayEnumMemberValueHints = true,
@@ -96,6 +99,9 @@ local NXS_LSP_CONFIG = {
     },
   },
   vue_ls = {
+    init_options = {
+      typescript = {},
+    },
     settings = {
       scss = {
         lint = {
@@ -108,11 +114,15 @@ local NXS_LSP_CONFIG = {
         },
       },
       vue = {
+        suggest = {
+          componentNameCasing = "alwaysPascalCase",
+          propNameCasing = "alwaysKebabCase",
+        },
         inlayHints = {
           missingProps = true,
           inlineHandlerLeading = false,
           optionsWrapper = false,
-          vBindShorthand = false,
+          vBindShorthand = true,
         },
       },
     },
@@ -292,7 +302,6 @@ return {
 
           if
             client ~= nil
-            and vim.fn.getbufvar(args.buf, "&filetype") ~= "vue"
             and lsp.supports("textDocument/inlayHint", args)
             and vim.api.nvim_buf_is_valid(args.buf)
           then
