@@ -302,6 +302,7 @@ return {
 
           if
             client ~= nil
+            and vim.fn.getbufvar(args.buf, "&filetype") ~= "vue"
             and lsp.supports("textDocument/inlayHint", args)
             and vim.api.nvim_buf_is_valid(args.buf)
           then
