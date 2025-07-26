@@ -77,8 +77,15 @@ keybind.set("n", "]b", "<cmd>bnext<cr>", "Next buffer")
 keybind.set(
   { "i", "n" },
   "<esc>",
-  "<cmd>noh<cr><esc>",
-  "Escape and clear hlsearch"
+  function()
+    vim.cmd("noh")
+    vim.snippet.stop()
+    return "<esc>"
+  end,
+  "Escape and clear hlsearch",
+  {
+    expr = true,
+  }
 )
 
 keybind.set("v", "<", "<gv", "Indent Left")
