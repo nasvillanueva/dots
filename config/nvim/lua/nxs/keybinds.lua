@@ -64,12 +64,32 @@ keybind.set(
   "Move to previous search result and center cursor"
 )
 
-keybind.set("n", "<A-j>", "<cmd>m .+1<cr>==", "Move current line down")
-keybind.set("n", "<A-k>", "<cmd>m .-2<cr>==", "Move current line up")
-keybind.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", "Move current line down")
-keybind.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", "Move current line up")
-keybind.set("v", "<A-j>", ":m '>+1<cr>gv=gv", "Move current line down")
-keybind.set("v", "<A-k>", ":m '<-2<cr>gv=gv", "Move current line up")
+keybind.set(
+  "n",
+  "<A-j>",
+  "<cmd>execute 'move .+' . v:count1<cr>==",
+  "Move Down"
+)
+keybind.set(
+  "n",
+  "<A-k>",
+  "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==",
+  "Move Up"
+)
+keybind.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", "Move Down")
+keybind.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", "Move Up")
+keybind.set(
+  "v",
+  "<A-j>",
+  ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv",
+  "Move Down"
+)
+keybind.set(
+  "v",
+  "<A-k>",
+  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv",
+  "Move Up"
+)
 
 keybind.set("n", "[b", "<cmd>bprevious<cr>", "Prev buffer")
 keybind.set("n", "]b", "<cmd>bnext<cr>", "Next buffer")
