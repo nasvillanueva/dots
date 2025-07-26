@@ -59,6 +59,18 @@ return {
           ["<Down>"] = { "select_next", "fallback" },
           ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
           ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+          ["<C-h>"] = {
+            function(cmp)
+              return cmp.select_prev({ count = 5 })
+            end,
+            "fallback",
+          },
+          ["<C-l>"] = {
+            function(cmp)
+              return cmp.select_next({ count = 5 })
+            end,
+            "fallback",
+          },
         },
         appearance = {
           use_nvim_cmp_as_default = true,
