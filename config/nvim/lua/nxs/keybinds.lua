@@ -34,19 +34,19 @@ keybind.set(
   { expr = true }
 )
 
-keybind.set("n", "<C-w><S-j>", "<cmd>resize +2<cr>", "Increase window height")
-keybind.set("n", "<C-w><S-k>", "<cmd>resize -2<cr>", "Decrease window height")
+keybind.set("n", "<C-Up>", "<cmd>resize +2<cr>", "Increase Window Height")
+keybind.set("n", "<C-Down>", "<cmd>resize -2<cr>", "Decrease Window Height")
 keybind.set(
   "n",
-  "<C-w><S-h>",
+  "<C-Left>",
   "<cmd>vertical resize -2<cr>",
-  "Decrease window width"
+  "Decrease Window Width"
 )
 keybind.set(
   "n",
-  "<C-w><S-l>",
+  "<C-Right>",
   "<cmd>vertical resize +2<cr>",
-  "Increase window width"
+  "Increase Window Width"
 )
 
 keybind.set("n", "<C-d>", "<C-d>zz", "Scroll down and center cursor")
