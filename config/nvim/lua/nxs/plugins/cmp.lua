@@ -12,6 +12,15 @@ return {
       local lspkind = require("lspkind")
       local devicons = require("nvim-web-devicons")
 
+      local has_words_before = function()
+        local col = vim.api.nvim_win_get_cursor(0)[2]
+        if col == 0 then
+          return false
+        end
+        local line = vim.api.nvim_get_current_line()
+        return line:sub(col, col):match("%s") == nil
+      end
+
       blink.setup({
         keymap = {
           preset = "none",
@@ -21,15 +30,6 @@ return {
               if cmp.snippet_active() then
                 return cmp.accept()
               else
-                local has_words_before = function()
-                  local col = vim.api.nvim_win_get_cursor(0)[2]
-                  if col == 0 then
-                    return false
-                  end
-                  local line = vim.api.nvim_get_current_line()
-                  return line:sub(col, col):match("%s") == nil
-                end
-
                 return cmp.select_next({ auto_insert = has_words_before() })
               end
             end,
@@ -72,6 +72,18 @@ return {
               module = "lazydev.integrations.blink",
               -- make lazydev completions top priority (see `:h blink.cmp`)
               score_offset = 100,
+            },
+            snippets = {
+              should_show_items = function(ctx)
+                return ctx.trigger.initial_kind ~= "trigger_character"
+              end,
+            },
+            path = {
+              opts = {
+                get_cwd = function(_)
+                  return vim.fn.getcwd()
+                end,
+              },
             },
           },
         },
