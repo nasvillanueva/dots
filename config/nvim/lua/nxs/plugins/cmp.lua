@@ -6,6 +6,7 @@ return {
       "rafamadriz/friendly-snippets",
       "onsails/lspkind.nvim",
       "nvim-tree/nvim-web-devicons",
+      "alexandre-abrioux/blink-cmp-npm.nvim",
     },
     config = function()
       local blink = require("blink-cmp")
@@ -77,7 +78,7 @@ return {
           nerd_font_variant = "mono",
         },
         sources = {
-          default = { "lazydev", "lsp", "path", "snippets" },
+          default = { "lazydev", "lsp", "path", "snippets", "npm" },
           providers = {
             lazydev = {
               name = "LazyDev",
@@ -95,6 +96,17 @@ return {
                 get_cwd = function(_)
                   return vim.fn.getcwd()
                 end,
+              },
+            },
+            npm = {
+              name = "npm",
+              module = "blink-cmp-npm",
+              async = true,
+              score_offset = 100,
+              opts = {
+                ignore = {},
+                only_semantic_versions = true,
+                only_latest_version = false,
               },
             },
           },
