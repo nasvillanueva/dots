@@ -24,7 +24,7 @@ return {
       blink.setup({
         keymap = {
           preset = "none",
-          ["<C-space>"] = { "show" },
+          ["<C-space>"] = { "show", "hide" },
           ["<Tab>"] = {
             function(cmp)
               if cmp.snippet_active() then
