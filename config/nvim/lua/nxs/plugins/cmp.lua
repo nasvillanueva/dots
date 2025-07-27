@@ -41,7 +41,7 @@ return {
               if cmp.snippet_active() then
                 return cmp.snippet_backward()
               else
-                return cmp.select_prev()
+                return cmp.select_prev({ auto_insert = has_words_before() })
               end
             end,
             "fallback",
