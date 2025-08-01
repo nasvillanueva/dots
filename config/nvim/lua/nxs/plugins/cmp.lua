@@ -3,7 +3,7 @@ return {
     "saghen/blink.cmp",
     version = "1.*",
     dependencies = {
-      "rafamadriz/friendly-snippets",
+      require("nxs.plugins.snippets"),
       "onsails/lspkind.nvim",
       "nvim-tree/nvim-web-devicons",
       "alexandre-abrioux/blink-cmp-npm.nvim",
@@ -76,6 +76,9 @@ return {
         appearance = {
           use_nvim_cmp_as_default = true,
           nerd_font_variant = "mono",
+        },
+        snippets = {
+          preset = "luasnip",
         },
         sources = {
           default = { "lazydev", "lsp", "path", "snippets", "npm" },
