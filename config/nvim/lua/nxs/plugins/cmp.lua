@@ -13,40 +13,12 @@ return {
       local lspkind = require("lspkind")
       local devicons = require("nvim-web-devicons")
 
-      local has_words_before = function()
-        local col = vim.api.nvim_win_get_cursor(0)[2]
-        if col == 0 then
-          return false
-        end
-        local line = vim.api.nvim_get_current_line()
-        return line:sub(col, col):match("%s") == nil
-      end
-
       blink.setup({
         keymap = {
           preset = "none",
           ["<C-space>"] = { "show", "hide" },
-          ["<Tab>"] = {
-            function(cmp)
-              if cmp.snippet_active() then
-                return cmp.accept()
-              else
-                return cmp.select_next({ auto_insert = has_words_before() })
-              end
-            end,
-            "snippet_forward",
-            "fallback",
-          },
-          ["<S-Tab>"] = {
-            function(cmp)
-              if cmp.snippet_active() then
-                return cmp.snippet_backward()
-              else
-                return cmp.select_prev({ auto_insert = has_words_before() })
-              end
-            end,
-            "fallback",
-          },
+          ["<Tab>"] = { "snippet_forward", "fallback" },
+          ["<S-Tab>"] = { "snippet_backward", "fallback" },
           ["<CR>"] = { "accept", "fallback" },
           ["<C-u>"] = {
             "scroll_documentation_up",
