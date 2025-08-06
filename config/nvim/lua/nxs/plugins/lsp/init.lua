@@ -76,9 +76,15 @@ local NXS_LSP_CONFIG = {
       },
       javascript = {
         format = { enable = false },
+        referencesCodeLens = { enabled = false },
       },
       typescript = {
         format = { enable = false },
+        referencesCodeLens = { enabled = false },
+        implementationsCodeLens = { enabled = false },
+        tssever = {
+          maxTsServerMemory = "auto",
+        },
       },
     },
   },
