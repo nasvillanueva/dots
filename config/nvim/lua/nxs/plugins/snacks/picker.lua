@@ -55,44 +55,44 @@ return {
           },
         },
       })
-    end, "Picker: Smart Find Files"),
+    end, "Picker: Smart Find Files", { remap = true }),
     keybind.lazyKey("", "<leader>,", function()
       Snacks.picker.buffers()
-    end, "Picker: Buffers"),
+    end, "Picker: Buffers", { remap = true }),
     keybind.lazyKey("", "<leader>/", function()
       Snacks.picker.grep()
-    end, "Picker: Grep"),
+    end, "Picker: Grep", { remap = true }),
     keybind.lazyKey("", "<leader>.", function()
       local path = vim.fn.expand("%:p:h")
       if vim.bo.filetype == "oil" then
         path = string.sub(path, 5)
       end
       Snacks.picker.grep({ cwd = path })
-    end, "Picker: Grep CWD"),
+    end, "Picker: Grep CWD", { remap = true }),
 
     keybind.lazyKey("", "<leader>:", function()
       Snacks.picker.command_history()
-    end, "Picker: Command History"),
+    end, "Picker: Command History", { remap = true }),
     keybind.lazyKey("", "<leader>n", function()
       Snacks.picker.notifications()
-    end, "Picker: Notification History"),
+    end, "Picker: Notification History", { remap = true }),
     -- find
     keybind.lazyKey("", "<leader>fb", function()
       Snacks.picker.buffers()
-    end, "Picker: Buffers"),
+    end, "Picker: Buffers", { remap = true }),
     keybind.lazyKey("", "<leader>fc", function()
       ---@diagnostic disable-next-line: assign-type-mismatch
       Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-    end, "Picker: Find Config File"),
+    end, "Picker: Find Config File", { remap = true }),
     keybind.lazyKey("", "<leader>ff", function()
       Snacks.picker.files()
-    end, "Picker: Find Files"),
+    end, "Picker: Find Files", { remap = true }),
     keybind.lazyKey("", "<leader>fg", function()
       Snacks.picker.git_files()
-    end, "Picker: Find Git Files"),
+    end, "Picker: Find Git Files", { remap = true }),
     keybind.lazyKey("", "<leader>fp", function()
       Snacks.picker.projects()
-    end, "Picker: Projects"),
+    end, "Picker: Projects", { remap = true }),
     keybind.lazyKey("", "<leader>fr", function()
       Snacks.picker.recent({
         filter = {
@@ -104,102 +104,102 @@ return {
           },
         },
       })
-    end, "Picker: Recent"),
+    end, "Picker: Recent", { remap = true }),
     -- git
     keybind.lazyKey("", "<leader>gb", function()
       Snacks.picker.git_branches()
-    end, "Picker: Git Branches"),
+    end, "Picker: Git Branches", { remap = true }),
     keybind.lazyKey("", "<leader>gl", function()
       Snacks.picker.git_log()
-    end, "Picker: Git Log"),
+    end, "Picker: Git Log", { remap = true }),
     keybind.lazyKey("", "<leader>gL", function()
       Snacks.picker.git_log_line()
-    end, "Picker: Git Log Line"),
+    end, "Picker: Git Log Line", { remap = true }),
     keybind.lazyKey("", "<leader>gs", function()
       Snacks.picker.git_status()
-    end, "Picker: Git Status"),
+    end, "Picker: Git Status", { remap = true }),
     keybind.lazyKey("", "<leader>gS", function()
       Snacks.picker.git_stash()
-    end, "Picker: Git Stash"),
+    end, "Picker: Git Stash", { remap = true }),
     keybind.lazyKey("", "<leader>gf", function()
       Snacks.picker.git_log_file()
-    end, "Picker: Git Log File"),
+    end, "Picker: Git Log File", { remap = true }),
     -- Grep
     keybind.lazyKey("", "<leader>sb", function()
       Snacks.picker.lines()
-    end, "Picker: Buffer Lines"),
+    end, "Picker: Buffer Lines", { remap = true }),
     keybind.lazyKey("", "<leader>sB", function()
       Snacks.picker.grep_buffers()
-    end, "Picker: Grep Open Buffers"),
+    end, "Picker: Grep Open Buffers", { remap = true }),
     keybind.lazyKey("", "<leader>sg", function()
       Snacks.picker.grep()
-    end, "Picker: Grep"),
+    end, "Picker: Grep", { remap = true }),
     keybind.lazyKey({ "n", "x" }, "<leader>sw", function()
       Snacks.picker.grep_word()
-    end, "Picker: Visual selection or word"),
+    end, "Picker: Visual selection or word", { remap = true }),
     -- search
     keybind.lazyKey("", '<leader>s"', function()
       Snacks.picker.registers()
-    end, "Picker: Registers"),
+    end, "Picker: Registers", { remap = true }),
     keybind.lazyKey("", "<leader>s/", function()
       Snacks.picker.search_history()
-    end, "Picker: Search History"),
+    end, "Picker: Search History", { remap = true }),
     keybind.lazyKey("", "<leader>sa", function()
       Snacks.picker.autocmds()
-    end, "Picker: Autocmds"),
+    end, "Picker: Autocmds", { remap = true }),
     keybind.lazyKey("", "<leader>sb", function()
       Snacks.picker.lines()
-    end, "Picker: Buffer Lines"),
+    end, "Picker: Buffer Lines", { remap = true }),
     keybind.lazyKey("", "<leader>sc", function()
       Snacks.picker.command_history()
-    end, "Picker: Command History"),
+    end, "Picker: Command History", { remap = true }),
     keybind.lazyKey("", "<leader>sC", function()
       Snacks.picker.commands()
-    end, "Picker: Commands"),
+    end, "Picker: Commands", { remap = true }),
     keybind.lazyKey("", "<leader>sd", function()
       Snacks.picker.diagnostics()
-    end, "Picker: Diagnostics"),
+    end, "Picker: Diagnostics", { remap = true }),
     keybind.lazyKey("", "<leader>sD", function()
       Snacks.picker.diagnostics_buffer()
-    end, "Picker: Buffer Diagnostics"),
+    end, "Picker: Buffer Diagnostics", { remap = true }),
     keybind.lazyKey("", "<leader>sh", function()
       Snacks.picker.help()
-    end, "Picker: Help Pages"),
+    end, "Picker: Help Pages", { remap = true }),
     keybind.lazyKey("", "<leader>sH", function()
       Snacks.picker.highlights()
-    end, "Picker: Highlights"),
+    end, "Picker: Highlights", { remap = true }),
     keybind.lazyKey("", "<leader>si", function()
       Snacks.picker.icons()
-    end, "Picker: Icons"),
+    end, "Picker: Icons", { remap = true }),
     keybind.lazyKey("", "<leader>sj", function()
       Snacks.picker.jumps()
-    end, "Picker: Jumps"),
+    end, "Picker: Jumps", { remap = true }),
     keybind.lazyKey("", "<leader>sk", function()
       Snacks.picker.keymaps()
-    end, "Picker: Keymaps"),
+    end, "Picker: Keymaps", { remap = true }),
     keybind.lazyKey("", "<leader>sl", function()
       Snacks.picker.loclist()
-    end, "Picker: Location List"),
+    end, "Picker: Location List", { remap = true }),
     keybind.lazyKey("", "<leader>sm", function()
       Snacks.picker.marks()
-    end, "Picker: Marks"),
+    end, "Picker: Marks", { remap = true }),
     keybind.lazyKey("", "<leader>sM", function()
       Snacks.picker.man()
-    end, "Picker: Man Pages"),
+    end, "Picker: Man Pages", { remap = true }),
     keybind.lazyKey("", "<leader>sp", function()
       Snacks.picker.lazy()
-    end, "Picker: Search for Plugin Spec"),
+    end, "Picker: Search for Plugin Spec", { remap = true }),
     keybind.lazyKey("", "<leader>sq", function()
       Snacks.picker.qflist()
-    end, "Picker: Quickfix List"),
+    end, "Picker: Quickfix List", { remap = true }),
     keybind.lazyKey("", "<leader>sR", function()
       Snacks.picker.resume()
-    end, "Picker: Resume"),
+    end, "Picker: Resume", { remap = true }),
     keybind.lazyKey("", "<leader>su", function()
       Snacks.picker.undo()
-    end, "Picker: Undo History"),
+    end, "Picker: Undo History", { remap = true }),
     keybind.lazyKey("", "<leader>uC", function()
       Snacks.picker.colorschemes()
-    end, "Picker: Colorschemes"),
+    end, "Picker: Colorschemes", { remap = true }),
   },
 }
