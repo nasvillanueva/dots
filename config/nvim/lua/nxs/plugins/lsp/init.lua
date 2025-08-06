@@ -75,26 +75,10 @@ local NXS_LSP_CONFIG = {
         },
       },
       javascript = {
-        inlayHints = {
-          includeInlayEnumMemberValueHints = true,
-          includeInlayFunctionLikeReturnTypeHints = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayVariableTypeHints = false,
-        },
+        format = { enable = false },
       },
       typescript = {
-        inlayHints = {
-          includeInlayEnumMemberValueHints = true,
-          includeInlayFunctionLikeReturnTypeHints = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayVariableTypeHints = false,
-        },
+        format = { enable = false },
       },
     },
   },
@@ -117,12 +101,6 @@ local NXS_LSP_CONFIG = {
         suggest = {
           componentNameCasing = "alwaysPascalCase",
           propNameCasing = "alwaysKebabCase",
-        },
-        inlayHints = {
-          missingProps = true,
-          inlineHandlerLeading = false,
-          optionsWrapper = false,
-          vBindShorthand = true,
         },
       },
     },
@@ -297,20 +275,7 @@ return {
       end
 
       vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-          if
-            client ~= nil
-            and vim.fn.getbufvar(args.buf, "&filetype") ~= "vue"
-            and lsp.supports("textDocument/inlayHint", args)
-            and vim.api.nvim_buf_is_valid(args.buf)
-          then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-          end
-
-          setup_keybindings(args)
-        end,
+        callback = setup_keybindings,
       })
     end,
   },
