@@ -73,6 +73,12 @@ local NXS_LSP_CONFIG = {
         tsserver = {
           globalPlugins = {},
         },
+        experimental = {
+          completion = {
+            enableServerSideFuzzyMatch = true,
+            entriesLimit = true,
+          },
+        },
       },
       javascript = {
         format = { enable = false },
@@ -82,16 +88,8 @@ local NXS_LSP_CONFIG = {
         format = { enable = false },
         referencesCodeLens = { enabled = false },
         implementationsCodeLens = { enabled = false },
-        tssever = {
-          maxTsServerMemory = 8192,
-        },
         preferences = {
           includePackageJsonAutoImports = "off",
-        },
-      },
-      experimental = {
-        completion = {
-          enableServerSideFuzzyMatch = true,
         },
       },
     },
