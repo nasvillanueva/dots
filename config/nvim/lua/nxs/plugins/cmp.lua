@@ -55,6 +55,12 @@ return {
         sources = {
           default = { "lazydev", "lsp", "path", "snippets", "npm" },
           providers = {
+            path = {
+              opts = {
+                show_hidden_files_by_default = true,
+                ignore_root_slash = false,
+              },
+            },
             lazydev = {
               name = "LazyDev",
               module = "lazydev.integrations.blink",
@@ -65,13 +71,6 @@ return {
               should_show_items = function(ctx)
                 return ctx.trigger.initial_kind ~= "trigger_character"
               end,
-            },
-            path = {
-              opts = {
-                get_cwd = function(_)
-                  return vim.fn.getcwd()
-                end,
-              },
             },
             npm = {
               name = "npm",
@@ -90,16 +89,6 @@ return {
           implementation = "prefer_rust",
           sorts = {
             "exact",
-            -- Deprioritize emmet_ls
-            function(a, b)
-              if
-                (a.client_name == nil or b.client_name == nil)
-                or (a.client_name == b.client_name)
-              then
-                return
-              end
-              return b.client_name == "emmet_ls"
-            end,
             "score",
             "sort_text",
           },
