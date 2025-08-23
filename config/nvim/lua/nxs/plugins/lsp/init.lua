@@ -83,7 +83,15 @@ local NXS_LSP_CONFIG = {
         referencesCodeLens = { enabled = false },
         implementationsCodeLens = { enabled = false },
         tssever = {
-          maxTsServerMemory = "auto",
+          maxTsServerMemory = 8192,
+        },
+        preferences = {
+          includePackageJsonAutoImports = "off",
+        },
+      },
+      experimental = {
+        completion = {
+          enableServerSideFuzzyMatch = true,
         },
       },
     },
