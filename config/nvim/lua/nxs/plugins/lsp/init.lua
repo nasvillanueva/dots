@@ -44,25 +44,11 @@ local NXS_LSP_CONFIG = {
     },
   },
   elixirls = {
-    before_init = function(_, config)
-      config.cmd = {
-        vim.fn.expand("$MASON/bin/elixir-ls"),
-      }
-    end,
+    cmd = {
+      vim.fn.stdpath("data") .. "/mason/bin/elixir-ls",
+    },
   },
   vtsls = {
-    before_init = function(_, config)
-      config.settings.vtsls.tsserver.globalPlugins = {
-        {
-          name = "@vue/typescript-plugin",
-          languages = { "vue" },
-          location = vim.fn.expand(
-            "$MASON/packages/vue-language-server/node_modules/@vue/language-server"
-          ),
-          configNamespace = "typescript",
-        },
-      }
-    end,
     filetypes = {
       "typescript",
       "javascript",
@@ -73,7 +59,15 @@ local NXS_LSP_CONFIG = {
     settings = {
       vtsls = {
         tsserver = {
-          globalPlugins = {},
+          globalPlugins = {
+            {
+              name = "@vue/typescript-plugin",
+              languages = { "vue" },
+              location = vim.fn.stdpath("data")
+                .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+              configNamespace = "typescript",
+            },
+          },
         },
         experimental = {
           completion = {
