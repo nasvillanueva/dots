@@ -52,14 +52,16 @@ local NXS_LSP_CONFIG = {
   },
   vtsls = {
     before_init = function(_, config)
-      table.insert(config.settings.vtsls.tsserver.globalPlugins, {
-        name = "@vue/typescript-plugin",
-        languages = { "vue" },
-        location = vim.fn.expand(
-          "$MASON/packages/vue-language-server/node_modules/@vue/language-server"
-        ),
-        configNamespace = "typescript",
-      })
+      config.settings.vtsls.tsserver.globalPlugins = {
+        {
+          name = "@vue/typescript-plugin",
+          languages = { "vue" },
+          location = vim.fn.expand(
+            "$MASON/packages/vue-language-server/node_modules/@vue/language-server"
+          ),
+          configNamespace = "typescript",
+        },
+      }
     end,
     filetypes = {
       "typescript",
