@@ -79,7 +79,6 @@ local NXS_LSP_CONFIG = {
         experimental = {
           completion = {
             enableServerSideFuzzyMatch = true,
-            entriesLimit = true,
           },
         },
       },
