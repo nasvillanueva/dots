@@ -7,7 +7,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         elixir = { "mix" },
-        ["*"] = { "codespell", "trim_whitespace" },
+        ["*"] = { "trim_whitespace" },
         -- disable formatter to let autocmd eslint run instead
         javascript = {},
         javascriptreact = {},
