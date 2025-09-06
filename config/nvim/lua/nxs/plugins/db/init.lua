@@ -3,13 +3,16 @@ local keybind = require("nxs.utils.keybind")
 
 return {
   {
-    "tpope/vim-dadbod",
-    cmd = "DB",
-  },
-  {
     "kristijanhusak/vim-dadbod-ui",
     cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
-    dependencies = "vim-dadbod",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      {
+        "kristijanhusak/vim-dadbod-completion",
+        ft = { "sql", "mysql", "plsql" },
+        lazy = true,
+      },
+    },
     keys = {
       keybind.lazyKey(
         "n",

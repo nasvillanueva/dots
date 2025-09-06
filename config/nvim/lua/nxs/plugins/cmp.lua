@@ -54,6 +54,9 @@ return {
         },
         sources = {
           default = { "lazydev", "lsp", "path", "snippets", "npm" },
+          per_filetype = {
+            sql = { "dadbod", "snippets", "buffer" },
+          },
           providers = {
             path = {
               opts = {
@@ -83,6 +86,7 @@ return {
                 only_latest_version = false,
               },
             },
+            dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
           },
         },
         fuzzy = {
