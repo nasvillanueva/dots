@@ -21,4 +21,5 @@
         - brew tap laishulu/homebrew
     - asdf
     - --cask rectangle
+    - translate-shell
 - clone dots
