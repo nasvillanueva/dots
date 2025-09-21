@@ -65,6 +65,7 @@ local NXS_LSP_CONFIG = {
     },
     settings = {
       vtsls = {
+        enableMoveToFileCodeAction = true,
         tsserver = {
           globalPlugins = {
             {
@@ -85,6 +86,10 @@ local NXS_LSP_CONFIG = {
       javascript = {
         format = { enable = false },
         referencesCodeLens = { enabled = false },
+        updateImportsOnFileMove = { enabled = "always" },
+        suggest = {
+          completeFunctionCalls = true,
+        },
       },
       typescript = {
         format = { enable = false },
@@ -92,6 +97,10 @@ local NXS_LSP_CONFIG = {
         implementationsCodeLens = { enabled = false },
         preferences = {
           includePackageJsonAutoImports = "off",
+        },
+        updateImportsOnFileMove = { enabled = "always" },
+        suggest = {
+          completeFunctionCalls = true,
         },
       },
     },
