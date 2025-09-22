@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# Look for platforms here:
+# https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html
+PLATFORM="Mac_Arm"
+
+# Look for builds in:
+# https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac_Arm/
+BUILD=$1
+
+curl --output chrome.zip "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/$PLATFORM%2F$BUILD%2Fchrome-mac.zip?alt=media"
+unzip chrome.zip && rm chrome.zip
+mv chrome-mac/Chromium.app /Applications/Chromium-$BUILD.app
+rm -rf chrome
