@@ -2,6 +2,7 @@
 
 - Install [nvm](https://github.com/nvm-sh/nvm)
     - Install latest node lts
+    - `npm install -g tree-sitter-cli`
 - Install [homebrew](https://brew.sh), then install packages:
     - git
     - tmux
