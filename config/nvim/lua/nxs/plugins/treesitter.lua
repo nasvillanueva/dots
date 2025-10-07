@@ -46,14 +46,4 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
   },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = { "VeryLazy" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      multiwindow = true,
-    },
-  },
 }
