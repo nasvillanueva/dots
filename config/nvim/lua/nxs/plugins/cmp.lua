@@ -91,11 +91,6 @@ return {
         },
         fuzzy = {
           implementation = "prefer_rust",
-          sorts = {
-            "exact",
-            "score",
-            "sort_text",
-          },
         },
         completion = {
           keyword = { range = "full" },
