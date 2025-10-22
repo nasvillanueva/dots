@@ -5,7 +5,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- As of adding, needs wezterm@nightly
-config.color_scheme = "Everforest Dark Hard (Gogh)"
+config.color_scheme = "Everforest Dark Soft (Gogh)"
 
 config.enable_tab_bar = false
 
