@@ -12,6 +12,7 @@ files=(
   gitconfig
   skhdrc
   tmux.conf
+  zimrc
   zshenv
   zshrc
 )

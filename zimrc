@@ -1,0 +1,14 @@
+zmodule homebrew # needs to be loaded first
+
+zmodule environment
+zmodule input
+zmodule utility
+
+zmodule exa
+zmodule fzf
+
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
+
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-autosuggestions

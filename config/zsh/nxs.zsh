@@ -1,15 +1,10 @@
 scripts_dir="${0:A:h}"
 
 scripts=(
-  plugins.zsh
-  completions.zsh # Should be after plugins if there are completion plugins
-  aliases.zsh
-  directories.zsh
-  history.zsh
-  keybinds.zsh
-  misc.zsh
-  spectrum.zsh
+  env.zsh
+  zim.zsh
   prompt.zsh
+  alias.zsh
 )
 
 for s in $scripts; do
@@ -18,3 +13,7 @@ done
 
 unset scripts_dir
 unset scripts
+
+# Ensure coreutils path takes precedence
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
