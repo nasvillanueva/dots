@@ -5,6 +5,7 @@ scripts=(
   zim.zsh
   prompt.zsh
   alias.zsh
+  keybinds.zsh
 )
 
 for s in $scripts; do
