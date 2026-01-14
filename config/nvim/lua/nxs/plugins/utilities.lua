@@ -65,7 +65,7 @@ return {
       keybind.set(mode, "<C-h>", emacs.delete_char_back)
       keybind.set(mode, "<C-d>", emacs.delete_char_forward)
       keybind.set(mode, "<A-backspace>", emacs.delete_word_back)
-      keybind.set(mode, "<A-d>", emacs.delete_word_forward)
+      keybind.set({ "i", "c", "t" }, "<A-d>", emacs.delete_word_forward)
       keybind.set(mode, "<C-u>", emacs.delete_line_back)
       keybind.set(mode, "<C-k>", emacs.delete_line_forward)
     end,
