@@ -16,17 +16,46 @@ local get_path = function()
   return path
 end
 
-local copy_path = function(relative)
-  return function()
-    local path = get_path()
+local copy_path = function(relative, prefix)
+  local path = get_path()
 
-    if relative then
-      path = vim.fn.fnamemodify(path, ":.")
-    end
-    vim.fn.setreg("+", path)
-    vim.notify('Copied "' .. path .. '" to the clipboard!')
+  if relative then
+    path = vim.fn.fnamemodify(path, ":.")
   end
+
+  if prefix ~= nil then
+    path = path:gsub(prefix, "")
+  end
+
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to the clipboard!')
 end
 
-vim.api.nvim_create_user_command("CopyAbsoluteFilePath", copy_path(false), {})
-vim.api.nvim_create_user_command("CopyRelativeFilePath", copy_path(true), {})
+vim.api.nvim_create_user_command("CopyFilePath", function(opts)
+  local args = opts.fargs
+
+  local relative = false
+  local prefix = nil
+
+  for _, arg in ipairs(args) do
+    if arg == "relative" then
+      relative = true
+    elseif vim.startswith(arg, "prefix=") then
+      prefix = arg:sub(#"prefix=" + 1)
+    end
+  end
+
+  copy_path(relative, prefix)
+end, {
+  nargs = "*",
+  complete = function(arglead)
+    local candidates = {
+      "relative",
+      "prefix=",
+    }
+
+    return vim.tbl_filter(function(c)
+      return vim.startswith(c, arglead)
+    end, candidates)
+  end,
+})

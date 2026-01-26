@@ -166,13 +166,19 @@ keybind.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", "Previous Tab")
 
 keybind.set(
   "n",
-  "<leader>fy",
-  "<cmd>CopyRelativeFilePath<CR>",
+  "<leader>yr",
+  "<cmd>CopyFilePath relative<CR>",
   "Copy Relative File Path"
 )
 keybind.set(
   "n",
-  "<leader>fY",
-  "<cmd>CopyAbsoluteFilePath<CR>",
+  "<leader>ya",
+  "<cmd>CopyFilePath<CR>",
   "Copy Absolute File Path"
+)
+keybind.set(
+  "n",
+  "<leader>yt",
+  "<cmd>CopyFilePath relative prefix=public/<CR>",
+  "Copy Relative For Public Directory"
 )
