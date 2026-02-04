@@ -7,6 +7,9 @@ return {
     return vim.tbl_deep_extend("force", opts or {}, {
       picker = {
         enabled = true,
+        on_show = function()
+          vim.cmd.startinsert()
+        end,
         actions = require("trouble.sources.snacks").actions,
         main = {
           file = false, -- allow non file windows open the selected file
