@@ -24,8 +24,14 @@ return {
 
       ts.install(parsers)
 
+      local excluded_fts = { "dockerfile" }
+
       vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
+        callback = function(args)
+          if vim.tbl_contains(excluded_fts, args.match) then
+            return
+          end
+
           local started = pcall(vim.treesitter.start)
 
           if started then
