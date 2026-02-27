@@ -1,5 +1,5 @@
 /config/nvim/lazy-lock.json
-/config/nvim/lua/nxs/plugins/db/config.lua
+/config/mini/lua/nxs/dbconfig.lua
 /config/lazygit/*
 !/config/lazygit/config.yml
 /config/zsh/plugins/*
