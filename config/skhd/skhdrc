@@ -1,4 +1,4 @@
-cmd + ctrl - e : open -a /Applications/WezTerm.app
+cmd + ctrl - e : open -a /Applications/Ghostty.app
 cmd + ctrl - d : open -a /Applications/Discord.app
 cmd + ctrl - r : open -a /Applications/Google\ Chrome.app
 cmd + ctrl - s : open -a /Applications/Slack.app

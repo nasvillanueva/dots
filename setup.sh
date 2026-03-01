@@ -5,11 +5,12 @@ files=(
   config/nvim
   config/skhd
   config/lazygit
-  config/wezterm
+  config/ghostty
   config/zsh
   curlrc
   gitconfig_global
   gitconfig
+  hushlogin
   skhdrc
   tmux.conf
   zimrc
