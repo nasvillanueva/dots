@@ -79,21 +79,31 @@ MiniDeps.later(function()
   MiniDeps.add({ source = "catgoose/nvim-colorizer.lua" })
 
   require("colorizer").setup({
-    filetypes = {
-      "html",
-      "vue",
-      "css",
-      "scss",
-      "less",
-      "heex",
-    },
-    user_default_options = {
-      mode = "virtualtext",
-      RGB = true,
-      RRGGBB = true,
-      names = false,
-      tailwind = true,
-      virtualtext_inline = "after",
+    -- Don't auto enable by filetype
+    filetypes = {},
+    options = {
+      parsers = {
+        css = true,
+        css_fn = true,
+        names = {
+          enabled = false,
+        },
+        hex = {
+          enabled = true,
+          rgb = true,
+          rrggbb = true,
+        },
+        tailwind = {
+          enabled = true,
+          lsp = true,
+        },
+      },
+      display = {
+        mode = "virtualtext",
+        virtualtext = {
+          position = "after",
+        },
+      },
     },
   })
 end)
