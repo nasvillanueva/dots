@@ -1,8 +1,7 @@
 MiniDeps.now(function()
   MiniDeps.add({ source = "neanias/everforest-nvim" })
   require("everforest").setup({
-
-    background = "soft",
+    background = "hard",
     dim_inactive_windows = true,
   })
 

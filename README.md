@@ -2,13 +2,11 @@
 
 - Install [nvm](https://github.com/nvm-sh/nvm)
     - Install latest node lts
-    - `npm install -g tree-sitter-cli`
 - Install [homebrew](https://brew.sh), then install packages:
     - git
     - tmux
     - coreutils
-    - --cask wezterm@nightly
-        - Install [terminfo](https://wezterm.org/config/lua/config/term.html)
+    - ghostty
     - ripgrep (needed by snacks.nvim grep)
     - imagemagick
     - fd
@@ -23,4 +21,5 @@
     - asdf
     - --cask rectangle
     - translate-shell
+    - tree-sitter-cli
 - clone dots
