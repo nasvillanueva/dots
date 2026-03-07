@@ -1,25 +1,26 @@
 # Everforest dark medium theme for Ghostty
 ## name: everforest-dark-medium
 
-palette = 0=#d3c6aa
+palette = 0=#7a8478
 palette = 1=#e67e80
 palette = 2=#a7c080
 palette = 3=#dbbc7f
 palette = 4=#7fbbb3
 palette = 5=#d699b6
 palette = 6=#83c092
-palette = 7=#475258
-palette = 8=#d3c6aa
-palette = 9=#dd9f95
-palette = 10=#bdc395
-palette = 11=#d6c195
-palette = 12=#a9c0af
-palette = 13=#d4afb0
-palette = 14=#abc29e
-palette = 15=#475258
+palette = 7=#f2efdf
+palette = 8=#a6b0a0
+palette = 9=#f85552
+palette = 10=#8da101
+palette = 11=#dfa000
+palette = 12=#3a94c5
+palette = 13=#df69ba
+palette = 14=#35a77c
+palette = 15=#fffbef
 
 background = #2d353b
 foreground = #d3c6aa
-cursor-color = #d3c6aa
-selection-background = #543a48
+# cursor-color = #e69875
+# cursor-text = #4c3743
+selection-background = #4c3743
 selection-foreground = #d3c6aa
