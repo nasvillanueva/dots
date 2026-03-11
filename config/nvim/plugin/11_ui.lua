@@ -1,12 +1,12 @@
 MiniDeps.now(function()
-  MiniDeps.add({ source = "neanias/everforest-nvim" })
-  require("everforest").setup({
-    background = "hard",
+  MiniDeps.add({ source = "rose-pine/neovim", name = "rose-pine" })
+  require("rose-pine").setup({
+    dark_variant = "moon",
     dim_inactive_windows = true,
   })
 
   vim.o.background = "dark"
-  vim.cmd("colorscheme everforest")
+  vim.cmd("colorscheme rose-pine")
 end)
 
 MiniDeps.now(function()

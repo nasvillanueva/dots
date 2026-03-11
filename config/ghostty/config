@@ -1,4 +1,5 @@
-theme = dark:everforest-dark-hard,light:everforest-light-hard
+#theme = dark:everforest-dark-hard,light:everforest-light-hard
+theme = dark:Rose Pine Moon,light:Rose Pine Dawn
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 11.5
 
