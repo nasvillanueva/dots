@@ -5,8 +5,26 @@ MiniDeps.now(function()
     dim_inactive_windows = true,
   })
 
-  vim.o.background = "dark"
+  local function is_dark_mode()
+    local obj = vim
+      .system({ "defaults", "read", "-g", "AppleInterfaceStyle" }, { text = true })
+      :wait()
+    return obj.stdout:match("Dark") ~= nil
+  end
+
+  if is_dark_mode() then
+    vim.opt.background = "dark"
+  else
+    vim.opt.background = "light"
+  end
+
   vim.cmd("colorscheme rose-pine")
+end)
+
+-- lazy loaded since we check for light/dark mode when setting colorscheme
+MiniDeps.later(function()
+  MiniDeps.add({ source = "f-person/auto-dark-mode.nvim" })
+  require("auto-dark-mode").setup()
 end)
 
 MiniDeps.now(function()
