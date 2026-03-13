@@ -19,6 +19,7 @@ window-save-state = never
 bell-features = no-system, no-audio, no-attention, no-title, no-border
 
 shell-integration-features = ssh-terminfo
+quit-after-last-window-closed = true
 
 keybind = clear
 keybind = cmd+q=close_surface
