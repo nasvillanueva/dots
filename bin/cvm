@@ -1,14 +1,65 @@
 #!/usr/bin/env zsh
 
-# Look for platforms here:
+# See available platforms in
 # https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html
 PLATFORM="Mac_Arm"
-
-# Look for builds in:
+# See available builds inside each platform directory in the link above.
+#
+# For instance, for Mac_Arm (silicon), it will be:
 # https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Mac_Arm/
-BUILD=$1
+BUILD=""
 
-curl --output chrome.zip "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/$PLATFORM%2F$BUILD%2Fchrome-mac.zip?alt=media"
-unzip chrome.zip && rm chrome.zip
-mv chrome-mac/Chromium.app /Applications/Chromium-$BUILD.app
-rm -rf chrome
+usage() {
+    echo "Usage: $0 [options]"
+    echo "Options:"
+    echo "  -p, --platform <name>  Set platform (Mac or Mac_Arm) [Default: Mac_Arm]"
+    echo "  -b, --build <number>   Set build number (required)"
+    echo "  -h, --help             Show this help message"
+    exit 1
+}
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -p|--platform)
+      PLATFORM="$2"
+      shift 2
+      ;;
+    -b|--build)
+      BUILD="$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      ;;
+    *)
+      echo "Unknown option: $1"
+      usage
+      ;;
+  esac
+done
+
+if [[ "$PLATFORM" != "Mac" && "$PLATFORM" != "Mac_Arm" ]]; then
+    echo "Error: Unsupported platform '$PLATFORM'."
+    echo "This script only supports 'Mac' (Intel) or 'Mac_Arm' (Silicon)."
+    exit 1
+fi
+
+if [[ -z "$BUILD" ]]; then
+    echo "Error: Build number is required."
+    usage
+fi
+
+echo "Targeting Platform: $PLATFORM"
+echo "Targeting Build:    $BUILD"
+
+URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/${PLATFORM}%2F${BUILD}%2Fchrome-mac.zip?alt=media"
+
+if curl --fail --output chrome.zip "$URL"; then
+    unzip -q chrome.zip && rm chrome.zip
+    mv chrome-mac/Chromium.app "/Applications/Chromium-$BUILD.app"
+    rm -rf chrome-mac
+    echo "Successfully installed Chromium $BUILD."
+else
+    echo "Error: Could not download build $BUILD. Check your platform/build combo."
+    exit 1
+fi
