@@ -1,13 +1,11 @@
 require("nxs.dbconfig")
 
-MiniDeps.later(function()
-  MiniDeps.add({
-    source = "kristijanhusak/vim-dadbod-ui",
-    depends = {
-      "tpope/vim-dadbod",
-    },
-  })
+local setup_deferred = _G.nxs.deferred_packadd({
+  _G.nxs.gh("tpope/vim-dadbod"),
+  _G.nxs.gh("kristijanhusak/vim-dadbod-ui"),
+})
 
+setup_deferred(function()
   local data_path = vim.fn.stdpath("data")
 
   vim.g.db_ui_auto_execute_table_helpers = 1

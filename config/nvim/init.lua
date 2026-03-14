@@ -1,29 +1,8 @@
-local path_package = vim.fn.stdpath("data") .. "/site"
-local mini_path = path_package .. "/pack/deps/start/mini.nvim"
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    "git",
-    "clone",
-    "--filter=blob:none",
-    -- Uncomment next line to use 'stable' branch
-    -- '--branch', 'stable',
-    "https://github.com/nvim-mini/mini.nvim",
-    mini_path,
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd("packadd mini.nvim | helptags ALL")
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
-
-require("mini.deps").setup()
-
--- Initialize personal namespace in the global object.
-_G.nxs = {}
+local nxs = {}
 
 -- Define custom autocmd group
 local autocmd_group = vim.api.nvim_create_augroup("nxs", { clear = true })
-_G.nxs.new_autocmd = function(event, pattern, callback, desc, once)
+nxs.new_autocmd = function(event, pattern, callback, desc, once)
   vim.api.nvim_create_autocmd(event, {
     group = autocmd_group,
     pattern = pattern,
@@ -33,7 +12,7 @@ _G.nxs.new_autocmd = function(event, pattern, callback, desc, once)
   })
 end
 
-_G.nxs.keybind_set = function(mode, keybind, cmd, desc, opts)
+nxs.keybind_set = function(mode, keybind, cmd, desc, opts)
   vim.keymap.set(
     mode,
     keybind,
@@ -45,3 +24,32 @@ _G.nxs.keybind_set = function(mode, keybind, cmd, desc, opts)
     }, opts or {})
   )
 end
+
+nxs.deferred_packadd = function(specs, opts)
+  local deferred_spec_names = {}
+
+  vim.pack.add(
+    specs,
+    vim.tbl_deep_extend("force", {
+      load = function(plug_data)
+        table.insert(deferred_spec_names, plug_data.spec.name)
+      end,
+    }, opts or {})
+  )
+
+  return function(setup)
+    vim.schedule(function()
+      for _, deferred_spec_name in ipairs(deferred_spec_names) do
+        vim.cmd.packadd(deferred_spec_name)
+      end
+
+      setup()
+    end)
+  end
+end
+
+nxs.gh = function(x)
+  return "https://github.com/" .. x
+end
+
+_G.nxs = nxs

@@ -1,7 +1,59 @@
-MiniDeps.later(function()
-  MiniDeps.add({ source = "mason-org/mason.nvim" })
-  MiniDeps.add({ source = "mason-org/mason-lspconfig.nvim" })
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "luasnip" and (kind == "install" or kind == "update") then
+      if not ev.data.active then
+        vim.cmd.packadd("luasnip")
+      end
 
+      vim.fn.system({ "make", "install_jsregexp", "-C", ev.data.path })
+    end
+  end,
+})
+
+local setup_deferred = _G.nxs.deferred_packadd({
+  {
+    src = _G.nxs.gh("chrisgrieser/nvim-early-retirement"),
+    name = "early-retirement",
+  },
+
+  _G.nxs.gh("rafamadriz/friendly-snippets"),
+  { src = _G.nxs.gh("L3MON4D3/LuaSnip"), version = vim.version.range("2.*") },
+
+  _G.nxs.gh("folke/lazydev.nvim"),
+
+  _G.nxs.gh("mason-org/mason.nvim"),
+  _G.nxs.gh("mason-org/mason-lspconfig.nvim"),
+  _G.nxs.gh("neovim/nvim-lspconfig"),
+
+  _G.nxs.gh("onsails/lspkind.nvim"),
+  _G.nxs.gh("alexandre-abrioux/blink-cmp-npm.nvim"),
+  _G.nxs.gh("kristijanhusak/vim-dadbod-completion"),
+  { src = _G.nxs.gh("saghen/blink.cmp"), version = vim.version.range("1.*") },
+
+  _G.nxs.gh("stevearc/conform.nvim"),
+})
+
+setup_deferred(function()
+  -- ==================================================================== early-retirement
+  require("early-retirement").setup({})
+
+  -- ==================================================================== luasnip
+  require("luasnip.loaders.from_lua").lazy_load({
+    paths = vim.fn.stdpath("config") .. "/snippets",
+  })
+  require("luasnip.loaders.from_vscode").lazy_load()
+
+  -- ==================================================================== lazydev
+  require("lazydev").setup({
+    library = {
+      -- See the configuration section for more details
+      -- Load luvit types when the `vim.uv` word is found
+      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+    },
+  })
+
+  -- ==================================================================== mason
   require("mason").setup()
   require("mason-lspconfig").setup({
     ensure_installed = {
@@ -18,59 +70,12 @@ MiniDeps.later(function()
     },
     automatic_installation = true,
   })
-end)
 
-MiniDeps.later(function()
-  MiniDeps.add({ source = "neovim/nvim-lspconfig" })
-
+  -- ==================================================================== lspconfig
   _G.nxs.keybind_set("n", "<leader>cli", "<cmd>LspInfo<CR>", "LSP: Info")
   _G.nxs.keybind_set("n", "<leader>clr", "<cmd>LspRestart<CR>", "LSP: Restart")
-end)
 
-MiniDeps.later(function()
-  local build_luasnip = function(args)
-    vim.fn.system({ "make", "install_jsregexp", "-C", args.path })
-  end
-
-  MiniDeps.add({
-    source = "L3MON4D3/LuaSnip",
-    checkout = "v2.4.1",
-    depends = {
-      "rafamadriz/friendly-snippets",
-    },
-    hooks = {
-      post_install = build_luasnip,
-      post_checkout = build_luasnip,
-    },
-  })
-
-  require("luasnip.loaders.from_lua").lazy_load()
-  require("luasnip.loaders.from_vscode").lazy_load()
-end)
-
-MiniDeps.later(function()
-  MiniDeps.add({ source = "folke/lazydev.nvim" })
-
-  require("lazydev").setup({
-    library = {
-      -- See the configuration section for more details
-      -- Load luvit types when the `vim.uv` word is found
-      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-    },
-  })
-end)
-
-MiniDeps.later(function()
-  MiniDeps.add({
-    source = "saghen/blink.cmp",
-    checkout = "v1.9.1",
-    depends = {
-      "onsails/lspkind.nvim",
-      "alexandre-abrioux/blink-cmp-npm.nvim",
-      "kristijanhusak/vim-dadbod-completion",
-    },
-  })
-
+  -- ==================================================================== blink
   local blink = require("blink-cmp")
   local lspkind = require("lspkind")
   local devicons = require("nvim-web-devicons")
@@ -213,11 +218,8 @@ MiniDeps.later(function()
       },
     },
   })
-end)
 
-MiniDeps.later(function()
-  MiniDeps.add({ source = "stevearc/conform.nvim" })
-
+  -- ==================================================================== conform
   require("conform").setup({
     formatters_by_ft = {
       ["*"] = { "trim_whitespace" },
@@ -246,12 +248,6 @@ MiniDeps.later(function()
       vim.cmd("w!")
     end)
   end, "Code: Format Buffer")
-end)
-
-MiniDeps.later(function()
-  MiniDeps.add({ source = "chrisgrieser/nvim-early-retirement" })
-
-  require("early-retirement").setup({})
 end)
 
 _G.nxs.new_autocmd("LspAttach", "*", function(args)

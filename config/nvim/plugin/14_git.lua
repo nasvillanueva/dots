@@ -1,6 +1,11 @@
-MiniDeps.later(function()
-  MiniDeps.add({ source = "lewis6991/gitsigns.nvim" })
+local setup_deferred = _G.nxs.deferred_packadd({
+  _G.nxs.gh("lewis6991/gitsigns.nvim"),
+  _G.nxs.gh("sindrets/diffview.nvim"),
+  _G.nxs.gh("ruifm/gitlinker.nvim"),
+})
 
+setup_deferred(function()
+  -- ==================================================================== gitsigns
   require("gitsigns").setup({
     signs = {
       add = { text = "▎" },
@@ -56,20 +61,11 @@ MiniDeps.later(function()
       )
     end,
   })
-end)
 
-MiniDeps.later(function()
-  MiniDeps.add({ source = "sindrets/diffview.nvim" })
-
+  -- ==================================================================== diffview
   require("diffview").setup()
   _G.nxs.keybind_set("n", "<leader>gdo", "<cmd>DiffviewOpen<CR>", "DiffView")
-end)
 
-MiniDeps.later(function()
-  MiniDeps.add({
-    source = "ruifm/gitlinker.nvim",
-    depends = { "nvim-lua/plenary.nvim" },
-  })
-
+  -- ==================================================================== gitlinker
   require("gitlinker").setup()
 end)
