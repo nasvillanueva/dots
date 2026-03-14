@@ -1,18 +1,23 @@
-MiniDeps.later(function()
-  -- without any of the new events from neovim 0.12 package manager,
-  -- there's no way to trigger TSUpdate on every new installation, so this has
-  -- to be updated when 0.12 comes out, for now use MiniDeps.add directly
-  MiniDeps.add({
-    source = "nvim-treesitter/nvim-treesitter",
-    hooks = {
-      post_checkout = function()
-        vim.cmd("TSUpdate")
-      end,
-    },
-  })
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "nvim-treesitter" and kind == "update" then
+      if not ev.data.active then
+        vim.cmd.packadd("nvim-treesitter")
+      end
+      vim.cmd("TSUpdate")
+    end
+  end,
+})
 
+local setup_deferred = _G.nxs.deferred_packadd({
+  _G.nxs.gh("nvim-treesitter/nvim-treesitter"),
+  _G.nxs.gh("windwp/nvim-ts-autotag"),
+})
+
+setup_deferred(function()
+  -- ==================================================================== treesitter
   local ts = require("nvim-treesitter")
-
   ts.setup()
 
   local ignored_parsers = {}
@@ -49,10 +54,7 @@ MiniDeps.later(function()
       end
     end,
   })
-end)
 
-MiniDeps.later(function()
-  MiniDeps.add({ source = "windwp/nvim-ts-autotag" })
-
+  -- ==================================================================== nvim-ts-autotag
   require("nvim-ts-autotag").setup()
 end)

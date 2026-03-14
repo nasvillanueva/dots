@@ -3,6 +3,7 @@
 - Install [nvm](https://github.com/nvm-sh/nvm)
     - Install latest node lts
 - Install [homebrew](https://brew.sh), then install packages:
+    - neovim
     - git
     - tmux
     - coreutils
@@ -20,6 +21,6 @@
         - brew tap laishulu/homebrew
     - asdf
     - --cask rectangle
-    - translate-shell
     - tree-sitter-cli
+    - ffmpeg-full
 - clone dots

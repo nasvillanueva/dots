@@ -1,100 +1,92 @@
-MiniDeps.now(function()
-  MiniDeps.add({ source = "rose-pine/neovim", name = "rose-pine" })
-  require("rose-pine").setup({
-    dark_variant = "moon",
-    dim_inactive_windows = true,
-  })
+vim.pack.add({
+  { src = _G.nxs.gh("rose-pine/neovim"), name = "rose-pine" },
+  _G.nxs.gh("nvim-lualine/lualine.nvim"),
+  _G.nxs.gh("folke/which-key.nvim"),
+  _G.nxs.gh("stevearc/oil.nvim"),
+})
 
-  local function is_dark_mode()
-    local obj = vim
-      .system({ "defaults", "read", "-g", "AppleInterfaceStyle" }, { text = true })
-      :wait()
-    return obj.stdout:match("Dark") ~= nil
-  end
+-- ==================================================================== colorscheme
+vim.opt.background = vim
+  .system({ "defaults", "read", "-g", "AppleInterfaceStyle" }, { text = true })
+  :wait().stdout
+  :match("Dark") and "dark" or "light"
 
-  if is_dark_mode() then
-    vim.opt.background = "dark"
-  else
-    vim.opt.background = "light"
-  end
+require("rose-pine").setup({
+  dark_variant = "moon",
+  dim_inactive_windows = true,
+})
+vim.cmd("colorscheme rose-pine")
 
-  vim.cmd("colorscheme rose-pine")
-end)
-
--- lazy loaded since we check for light/dark mode when setting colorscheme
-MiniDeps.later(function()
-  MiniDeps.add({ source = "f-person/auto-dark-mode.nvim" })
-  require("auto-dark-mode").setup()
-end)
-
-MiniDeps.now(function()
-  MiniDeps.add({ source = "nvim-lualine/lualine.nvim" })
-
-  require("lualine").setup({
-    sections = {
-      lualine_c = {
-        {
-          "filename",
-          path = 3,
-        },
+-- ==================================================================== lualine
+require("lualine").setup({
+  sections = {
+    lualine_c = {
+      {
+        "filename",
+        path = 3,
       },
     },
-  })
-end)
+  },
+})
 
-MiniDeps.now(function()
-  MiniDeps.add({ source = "folke/which-key.nvim" })
+-- ==================================================================== whickey
+local wk = require("which-key")
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
 
-  local wk = require("which-key")
-  wk.setup({
-    preset = "helix",
-    show_help = false,
-  })
-  wk.add({
-    {
-      mode = { "n", "v" },
-      { "<leader><tab>", group = "tab" },
-      { "<leader>c", group = "code" },
-      { "<leader>f", group = "files" },
-      { "<leader>g", group = "git" },
-      { "<leader>gh", group = "hunks" },
-      { "<leader>l", group = "lsp" },
-      { "<leader>s", group = "search" },
-      { "<leader>v", group = "nvim" },
-      { "<leader>x", group = "quickfix/loclist" },
-      { "[", group = "prev" },
-      { "]", group = "next" },
-      { "g", group = "goto" },
-    },
-  })
+wk.setup({
+  preset = "helix",
+  show_help = false,
+})
 
-  vim.opt.timeout = true
-  vim.opt.timeoutlen = 300
-end)
+wk.add({
+  {
+    mode = { "n", "v" },
+    { "<leader><tab>", group = "tab" },
+    { "<leader>c", group = "code" },
+    { "<leader>f", group = "files" },
+    { "<leader>g", group = "git" },
+    { "<leader>gh", group = "hunks" },
+    { "<leader>l", group = "lsp" },
+    { "<leader>s", group = "search" },
+    { "<leader>v", group = "nvim" },
+    { "<leader>x", group = "quickfix/loclist" },
+    { "[", group = "prev" },
+    { "]", group = "next" },
+    { "g", group = "goto" },
+  },
+})
 
-MiniDeps.now(function()
-  MiniDeps.add({ source = "stevearc/oil.nvim" })
+-- ==================================================================== oil
+require("oil").setup({
+  view_options = {
+    show_hidden = true,
+  },
+  skip_confirm_for_simple_edits = true,
+  lsp_file_methods = {
+    enabled = true,
+    autosave_changes = true,
+  },
+  keymaps = {
+    ["<C-l>"] = false,
+  },
+})
 
-  require("oil").setup({
-    view_options = {
-      show_hidden = true,
-    },
-    skip_confirm_for_simple_edits = true,
-    lsp_file_methods = {
-      enabled = true,
-      autosave_changes = true,
-    },
-    keymaps = {
-      ["<C-l>"] = false,
-    },
-  })
+_G.nxs.keybind_set("n", "<leader>e", "<CMD>Oil<CR>", "File Explorer")
 
-  _G.nxs.keybind_set("n", "<leader>e", "<CMD>Oil<CR>", "File Explorer")
-end)
+local setup_deferred = _G.nxs.deferred_packadd({
+  -- lazy loaded since we check for light/dark mode when setting colorscheme
+  _G.nxs.gh("f-person/auto-dark-mode.nvim"),
+  _G.nxs.gh("catgoose/nvim-colorizer.lua"),
+  _G.nxs.gh("folke/trouble.nvim"),
+  _G.nxs.gh("folke/todo-comments.nvim"),
+})
 
-MiniDeps.later(function()
-  MiniDeps.add({ source = "catgoose/nvim-colorizer.lua" })
+setup_deferred(function()
+  -- ==================================================================== auto-dark-mode
+  require("auto-dark-mode").setup()
 
+  -- ==================================================================== colorizer
   require("colorizer").setup({
     -- Don't auto enable by filetype
     filetypes = {},
@@ -123,83 +115,4 @@ MiniDeps.later(function()
       },
     },
   })
-end)
-
-MiniDeps.later(function()
-  MiniDeps.add({ source = "folke/trouble.nvim" })
-
-  local trouble = require("trouble")
-  trouble.setup({
-    use_diagnostic_signs = true,
-    auto_close = true,
-    auto_preview = false,
-  })
-
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>xx",
-    "<cmd>Trouble diagnostics toggle<cr>",
-    "Document Diagnostics (Trouble)"
-  )
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>xX",
-    "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-    "Workspace Diagnostics (Trouble)"
-  )
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>xL",
-    "<cmd>Trouble loclist toggle<cr>",
-    "Location List (Trouble)"
-  )
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>xQ",
-    "<cmd>Trouble qflist toggle<cr>",
-    "Quickfix List (Trouble)"
-  )
-  _G.nxs.keybind_set("n", "[q", function()
-    if require("trouble").is_open() then
-      trouble.prev({ skip_groups = true, jump = true })
-    else
-      local ok, err = pcall(vim.cmd.cprev)
-      if not ok then
-        vim.notify(err, vim.log.levels.ERROR)
-      end
-    end
-  end, "Previous trouble/quickfix item")
-  _G.nxs.keybind_set("n", "]q", function()
-    if require("trouble").is_open() then
-      trouble.next({ skip_groups = true, jump = true })
-    else
-      local ok, err = pcall(vim.cmd.cnext)
-      if not ok then
-        vim.notify(err, vim.log.levels.ERROR)
-      end
-    end
-  end, "Next trouble/quickfix item")
-end)
-
-MiniDeps.later(function()
-  MiniDeps.add({ source = "folke/todo-comments.nvim" })
-
-  _G.nxs.keybind_set("n", "]t", function()
-    require("todo-comments").jump_next()
-  end, "Next todo comment")
-  _G.nxs.keybind_set("n", "[t", function()
-    require("todo-comments").jump_prev()
-  end, "Previous todo comment")
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>xt",
-    "<cmd>TodoTrouble<cr>",
-    "Todo (Trouble)"
-  )
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>xT",
-    "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
-    "Todo/Fix/Fixme (Trouble)"
-  )
 end)

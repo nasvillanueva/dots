@@ -11,7 +11,7 @@ vim.o.shada = "'100,<50,s10,:1000,/100,@100,h" -- Limit ShaDa file (for startup)
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
 
--- UI ========================================================================
+-- ==================================================================== ui
 vim.opt.breakindent = true -- Indent wrapped lines to match line start
 vim.opt.breakindentopt = "list:-1" -- Add padding for lists (if 'wrap' is set)
 vim.opt.colorcolumn = "+1" -- Draw column on the right of maximum width
@@ -58,12 +58,12 @@ vim.opt.matchpairs:append({ -- characters that are treated as pairs; gets highli
 })
 
 -- Folding
-vim.opt.foldlevel = 1 -- Fold everything except top level
+vim.opt.foldlevel = 999 -- don't fold anything
 vim.opt.foldmethod = "indent" -- Fold based on indent level
 vim.opt.foldnestmax = 10 -- Limit number of fold levels
 vim.opt.foldtext = "" -- Show text under fold with its highlighting
 
--- Editing ====================================================================
+-- ==================================================================== editing
 vim.opt.autoindent = true -- Use auto indent
 vim.opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard, at least on macos
 vim.opt.expandtab = true -- Convert tabs to spaces
@@ -125,7 +125,7 @@ _G.nxs.diagnostic_base_options = {
   update_in_insert = false,
 }
 
--- Use `later()` to avoid sourcing `vim.diagnostic` on startup
-MiniDeps.later(function()
+-- Defer to avoid sourcing `vim.diagnostic` on startup
+vim.schedule(function()
   vim.diagnostic.config(_G.nxs.diagnostic_base_options)
 end)
