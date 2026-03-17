@@ -5,7 +5,7 @@ local i = luasnip.insert_node
 
 return {
   s({
-    trig = "#",
+    trig = "hd",
     name = "Add header line",
   }, {
     t(
