@@ -70,31 +70,6 @@ _G.nxs.keybind_set(
   "Increase Window Width"
 )
 
-_G.nxs.keybind_set("n", "<C-d>", "<C-d>zz", "Scroll down and center cursor")
-_G.nxs.keybind_set("n", "<C-u>", "<C-u>zz", "Scroll up and center cursor")
-_G.nxs.keybind_set("n", "<PageDown>", "<C-d>", "Scroll down and center cursor")
-_G.nxs.keybind_set("n", "<PageUp>", "<C-u>", "Scroll up and center cursor")
-_G.nxs.keybind_set(
-  "i",
-  "<PageDown>",
-  "<C-o><C-d>",
-  "Scroll down and center cursor"
-)
-_G.nxs.keybind_set("i", "<PageUp>", "<C-o><C-u>", "Scroll up and center cursor")
-
-_G.nxs.keybind_set(
-  "n",
-  "n",
-  "nzzzv",
-  "Move to next search result and center cursor"
-)
-_G.nxs.keybind_set(
-  "n",
-  "N",
-  "Nzzzv",
-  "Move to previous search result and center cursor"
-)
-
 _G.nxs.keybind_set(
   "n",
   "<A-j>",
