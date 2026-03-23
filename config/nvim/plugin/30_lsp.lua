@@ -11,6 +11,10 @@ vim.api.nvim_create_autocmd("PackChanged", {
   end,
 })
 
+vim.pack.add({
+  _G.nxs.gh("neovim/nvim-lspconfig"),
+})
+
 local setup_deferred = _G.nxs.deferred_packadd({
   {
     src = _G.nxs.gh("chrisgrieser/nvim-early-retirement"),
@@ -24,7 +28,6 @@ local setup_deferred = _G.nxs.deferred_packadd({
 
   _G.nxs.gh("mason-org/mason.nvim"),
   _G.nxs.gh("mason-org/mason-lspconfig.nvim"),
-  _G.nxs.gh("neovim/nvim-lspconfig"),
 
   _G.nxs.gh("onsails/lspkind.nvim"),
   _G.nxs.gh("alexandre-abrioux/blink-cmp-npm.nvim"),
