@@ -1,5 +1,3 @@
-/config/nvim/nvim-pack-lock.json
-/config/nvim/lua/nxs/dbconfig.lua
 /config/lazygit/*
 !/config/lazygit/config.yml
 /config/zsh/plugins/*

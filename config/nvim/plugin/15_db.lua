@@ -1,4 +1,9 @@
-require("nxs.dbconfig")
+local dbconfig_path = vim.fn.expand("~/.config/dbconfig.lua")
+local dbconfig_exists = vim.uv.fs_stat(dbconfig_path)
+
+if dbconfig_exists then
+    dofile(dbconfig_path)
+end
 
 local setup_deferred = _G.nxs.deferred_packadd({
   _G.nxs.gh("tpope/vim-dadbod"),
