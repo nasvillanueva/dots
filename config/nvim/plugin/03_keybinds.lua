@@ -186,3 +186,5 @@ _G.nxs.keybind_set(
   "<cmd>CopyFilePath relative prefix=public/<CR>",
   "Copy Relative For Public Directory"
 )
+
+_G.nxs.keybind_set("n", "Z", "zz", "Center this line")
