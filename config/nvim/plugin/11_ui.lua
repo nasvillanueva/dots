@@ -1,3 +1,10 @@
+vim.cmd("packadd nvim.undotree")
+_G.nxs.keybind_set("n", "<leader>U", function ()
+  require("undotree").open({
+    command = "50vnew"
+  })
+end, "Open undotree")
+
 vim.pack.add({
   { src = _G.nxs.gh("rose-pine/neovim"), name = "rose-pine" },
   _G.nxs.gh("nvim-lualine/lualine.nvim"),
