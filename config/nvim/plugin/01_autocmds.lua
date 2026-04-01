@@ -32,11 +32,6 @@ _G.nxs.new_autocmd("BufRead", "*", function(opts)
   })
 end, "Restore last cursor position")
 
-_G.nxs.new_autocmd("WinResized", "*", function()
-  local scrolloff_percentage = 0.2
-  vim.opt.scrolloff = math.floor(vim.o.lines * scrolloff_percentage)
-end, "Smart scroll offset")
-
 _G.nxs.new_autocmd("VimResized", "*", function()
   local current_tab = vim.fn.tabpagenr()
   vim.cmd("tabdo wincmd =")
