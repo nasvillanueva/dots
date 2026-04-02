@@ -78,14 +78,9 @@ setup_deferred(function()
       diffview = true,
       snacks = true,
     },
-    diff_viewer = "diffview"
+    diff_viewer = "diffview",
   })
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>gG",
-    function()
-      neogit.open({ kind = "split" })
-    end,
-    "Open neogit"
-  )
+  _G.nxs.keybind_set("n", "<leader>gG", function()
+    neogit.open({ kind = "split" })
+  end, "Open neogit")
 end)

@@ -1,7 +1,7 @@
 vim.cmd("packadd nvim.undotree")
-_G.nxs.keybind_set("n", "<leader>U", function ()
+_G.nxs.keybind_set("n", "<leader>U", function()
   require("undotree").open({
-    command = "50vnew"
+    command = "50vnew",
   })
 end, "Open undotree")
 
