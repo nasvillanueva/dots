@@ -10,6 +10,53 @@ end
 
 return {
   s({
+    trig = "descr",
+    name = "Test `describe` block",
+    condition = is_test_file,
+  }, {
+    t('describe("'),
+    i(1, "title"),
+    t({ '", () => {', "  " }),
+    i(0),
+    t({ "", "});" }),
+  }),
+  s({
+    trig = "bfe",
+    name = "Test `beforeEach` block",
+    condition = is_test_file,
+  }, {
+    t("beforeEach(() => {", "  "),
+    i(0),
+    t({ "", "});" }),
+  }),
+  s({
+    trig = "bfea",
+    name = "Test async `beforeEach` block",
+    condition = is_test_file,
+  }, {
+    t("beforeEach(async () => {", "  "),
+    i(0),
+    t({ "", "});" }),
+  }),
+  s({
+    trig = "afe",
+    name = "Test `afterEach` block",
+    condition = is_test_file,
+  }, {
+    t("afterEach(() => {", "  "),
+    i(0),
+    t({ "", "});" }),
+  }),
+  s({
+    trig = "afea",
+    name = "Test async `afterEach` block",
+    condition = is_test_file,
+  }, {
+    t("afterEach(async () => {", "  "),
+    i(0),
+    t({ "", "});" }),
+  }),
+  s({
     trig = "it",
     name = "Test `it` block",
     condition = is_test_file,
