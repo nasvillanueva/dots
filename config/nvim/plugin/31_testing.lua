@@ -28,26 +28,29 @@ setup_deferred(function()
     neotest.run.run({ vim.fn.expand("%") })
   end, "Neotest Vitest: Run File")
 
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>ts",
-    "<cmd>Neotest summary<cr>",
-    "Neotest: Open Summary"
-  )
+  _G.nxs.keybind_set("n", "<leader>ts", function()
+    neotest.summary.open({
+      enter = true,
+    })
+  end, "Neotest: Open Summary")
 
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>to",
-    "<cmd>Neotest output<cr>",
-    "Neotest: Open Output"
-  )
+  _G.nxs.keybind_set("n", "<leader>to", function()
+    neotest.output.open({
+      enter = true,
+    })
+  end, "Neotest: Open Output")
 
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>tp",
-    "<cmd>Neotest output-panel<cr>",
-    "Neotest: Open Output Panel"
-  )
+  _G.nxs.keybind_set("n", "<leader>tp", function()
+    neotest.output_panel.open()
+    local bufnr = neotest.output_panel.buffer()
+
+    if bufnr then
+      local wid = vim.fn.bufwinid(bufnr)
+      if wid ~= -1 then
+        vim.api.nvim_set_current_win(wid)
+      end
+    end
+  end, "Neotest: Open Output Panel")
 
   _G.nxs.keybind_set("n", "]t", "<CMD>Neotest jump next<CR>", "Next Test")
   _G.nxs.keybind_set("n", "[t", "<CMD>Neotest jump prev<CR>", "Next Test")
