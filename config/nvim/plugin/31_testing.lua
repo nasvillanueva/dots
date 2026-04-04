@@ -9,6 +9,7 @@ setup_deferred(function()
   require("neotest").setup({
     adapters = {
       require("neotest-vitest")({
+        vitestCommand = "npx vitest run",
         filter_dir = function(name)
           return name ~= "node_modules"
         end,
@@ -19,14 +20,14 @@ setup_deferred(function()
   _G.nxs.keybind_set(
     "n",
     "<leader>ta",
-    "<cmd>lua require('neotest').run.run({ vitestCommand = 'npx vitest --watch' })<cr>",
+    "<cmd>lua require('neotest').run.run()<cr>",
     "Neotest Vitest: Run All Tests"
   )
 
   vim.api.nvim_set_keymap(
     "n",
     "<leader>tf",
-    "<cmd>lua require('neotest').run.run({ vim.fn.expand('%'), vitestCommand = 'npx vitest' })<cr>",
+    "<cmd>lua require('neotest').run.run({ vim.fn.expand('%') })<cr>",
     { desc = "Neotest Vitest: Run File" }
   )
 
