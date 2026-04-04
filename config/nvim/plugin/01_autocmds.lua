@@ -64,3 +64,28 @@ _G.nxs.new_autocmd("TermOpen", { "term://*" }, function()
   vim.wo.spell = false
   vim.cmd("startinsert")
 end, "Setup Terminal")
+
+_G.nxs.new_autocmd("FileType", {
+  "checkhealth",
+  "dbout",
+  "gitsigns-blame",
+  "help",
+  "neotest-output",
+  "neotest-output-panel",
+  "neotest-summary",
+  "qf",
+  "startuptime",
+  "query",
+}, function(event)
+  vim.bo[event.buf].buflisted = false
+  vim.schedule(function()
+    vim.keymap.set("n", "q", function()
+      vim.cmd("close")
+      pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+    end, {
+      buffer = event.buf,
+      silent = true,
+      desc = "Quit buffer",
+    })
+  end)
+end)
