@@ -6,7 +6,8 @@ local setup_deferred = _G.nxs.deferred_packadd({
 })
 
 setup_deferred(function()
-  require("neotest").setup({
+  local neotest = require("neotest")
+  neotest.setup({
     adapters = {
       require("neotest-vitest")({
         vitestCommand = "npx vitest run",
@@ -17,19 +18,15 @@ setup_deferred(function()
     },
   })
 
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>ta",
-    "<cmd>lua require('neotest').run.run()<cr>",
-    "Neotest Vitest: Run All Tests"
-  )
+  _G.nxs.keybind_set("n", "<leader>ta", function()
+    neotest.output_panel.clear()
+    neotest.run.run()
+  end, "Neotest Vitest: Run All Tests")
 
-  _G.nxs.keybind_set(
-    "n",
-    "<leader>tf",
-    "<cmd>lua require('neotest').run.run({ vim.fn.expand('%') })<cr>",
-    "Neotest Vitest: Run File"
-  )
+  _G.nxs.keybind_set("n", "<leader>tf", function()
+    neotest.output_panel.clear()
+    neotest.run.run({ vim.fn.expand("%") })
+  end, "Neotest Vitest: Run File")
 
   _G.nxs.keybind_set(
     "n",
