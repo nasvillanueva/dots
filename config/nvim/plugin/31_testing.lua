@@ -24,31 +24,34 @@ setup_deferred(function()
     "Neotest Vitest: Run All Tests"
   )
 
-  vim.api.nvim_set_keymap(
+  _G.nxs.keybind_set(
     "n",
     "<leader>tf",
     "<cmd>lua require('neotest').run.run({ vim.fn.expand('%') })<cr>",
-    { desc = "Neotest Vitest: Run File" }
+    "Neotest Vitest: Run File"
   )
 
-  vim.api.nvim_set_keymap(
+  _G.nxs.keybind_set(
     "n",
     "<leader>ts",
     "<cmd>Neotest summary<cr>",
-    { desc = "Neotest: Open Summary" }
+    "Neotest: Open Summary"
   )
 
-  vim.api.nvim_set_keymap(
+  _G.nxs.keybind_set(
     "n",
     "<leader>to",
     "<cmd>Neotest output<cr>",
-    { desc = "Neotest: Open Output" }
+    "Neotest: Open Output"
   )
 
-  vim.api.nvim_set_keymap(
+  _G.nxs.keybind_set(
     "n",
     "<leader>tp",
     "<cmd>Neotest output-panel<cr>",
-    { desc = "Neotest: Open Output Panel" }
+    "Neotest: Open Output Panel"
   )
+
+  _G.nxs.keybind_set("n", "]t", "<CMD>Neotest jump next<CR>", "Next Test")
+  _G.nxs.keybind_set("n", "[t", "<CMD>Neotest jump prev<CR>", "Next Test")
 end)
