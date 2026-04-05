@@ -92,8 +92,7 @@ vim.opt.iskeyword = "@,48-57,_,192-255,-" -- Treat dash as `word` textobject par
 -- possibly followed by punctuation (. or `)`) followed by at least one space".
 vim.o.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 
-vim.o.complete = ".,w,b,kspell" -- Use less sources
-vim.o.completeopt = "menu,menuone,noselect,fuzzy,nosort,popup"
+vim.opt.completeopt = "menu,menuone,preview"
 
 -- Files
 vim.opt.autochdir = false -- Prevent autochange directory
