@@ -67,7 +67,7 @@ setup_deferred(function()
       "jsonls",
       "stylelint_lsp",
       "lua_ls",
-      "elixirls",
+      "expert",
       "vtsls",
       "vue_ls",
     },
