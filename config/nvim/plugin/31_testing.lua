@@ -52,6 +52,6 @@ setup_deferred(function()
     end
   end, "Neotest: Open Output Panel")
 
-  _G.nxs.keybind_set("n", "]t", "<CMD>Neotest jump next<CR>", "Next Test")
-  _G.nxs.keybind_set("n", "[t", "<CMD>Neotest jump prev<CR>", "Next Test")
+  _G.nxs.keybind_set("n", "]T", "<CMD>Neotest jump next<CR>", "Next Test")
+  _G.nxs.keybind_set("n", "[T", "<CMD>Neotest jump prev<CR>", "Next Test")
 end)
