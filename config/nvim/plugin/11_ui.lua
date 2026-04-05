@@ -7,6 +7,7 @@ end, "Open undotree")
 
 vim.pack.add({
   { src = _G.nxs.gh("rose-pine/neovim"), name = "rose-pine" },
+  _G.nxs.gh("j-hui/fidget.nvim"),
   _G.nxs.gh("nvim-lualine/lualine.nvim"),
   _G.nxs.gh("folke/which-key.nvim"),
   _G.nxs.gh("stevearc/oil.nvim"),
@@ -23,6 +24,9 @@ require("rose-pine").setup({
   dim_inactive_windows = true,
 })
 vim.cmd("colorscheme rose-pine")
+
+-- ==================================================================== fidget / lsp progress
+require("fidget").setup({})
 
 -- ==================================================================== lualine
 require("lualine").setup({
