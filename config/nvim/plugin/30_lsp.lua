@@ -270,13 +270,13 @@ _G.nxs.new_autocmd("LspAttach", "*", function(args)
   local client = vim.lsp.get_client_by_id(args.data.client_id)
 
   if client:supports_method("textDocument/documentSymbols") then
-    _G.nxs.keybind_set("n", "<leader>ss", function()
+    _G.nxs.keybind_set("n", "gO", function()
       Snacks.picker.lsp_symbols()
     end, "Picker: LSP Symbols")
   end
 
   if client:supports_method("workspace/symbol") then
-    _G.nxs.keybind_set("n", "<leader>sS", function()
+    _G.nxs.keybind_set("n", "go", function()
       Snacks.picker.lsp_workspace_symbols()
     end, "Picker: LSP Workspace Symbols")
   end
@@ -287,24 +287,14 @@ _G.nxs.new_autocmd("LspAttach", "*", function(args)
     end, "LSP: Goto declaration", { buffer = args.buf })
   end
   if client:supports_method("textDocument/implementation") then
-    _G.nxs.keybind_set("n", "gI", function()
+    _G.nxs.keybind_set("n", "gri", function()
       Snacks.picker.lsp_implementations()
     end, "LSP: Goto Implementation")
   end
   if client:supports_method("textDocument/typeDefinition") then
-    _G.nxs.keybind_set("n", "gy", function()
+    _G.nxs.keybind_set("n", "grt", function()
       Snacks.picker.lsp_type_definitions()
     end, "LSP: Goto Type Definition")
-  end
-
-  if client:supports_method("textDocument/hover") then
-    _G.nxs.keybind_set(
-      "n",
-      "K",
-      vim.lsp.buf.hover,
-      "LSP: Hover",
-      { buffer = args.buf }
-    )
   end
 
   if client:supports_method("textDocument/definition") then
@@ -316,7 +306,7 @@ _G.nxs.new_autocmd("LspAttach", "*", function(args)
   if client:supports_method("textDocument/references") then
     _G.nxs.keybind_set(
       "n",
-      "gr",
+      "grr",
       function()
         Snacks.picker.lsp_references()
       end,
@@ -328,47 +318,27 @@ _G.nxs.new_autocmd("LspAttach", "*", function(args)
     )
   end
 
-  if client:supports_method("textDocument/signatureHelp") then
-    _G.nxs.keybind_set(
-      "n",
-      "gK",
-      vim.lsp.buf.signature_help,
-      "LSP: Signature Help",
-      { buffer = args.buf }
-    )
-    _G.nxs.keybind_set(
-      "i",
-      "<C-k>",
-      vim.lsp.buf.signature_help,
-      "LSP: Signature Help",
-      { buffer = args.buf }
-    )
+  if client:supports_method("textDocument/hover") then
+    _G.nxs.keybind_set("n", "K", function()
+      -- TODO Add some config
+      vim.lsp.buf.hover()
+    end, "LSP: Hover", { buffer = args.buf })
   end
 
   if client:supports_method("textDocument/codeAction") then
     _G.nxs.keybind_set(
       { "n", "v" },
-      "<leader>ca",
+      "gra",
       vim.lsp.buf.code_action,
       "LSP: Code Actions",
       { buffer = args.buf }
     )
 
-    _G.nxs.keybind_set("n", "<leader>cA", function()
+    _G.nxs.keybind_set("n", "grA", function()
       vim.lsp.buf.code_action({
         context = { only = { "source" }, diagnostics = {} },
       })
     end, "LSP: Source Action", { buffer = args.buf })
-  end
-
-  if client:supports_method("textDocument/rename") then
-    _G.nxs.keybind_set(
-      "n",
-      "<leader>cr",
-      vim.lsp.buf.rename,
-      "LSP: Rename",
-      { buffer = args.buf }
-    )
   end
 
   if client:supports_method("textDocument/codeLens") then
