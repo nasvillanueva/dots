@@ -27,6 +27,7 @@ local setup_deferred = _G.nxs.deferred_packadd({
   _G.nxs.gh("folke/lazydev.nvim"),
 
   _G.nxs.gh("mason-org/mason.nvim"),
+  _G.nxs.gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
   _G.nxs.gh("mason-org/mason-lspconfig.nvim"),
 
   _G.nxs.gh("onsails/lspkind.nvim"),
@@ -58,6 +59,18 @@ setup_deferred(function()
 
   -- ==================================================================== mason
   require("mason").setup()
+  require("mason-tool-installer").setup({
+    ensure_installed = {
+      "stylua",
+      "stylelint",
+      "fixjson",
+    },
+    integrations = {
+      ["mason-lspconfig"] = false,
+      ["mason-null-ls"] = false,
+      ["mason-nvim-dap"] = false,
+    },
+  })
   require("mason-lspconfig").setup({
     ensure_installed = {
       "cssls",
