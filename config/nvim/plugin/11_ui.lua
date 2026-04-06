@@ -6,7 +6,7 @@ _G.nxs.keybind_set("n", "<leader>U", function()
 end, "Open undotree")
 
 vim.pack.add({
-  { src = _G.nxs.gh("rose-pine/neovim"), name = "rose-pine" },
+  _G.nxs.gh("webhooked/kanso.nvim"),
   _G.nxs.gh("j-hui/fidget.nvim"),
   _G.nxs.gh("nvim-lualine/lualine.nvim"),
   _G.nxs.gh("folke/which-key.nvim"),
@@ -19,11 +19,15 @@ vim.opt.background = vim
   :wait().stdout
   :match("Dark") and "dark" or "light"
 
-require("rose-pine").setup({
-  dark_variant = "moon",
-  dim_inactive_windows = true,
+require("kanso").setup({
+  dimInactive = true,
+  background = {
+    dark = "zen",
+    light = "mist",
+  },
+  foreground = "saturated",
 })
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme kanso")
 
 -- ==================================================================== fidget / lsp progress
 require("fidget").setup({})
