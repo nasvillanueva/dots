@@ -15,6 +15,7 @@ return {
   },
   settings = {
     vtsls = {
+      autoUseWorkspaceTsdk = true,
       enableMoveToFileCodeAction = true,
       tsserver = {
         globalPlugins = {
@@ -24,6 +25,7 @@ return {
             location = vim.fn.expand("$MASON")
               .. "/packages/vue-language-server/node_modules/@vue/language-server",
             configNamespace = "typescript",
+            enableForWorkspaceTypeScriptVersions = true,
           },
         },
       },
