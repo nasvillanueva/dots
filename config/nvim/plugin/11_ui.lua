@@ -6,7 +6,7 @@ _G.nxs.keybind_set("n", "<leader>U", function()
 end, "Open undotree")
 
 vim.pack.add({
-  _G.nxs.gh("webhooked/kanso.nvim"),
+  { src = _G.nxs.gh("everviolet/nvim"), name = "evergarden" },
   _G.nxs.gh("linrongbin16/lsp-progress.nvim"),
   _G.nxs.gh("nvim-lualine/lualine.nvim"),
   _G.nxs.gh("folke/which-key.nvim"),
@@ -14,20 +14,12 @@ vim.pack.add({
 })
 
 -- ==================================================================== colorscheme
-vim.opt.background = vim
-  .system({ "defaults", "read", "-g", "AppleInterfaceStyle" }, { text = true })
-  :wait().stdout
-  :match("Dark") and "dark" or "light"
+vim.opt.background = "dark"
 
-require("kanso").setup({
-  dimInactive = true,
-  background = {
-    dark = "zen",
-    light = "mist",
-  },
-  foreground = "saturated",
+require("evergarden").setup({
+  theme = { variant = "spring", accent = "green" },
 })
-vim.cmd("colorscheme kanso")
+vim.cmd("colorscheme evergarden")
 
 -- ==================================================================== lsp progress
 local lspProgress = require("lsp-progress")
@@ -135,17 +127,12 @@ require("oil").setup({
 _G.nxs.keybind_set("n", "<leader>e", "<CMD>Oil<CR>", "File Explorer")
 
 local setup_deferred = _G.nxs.deferred_packadd({
-  -- lazy loaded since we check for light/dark mode when setting colorscheme
-  _G.nxs.gh("f-person/auto-dark-mode.nvim"),
   _G.nxs.gh("catgoose/nvim-colorizer.lua"),
   _G.nxs.gh("folke/trouble.nvim"),
   _G.nxs.gh("folke/todo-comments.nvim"),
 })
 
 setup_deferred(function()
-  -- ==================================================================== auto-dark-mode
-  require("auto-dark-mode").setup()
-
   -- ==================================================================== colorizer
   require("colorizer").setup({
     -- Don't auto enable by filetype
