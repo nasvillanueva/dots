@@ -43,6 +43,9 @@ require("snacks").setup({
       files = {
         hidden = true,
       },
+      grep = {
+        hidden = true,
+      },
     },
   },
 })
