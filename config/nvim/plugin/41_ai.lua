@@ -4,6 +4,7 @@ local setup_deferred = _G.nxs.deferred_packadd({
     src = _G.nxs.gh("olimorris/codecompanion.nvim"),
     version = vim.version.range("^19.0.0"),
   },
+  _G.nxs.gh("MeanderingProgrammer/render-markdown.nvim"),
 })
 
 setup_deferred(function()
@@ -34,4 +35,9 @@ setup_deferred(function()
     "<leader>aig",
     "<cmd>CodeCompanionActions<cr>"
   )
+
+  -- ==================================================================== render-markdown
+  require("render-markdown").setup({
+    file_types = { "codecompanion" },
+  })
 end)
