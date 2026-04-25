@@ -8,6 +8,14 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
       vim.fn.system({ "make", "install_jsregexp", "-C", ev.data.path })
     end
+
+    if name == "refactorex" and (kind == "install" or kind == "update") then
+      if not ev.data.active then
+        vim.cmd.packadd("refactorex")
+      end
+
+      vim.cmd("RefactorExDownload")
+    end
   end,
 })
 
@@ -25,6 +33,7 @@ local setup_deferred = _G.nxs.deferred_packadd({
   { src = _G.nxs.gh("L3MON4D3/LuaSnip"), version = vim.version.range("2.*") },
 
   _G.nxs.gh("folke/lazydev.nvim"),
+  _G.nxs.gh("synic/refactorex.nvim"),
 
   _G.nxs.gh("mason-org/mason.nvim"),
   _G.nxs.gh("WhoIsSethDaniel/mason-tool-installer.nvim"),
@@ -56,6 +65,9 @@ setup_deferred(function()
       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
     },
   })
+
+  -- ==================================================================== refactorex
+  require("refactorex").setup({ auto_update = true, pin_version = nil })
 
   -- ==================================================================== mason
   require("mason").setup()
