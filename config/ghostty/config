@@ -25,4 +25,6 @@ keybind = cmd+q=close_surface
 keybind = cmd+c=copy_to_clipboard
 keybind = cmd+v=paste_from_clipboard
 
+custom-shader = shaders/cursor_warp.glsl
+
 # vim: ft=ini
