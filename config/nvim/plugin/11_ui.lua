@@ -6,7 +6,7 @@ _G.nxs.keybind_set("n", "<leader>U", function()
 end, "Open undotree")
 
 vim.pack.add({
-  _G.nxs.gh("ember-theme/nvim"),
+  { src = _G.nxs.gh("everviolet/nvim"), name = "evergarden" },
   _G.nxs.gh("linrongbin16/lsp-progress.nvim"),
   _G.nxs.gh("nvim-lualine/lualine.nvim"),
   _G.nxs.gh("folke/which-key.nvim"),
@@ -16,22 +16,10 @@ vim.pack.add({
 -- ==================================================================== colorscheme
 vim.opt.background = "dark"
 
-require("ember").setup({
-  variant = "ember", -- "ember", "ember-soft", "ember-light"
-  on_highlights = function(highlights, theme)
-    highlights.NeotestDir = { fg = theme.syn.coral }
-    highlights.NeotestAdapterName = { fg = theme.syn.mauve }
-    highlights.NeotestFile = { fg = theme.ui.fg }
-    highlights.NeotestNamespace = { fg = theme.syn.gold }
-    highlights.NeotestFailed = { fg = theme.syn.rose }
-    highlights.NeotestPassed = { fg = theme.syn.olive }
-    highlights.NeotestRunning = { fg = theme.syn.gold }
-    highlights.NeotestSkipped = { fg = theme.syn.mauve }
-    highlights.NeotestTarget = { fg = theme.ui.fg_alt }
-    highlights.NeotestFocused = { fg = theme.ui.fg, bg = theme.ui.bg_alt }
-  end,
+require("evergarden").setup({
+  theme = { variant = "spring", accent = "green" },
 })
-vim.cmd("colorscheme ember")
+vim.cmd("colorscheme evergarden")
 
 -- ==================================================================== lsp progress
 local lspProgress = require("lsp-progress")
