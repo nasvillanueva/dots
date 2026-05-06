@@ -17,7 +17,7 @@ vim.pack.add({
 vim.opt.background = "dark"
 
 require("evergarden").setup({
-  theme = { variant = "spring", accent = "green" },
+  theme = { variant = "fall", accent = "orange" },
 })
 vim.cmd("colorscheme evergarden")
 
