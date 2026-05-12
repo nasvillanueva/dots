@@ -87,8 +87,6 @@ vim.opt.spelloptions = "camel" -- Treat camelCase word parts as separate words
 vim.opt.tabstop = 2 -- Show tab as this number of spaces
 vim.opt.virtualedit = "block" -- Allow going past end of line in blockwise mode
 
-vim.opt.iskeyword:remove({ "-", "_" })
-
 -- Pattern for a start of 'numbered' list (used in `gw`). This reads as
 -- "Start of list item is: at least one special character (digit, -, +, *)
 -- possibly followed by punctuation (. or `)`) followed by at least one space".
