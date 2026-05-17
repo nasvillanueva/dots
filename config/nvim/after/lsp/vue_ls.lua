@@ -15,6 +15,7 @@ return {
         componentNameCasing = "alwaysPascalCase",
         propNameCasing = "alwaysKebabCase",
       },
+      editor = { reactivityVisualization = false },
     },
   },
 }
