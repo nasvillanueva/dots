@@ -31,6 +31,9 @@ setup_deferred(function()
 
   -- ==================================================================== coerce
   require("coerce").setup()
+  _G.nxs.keybind_set("n", "cr", "<Plug>(coerce-normal)", "Coerce word")
+  _G.nxs.keybind_set("n", "gcr", "<Plug>(coerce-motion)", "Coerce motion")
+  _G.nxs.keybind_set("x", "gcr", "<Plug>(coerce-visual)", "Coerce visual")
 
   -- ==================================================================== im-select
   require("im_select").setup({
