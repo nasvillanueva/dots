@@ -28,7 +28,6 @@ vim.opt.number = true -- Show line numbers
 vim.opt.numberwidth = 4 -- line number column width
 vim.opt.pumheight = 10 -- Make popup menu smaller
 vim.opt.ruler = false -- Don't show cursor coordinates
-vim.opt.shortmess = "CFOSWaco" -- Disable some built-in completion messages
 vim.opt.showmatch = true -- highlights matching character/pair
 vim.opt.showmode = false -- displays mode; not needed with a statusline plugin
 vim.opt.signcolumn = "yes" -- Always show signcolumn (less flicker)
