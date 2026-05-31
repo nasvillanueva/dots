@@ -80,7 +80,7 @@ setup_deferred(function()
       "jsonls",
       "stylelint_lsp",
       "lua_ls",
-      "ts_ls",
+      "vtsls",
       "vue_ls",
     },
     automatic_installation = true,
