@@ -31,9 +31,12 @@ setup_deferred(function()
 
   -- ==================================================================== coerce
   require("coerce").setup()
-  _G.nxs.keybind_set("n", "cr", "<Plug>(coerce-normal)", "Coerce word")
-  _G.nxs.keybind_set("n", "gcr", "<Plug>(coerce-motion)", "Coerce motion")
-  _G.nxs.keybind_set("x", "gcr", "<Plug>(coerce-visual)", "Coerce visual")
+  local wke = require("coerce.keymaps").which_key_expand
+  require("which-key").add({
+    { "cr", group = "+Coerce word", expand = wke.normal_mode, mode = "n" },
+    { "gcr", group = "+Coerce motion", expand = wke.motion_mode, mode = "n" },
+    { "gcr", group = "+Coerce visual", expand = wke.visual_mode, mode = "x" },
+  })
 
   -- ==================================================================== im-select
   require("im_select").setup({
