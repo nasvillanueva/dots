@@ -8,11 +8,6 @@ local setup_deferred = _G.nxs.deferred_packadd({
 })
 
 setup_deferred(function()
-  require("copilot").setup({
-    suggestion = { enabled = false },
-    panel = { enabled = false },
-  })
-
   require("codecompanion").setup({
     chat = {
       adapter = "copilot",
