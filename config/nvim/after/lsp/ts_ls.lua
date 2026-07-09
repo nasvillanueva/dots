@@ -13,29 +13,18 @@ return {
     "typescriptreact",
     "vue",
   },
-  settings = {
-    vtsls = {
-      autoUseWorkspaceTsdk = true,
-      enableMoveToFileCodeAction = false,
-      tsserver = {
-        globalPlugins = {
-          {
-            name = "@vue/typescript-plugin",
-            languages = { "vue" },
-            location = vim.fn.expand("$MASON")
-              .. "/packages/vue-language-server/node_modules/@vue/language-server",
-            configNamespace = "typescript",
-            enableForWorkspaceTypeScriptVersions = true,
-          },
-        },
-      },
-      experimental = {
-        completion = {
-          enableServerSideFuzzyMatch = true,
-          entriesLimit = 50,
-        },
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        languages = { "vue" },
+        location = vim.fn.expand("$MASON")
+          .. "/packages/vue-language-server/node_modules/@vue/language-server",
+        configNamespace = "typescript",
       },
     },
+  },
+  settings = {
     javascript = {
       format = { enable = false },
       referencesCodeLens = { enabled = false },
@@ -45,7 +34,7 @@ return {
       },
     },
     typescript = {
-      tsserver = { maxTsServerMemory = 8192, useSyntaxServer = true },
+      tsserver = { maxTsServerMemory = 8192 },
       format = { enable = false },
       referencesCodeLens = { enabled = false },
       implementationsCodeLens = { enabled = false },
