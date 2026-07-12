@@ -39,6 +39,7 @@ vim.opt.title = false -- don't set window title
 vim.opt.visualbell = false -- disable visual bells
 vim.opt.winborder = "solid" -- Use border in floating windows
 vim.opt.wrap = false -- Don't visually wrap lines (toggle with \w)
+vim.opt.termguicolors = true -- support 256 colors?
 
 -- Special UI symbols
 vim.opt.fillchars:append({ -- characters to fill interface
