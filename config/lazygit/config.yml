@@ -6,6 +6,35 @@ gui:
   nerdFontsVersion: "3"
   showBottomLine: false
   useHunkModeInStagingView: false
+  # cendre medium theme
+  # https://github.com/Aejkatappaja/cendre/blob/main/extras/lazygit/cendre-medium.yml
+  theme:
+    activeBorderColor:
+      - "#ea9875"
+      - "bold"
+    inactiveBorderColor:
+      - "#73665b"
+    searchingActiveBorderColor:
+      - "#fcba81"
+      - "bold"
+    optionsTextColor:
+      - "#ea9875"
+    selectedLineBgColor:
+      - "#312a28"
+    inactiveViewSelectedLineBgColor:
+      - "#26211f"
+    cherryPickedCommitFgColor:
+      - "#1d1917"
+    cherryPickedCommitBgColor:
+      - "#ea9875"
+    markedBaseCommitFgColor:
+      - "#1d1917"
+    markedBaseCommitBgColor:
+      - "#fcba81"
+    unstagedChangesColor:
+      - "#d25780"
+    defaultFgColor:
+      - "#e6d5c2"
 git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
   pull:
