@@ -6,7 +6,6 @@ files=(
   config/skhd
   config/lazygit
   config/ghostty
-  config/git
   config/zsh
   curlrc
   gitconfig_global
