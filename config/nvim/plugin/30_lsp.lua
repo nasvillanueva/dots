@@ -33,7 +33,8 @@ local setup_deferred = _G.nxs.deferred_packadd({
   _G.nxs.gh("onsails/lspkind.nvim"),
   _G.nxs.gh("alexandre-abrioux/blink-cmp-npm.nvim"),
   _G.nxs.gh("kristijanhusak/vim-dadbod-completion"),
-  { src = _G.nxs.gh("saghen/blink.cmp"), version = vim.version.range("1.*") },
+  _G.nxs.gh("saghen/blink.lib"),
+  _G.nxs.gh("saghen/blink.cmp"),
 
   _G.nxs.gh("stevearc/conform.nvim"),
 })
@@ -91,9 +92,11 @@ setup_deferred(function()
   _G.nxs.keybind_set("n", "<leader>clr", "<cmd>LspRestart<CR>", "LSP: Restart")
 
   -- ==================================================================== blink
-  local blink = require("blink-cmp")
+  local blink = require("blink.cmp")
   local lspkind = require("lspkind")
   local devicons = require("nvim-web-devicons")
+
+  blink.build():pwait()
 
   blink.setup({
     keymap = {
