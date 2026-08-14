@@ -6,7 +6,7 @@ _G.nxs.keybind_set("n", "<leader>U", function()
 end, "Open undotree")
 
 vim.pack.add({
-  { src = _G.nxs.gh("everviolet/nvim"), name = "evergarden" },
+  _G.nxs.gh("neanias/everforest-nvim"),
   _G.nxs.gh("linrongbin16/lsp-progress.nvim"),
   _G.nxs.gh("nvim-lualine/lualine.nvim"),
   _G.nxs.gh("folke/which-key.nvim"),
@@ -14,12 +14,15 @@ vim.pack.add({
 })
 
 -- ==================================================================== colorscheme
-vim.opt.background = "dark"
+vim.opt.background = "light"
 
-require("evergarden").setup({
-  theme = { variant = "fall", accent = "orange" },
+require("everforest").setup({
+  background = "hard",
+  italics = true,
+  ui_contrast = "high",
+  dim_inactive_windows = true,
 })
-vim.cmd("colorscheme evergarden")
+vim.cmd("colorscheme everforest")
 
 -- ==================================================================== lsp progress
 local lspProgress = require("lsp-progress")
