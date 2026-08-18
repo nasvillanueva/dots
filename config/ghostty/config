@@ -1,4 +1,4 @@
-theme = everforest-light-hard
+theme = rose-pine-dawn
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 11.5
 
@@ -26,5 +26,8 @@ keybind = cmd+c=copy_to_clipboard
 keybind = cmd+v=paste_from_clipboard
 
 custom-shader = shaders/cursor_warp.glsl
+
+macos-icon = custom
+macos-custom-icon = ~/.config/ghostty/ghostty.app@2x.png
 
 # vim: ft=ini
