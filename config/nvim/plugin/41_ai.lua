@@ -16,7 +16,7 @@ local setup_deferred = _G.nxs.deferred_packadd({
   _G.nxs.gh("HakonHarnes/img-clip.nvim"),
   _G.nxs.gh("MunifTanjim/nui.nvim"),
   _G.nxs.gh("zbirenbaum/copilot.lua"),
-  _G.nxs.gh("MeanderingProgrammer/render-markdown.nvim"),
+  _G.nxs.gh("noisesfromspace/touchup.nvim"),
 })
 
 setup_deferred(function()
@@ -39,7 +39,7 @@ setup_deferred(function()
     },
   })
   -- ==================================================================== render-markdown
-  require("render-markdown").setup({
+  require("touchup").setup({
     file_types = { "markdown", "Avante" },
   })
 end)
