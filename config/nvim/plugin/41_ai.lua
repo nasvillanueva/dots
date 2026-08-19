@@ -13,7 +13,6 @@ local setup_deferred = _G.nxs.deferred_packadd({
     version = "main",
   },
 
-  _G.nxs.gh("HakonHarnes/img-clip.nvim"),
   _G.nxs.gh("MunifTanjim/nui.nvim"),
   _G.nxs.gh("zbirenbaum/copilot.lua"),
   _G.nxs.gh("noisesfromspace/touchup.nvim"),
@@ -27,17 +26,6 @@ setup_deferred(function()
     },
   })
 
-  -- ==================================================================== img-clip
-  require("img-clip").setup({
-    -- recommended settings
-    default = {
-      embed_image_as_base64 = false,
-      prompt_for_file_name = false,
-      drag_and_drop = {
-        insert_mode = true,
-      },
-    },
-  })
   -- ==================================================================== render-markdown
   require("touchup").setup({
     file_types = { "markdown", "Avante" },
