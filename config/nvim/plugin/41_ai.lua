@@ -23,6 +23,20 @@ setup_deferred(function()
     provider = "copilot",
     behaviour = {
       auto_suggestions = false,
+      auto_add_current_file = false,
+    },
+    windows = {
+      sidebar_header = {
+        align = "left",
+        include_model = true,
+        rounded = false,
+      },
+    },
+    highlights = {
+      diff = {
+        current = "DiffText",
+        incoming = "DiffAdd",
+      },
     },
   })
 
