@@ -23,6 +23,25 @@ require("rose-pine").setup({
   variant = "dawn",
   dim_inactive_windows = true,
   extend_background_behind_borders = false,
+  highlight_groups = {
+    AvanteTitle = { fg = "base", bg = "iris", bold = true },
+    AvanteReversedTitle = { fg = "iris" },
+
+    AvanteSubtitle = { fg = "base", bg = "foam", bold = true },
+    AvanteReversedSubtitle = { fg = "foam" },
+
+    AvanteThirdTitle = { fg = "base", bg = "gold", bold = true },
+    AvanteReversedThirdTitle = { fg = "gold" },
+
+    AvantePromptInputBorder = { fg = "pine", bg = "none" },
+
+    AvanteHint = { fg = "subtle", italic = true },
+
+    AvanteConflictAncestor = { bg = "overlay" },
+    AvanteConflictAncestorLabel = { fg = "subtle" },
+
+    AvanteToBeDeletedWOStrikethrough = { fg = "rose", strikethrough = true },
+  },
 })
 vim.cmd("colorscheme rose-pine")
 
