@@ -14,7 +14,10 @@ local setup_deferred = _G.nxs.deferred_packadd({
   },
 
   _G.nxs.gh("MunifTanjim/nui.nvim"),
-  _G.nxs.gh("zbirenbaum/copilot.lua"),
+  {
+    src = _G.nxs.gh("zbirenbaum/copilot.lua"),
+    version = "v2.0.4",
+  },
   _G.nxs.gh("noisesfromspace/touchup.nvim"),
 })
 
