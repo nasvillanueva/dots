@@ -70,33 +70,6 @@ _G.nxs.keybind_set(
   "Increase Window Width"
 )
 
-_G.nxs.keybind_set(
-  "n",
-  "<A-j>",
-  "<cmd>execute 'move .+' . v:count1<cr>==",
-  "Move Down"
-)
-_G.nxs.keybind_set(
-  "n",
-  "<A-k>",
-  "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==",
-  "Move Up"
-)
-_G.nxs.keybind_set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", "Move Down")
-_G.nxs.keybind_set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", "Move Up")
-_G.nxs.keybind_set(
-  "v",
-  "<A-j>",
-  ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv",
-  "Move Down"
-)
-_G.nxs.keybind_set(
-  "v",
-  "<A-k>",
-  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv",
-  "Move Up"
-)
-
 _G.nxs.keybind_set("n", "[b", "<cmd>bprevious<cr>", "Prev buffer")
 _G.nxs.keybind_set("n", "]b", "<cmd>bnext<cr>", "Next buffer")
 

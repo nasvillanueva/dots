@@ -1,7 +1,4 @@
 local setup_deferred = _G.nxs.deferred_packadd({
-  _G.nxs.gh("nvim-mini/mini.surround"),
-  _G.nxs.gh("nvim-mini/mini.comment"),
-  _G.nxs.gh("nvim-mini/mini.pairs"),
   _G.nxs.gh("bsuth/emacs-bindings.nvim"),
   _G.nxs.gh("gregorias/coop.nvim"),
   _G.nxs.gh("gregorias/coerce.nvim"),
@@ -9,11 +6,6 @@ local setup_deferred = _G.nxs.deferred_packadd({
 })
 
 setup_deferred(function()
-  -- ==================================================================== mini
-  require("mini.surround").setup()
-  require("mini.comment").setup()
-  require("mini.pairs").setup()
-
   -- ==================================================================== emacs-binding
   vim.g.loaded_emacs_bindings = true
   local emacs = require("emacs-bindings")
