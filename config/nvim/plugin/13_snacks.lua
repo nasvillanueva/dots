@@ -25,16 +25,16 @@ require("snacks").setup({
     win = {
       input = {
         keys = {
-          -- Disable conflicting keybinds for bsuth/emacs-binding.nvim by keeping them for
-          -- input mode or disabling.
           ["<C-a>"] = { "select_all", mode = "n" },
-          ["<C-b>"] = { "preview_scroll_up", mode = "n" },
-          ["<C-f>"] = { "preview_scroll_down", mode = "n" },
-          ["<C-d>"] = { "list_scroll_down", mode = "n" },
-          ["<C-u>"] = { "list_scroll_up", mode = "n" },
           ["<A-d>"] = { "inspect", mode = "n" },
+          ["<C-u>"] = { "preview_scroll_up", mode = { "n", "i" } },
+          ["<C-d>"] = { "preview_scroll_down", mode = { "n", "i" } },
+
+          -- Disable conflicting keybinds for readline
+          ["<C-b>"] = false,
+          ["<C-f>"] = false,
           ["<C-k>"] = false,
-          ["<C-n>"] = false,
+          ["<C-j>"] = false,
           ["<A-f>"] = false,
         },
       },
