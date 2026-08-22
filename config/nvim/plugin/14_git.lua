@@ -7,7 +7,8 @@ local setup_deferred = _G.nxs.deferred_packadd({
 
 setup_deferred(function()
   -- ==================================================================== gitsigns
-  require("gitsigns").setup({
+  local gs = require("gitsigns")
+  gs.setup({
     signs = {
       add = { text = "▎" },
       change = { text = "▎" },
@@ -16,11 +17,13 @@ setup_deferred(function()
       changedelete = { text = "▎" },
       untracked = { text = "▎" },
     },
-    on_attach = function(buffer)
-      local gs = package.loaded.gitsigns
-
-      _G.nxs.keybind_set("n", "]h", gs.next_hunk, "Next Hunk")
-      _G.nxs.keybind_set("n", "[h", gs.prev_hunk, "Prev Hunk")
+    on_attach = function()
+      _G.nxs.keybind_set("n", "]h", function()
+        gs.next_hunk({ target = "all" })
+      end, "Next Hunk")
+      _G.nxs.keybind_set("n", "[h", function()
+        gs.prev_hunk({ target = "all" })
+      end, "Prev Hunk")
       _G.nxs.keybind_set(
         { "n", "v" },
         "<leader>ghs",
