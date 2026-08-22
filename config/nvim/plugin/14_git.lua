@@ -1,8 +1,6 @@
 local setup_deferred = _G.nxs.deferred_packadd({
   _G.nxs.gh("lewis6991/gitsigns.nvim"),
-  _G.nxs.gh("sindrets/diffview.nvim"),
   _G.nxs.gh("ruifm/gitlinker.nvim"),
-  _G.nxs.gh("NeogitOrg/neogit"),
 })
 
 setup_deferred(function()
@@ -66,24 +64,6 @@ setup_deferred(function()
     end,
   })
 
-  -- ==================================================================== diffview
-  require("diffview").setup()
-  _G.nxs.keybind_set("n", "<leader>gdo", "<cmd>DiffviewOpen<CR>", "DiffView")
-
   -- ==================================================================== gitlinker
   require("gitlinker").setup()
-
-  -- ==================================================================== neogit
-
-  local neogit = require("neogit")
-  neogit.setup({
-    integraitons = {
-      diffview = true,
-      snacks = true,
-    },
-    diff_viewer = "diffview",
-  })
-  _G.nxs.keybind_set("n", "<leader>gG", function()
-    neogit.open({ kind = "split" })
-  end, "Open neogit")
 end)
