@@ -1,5 +1,5 @@
 local setup_deferred = _G.nxs.deferred_packadd({
-  _G.nxs.gh("bsuth/emacs-bindings.nvim"),
+  _G.nxs.gh("assistcontrol/readline.nvim"),
   _G.nxs.gh("gregorias/coop.nvim"),
   _G.nxs.gh("gregorias/coerce.nvim"),
   _G.nxs.gh("keaising/im-select.nvim"),
@@ -7,19 +7,51 @@ local setup_deferred = _G.nxs.deferred_packadd({
 
 setup_deferred(function()
   -- ==================================================================== emacs-binding
-  vim.g.loaded_emacs_bindings = true
-  local emacs = require("emacs-bindings")
-  local mode = { "i", "c" }
-
-  _G.nxs.keybind_set(mode, "<C-f>", "<Right>")
-  _G.nxs.keybind_set(mode, "<A-b>", emacs.move_word_back)
-  _G.nxs.keybind_set(mode, "<A-f>", emacs.move_word_forward)
-  _G.nxs.keybind_set(mode, "<C-h>", emacs.delete_char_back)
-  _G.nxs.keybind_set(mode, "<C-d>", emacs.delete_char_forward)
-  _G.nxs.keybind_set(mode, "<A-backspace>", emacs.delete_word_back)
-  _G.nxs.keybind_set({ "i", "c", "t" }, "<A-d>", emacs.delete_word_forward)
-  _G.nxs.keybind_set(mode, "<C-u>", emacs.delete_line_back)
-  _G.nxs.keybind_set(mode, "<C-k>", emacs.delete_line_forward)
+  local readline = require("readline")
+  _G.nxs.keybind_set(
+    "!",
+    "<M-f>",
+    readline.forward_word,
+    "Readline: Forward Word"
+  )
+  _G.nxs.keybind_set(
+    "!",
+    "<M-b>",
+    readline.backward_word,
+    "Readline: Backward Word"
+  )
+  _G.nxs.keybind_set(
+    "!",
+    "<C-a>",
+    readline.beginning_of_line,
+    "Readline: Beginning of Line"
+  )
+  _G.nxs.keybind_set(
+    "!",
+    "<C-e>",
+    readline.end_of_line,
+    "Readline: End of Line"
+  )
+  _G.nxs.keybind_set("!", "<M-d>", readline.kill_word, "Readline: Kill Word")
+  _G.nxs.keybind_set(
+    "!",
+    "<M-BS>",
+    readline.backward_kill_word,
+    "Readline: Backward Kill Word"
+  )
+  _G.nxs.keybind_set(
+    "!",
+    "<C-w>",
+    readline.unix_word_rubout,
+    "Readline: Unix Word Rubout"
+  )
+  _G.nxs.keybind_set("!", "<C-k>", readline.kill_line, "Readline: Kill Line")
+  _G.nxs.keybind_set(
+    "!",
+    "<C-u>",
+    readline.backward_kill_line,
+    "Readline: Backward Kill Line"
+  )
 
   -- ==================================================================== coerce
   require("coerce").setup()
