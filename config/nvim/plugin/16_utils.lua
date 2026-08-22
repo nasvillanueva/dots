@@ -3,6 +3,7 @@ local setup_deferred = _G.nxs.deferred_packadd({
   _G.nxs.gh("gregorias/coop.nvim"),
   _G.nxs.gh("gregorias/coerce.nvim"),
   _G.nxs.gh("keaising/im-select.nvim"),
+  _G.nxs.gh("rgroli/other.nvim"),
 })
 
 setup_deferred(function()
@@ -69,4 +70,52 @@ setup_deferred(function()
     async_switch_im = false,
     default_command = { "macism" },
   })
+
+  -- ==================================================================== other.nvim
+  local other = require("other-nvim")
+  other.setup({
+    showMissingFiles = false,
+    mappings = {
+      "elixir",
+
+      {
+        pattern = "src/(.*)%.(%w+)$",
+        target = "tests/%1.spec.ts",
+        context = "test",
+      },
+      {
+        pattern = "tests/(.*)%.spec%.ts$",
+        target = {
+          "src/%1.vue",
+          "src/%1.ts",
+        },
+        context = "source",
+      },
+
+      {
+        pattern = "src/(.*)/index%.ts$",
+        target = "tests/%1.spec.ts",
+        context = "test",
+      },
+      {
+        pattern = "tests/(.*)%.spec%.ts$",
+        target = "src/%1/index.ts",
+        context = "source (index)",
+      },
+    },
+  })
+
+  _G.nxs.keybind_set("n", "<leader>O", "<cmd>Other<cr>", "Open Alternate File")
+  _G.nxs.keybind_set(
+    "n",
+    "<leader>os",
+    "<cmd>OtherSplit<cr>",
+    "Open Alternate File Split"
+  )
+  _G.nxs.keybind_set(
+    "n",
+    "<leader>ov",
+    "<cmd>OtherVSplit<cr>",
+    "Open Alternate File VSplit"
+  )
 end)
